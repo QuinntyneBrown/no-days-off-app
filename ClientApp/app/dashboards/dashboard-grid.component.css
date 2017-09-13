@@ -1,0 +1,11 @@
+:host {
+    display: grid;
+    margin: 20px;
+    background-color: #fff;
+    width: 100%;
+    max-width: calc(100% - 40px);
+    max-height: calc(100% - 40px);
+    grid-template-columns: repeat(10,120px);
+    grid-template-rows: repeat(3,190px);
+    grid-gap: 20px;
+}

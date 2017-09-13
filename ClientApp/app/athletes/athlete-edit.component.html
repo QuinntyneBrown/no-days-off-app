@@ -1,0 +1,11 @@
+<h1>Create Athlete</h1>
+
+<form novalidate [formGroup]="form">
+
+    <label>Name</label>
+    
+    <input type="text" placeholder="Name" id="name" formControlName="name" />
+
+    <button type="submit" (click)="tryToSave.emit({ detail:{ athlete: form.value } })">Save</button>
+
+</form> 

@@ -1,0 +1,21 @@
+:host {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0px 25px 15px 0px;
+    padding: 0px;
+    font-weight: 100;
+    opacity: 0.5;
+    line-height:3em;
+}
+
+:host(::hover) {
+    opacity: 1;
+    border-bottom: solid 5px #888;
+}
+
+:host(.is-active) {
+    opacity: 1;
+    border-bottom: solid 5px #2A7ACF;
+    font-weight:400;
+    color: #2A7ACF;
+}

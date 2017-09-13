@@ -1,0 +1,54 @@
+﻿input {
+    display: block;
+    margin: 10px 0px 10px 0px;
+    padding: 0px 10px 0px 10px;
+    width: calc(100% - 21px);
+    font-size: 1.125em;
+    line-height: 2.25em;
+    border: 0.5px solid #888;
+    border-radius:0px;
+}
+
+input[type=checkbox] {
+    display: inline-block;
+    width: 25px;
+    border-radius:0px;
+}
+
+textarea {
+    padding: 0px 10px 0px 10px;
+    font-size: 1.125em;
+    line-height: 2.25em;
+    border: 0.5px dotted #999;
+    height: 100px;
+    font-family: inherit;
+    width: calc(100% - 20px);
+    margin: 10px 0px 10px 0px;
+}
+
+.field {
+    margin-bottom: 20px;
+}
+
+form {
+    width:100%;
+}
+
+button {
+    display: block;
+    min-width: 125px;
+    line-height: 3em;
+    font-size: 0.875em;
+    border: 0px solid #333;
+    text-align: center;
+    cursor: pointer;
+    color: #333;
+    height: 3em;
+    background-color: rgb(0, 88, 173);
+    color: #fff;
+    font-weight: 100;
+}
+
+button:hover {
+    color: #333;
+}

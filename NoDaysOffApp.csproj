@@ -1,0 +1,1186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion></ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2250BEF5-1F73-47F6-8C6C-8FFBFC22F496}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NoDaysOffApp</RootNamespace>
+    <AssemblyName>NoDaysOffApp</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.4</TypeScriptToolsVersion>
+    <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
+    <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
+    <TypeScriptExperimentalDecorators>True</TypeScriptExperimentalDecorators>
+    <TypeScritModuleResolution>Classic</TypeScritModuleResolution>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AWSSDK.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>packages\AWSSDK.Core.3.3.10.6\lib\net45\AWSSDK.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AWSSDK.S3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>packages\AWSSDK.S3.3.3.5.11\lib\net45\AWSSDK.S3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="container, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\container.1.1.1\lib\net40\container.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MediatR, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MediatR.3.0.1\lib\net45\MediatR.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Data.Edm.5.8.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Data.OData.5.8.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Data.Services.Client.5.8.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Jwt, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.Jwt.3.0.1\lib\net45\Microsoft.Owin.Security.Jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>packages\Unity.Interception.4.0.1\lib\Net45\Microsoft.Practices.Unity.Interception.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>packages\Unity.Interception.4.0.1\lib\Net45\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ServiceBus, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\WindowsAzure.ServiceBus.4.1.3\lib\net45\Microsoft.ServiceBus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=8.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\WindowsAzure.Storage.8.1.1\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid, Version=9.1.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>packages\Sendgrid.9.1.0\lib\net452\SendGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SendGrid.SmtpApi, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\SendGrid.SmtpApi.1.3.2\lib\SendGrid.SmtpApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StackExchange.Redis, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\StackExchange.Redis.1.2.6\lib\net46\StackExchange.Redis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>packages\Swashbuckle.Core.5.3.2\lib\net40\Swashbuckle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.20622.1351, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.IdentityModel.Tokens.Jwt.4.0.2.206221351\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Spatial, Version=5.8.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.Spatial.5.8.2\lib\net40\System.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Unity.WebApi, Version=5.2.3.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
+      <HintPath>packages\Unity.WebAPI.5.2.3\lib\net45\Unity.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebApi.OutputCache.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Strathweb.CacheOutput.WebApi2.0.9.0\lib\net45\WebApi.OutputCache.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebApi.OutputCache.V2, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Strathweb.CacheOutput.WebApi2.0.9.0\lib\net45\WebApi.OutputCache.V2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ClientApp\app\app-left-nav.component.css">
+      <DependentUpon>app-left-nav.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\app.component.css">
+      <DependentUpon>app.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\app.component.html" />
+    <Content Include="ClientApp\app\athletes\athlete-edit-page.component.css">
+      <DependentUpon>athlete-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\athletes\athlete-edit.component.css">
+      <DependentUpon>athlete-edit.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\athletes\athlete-list-item.component.css">
+      <DependentUpon>athlete-list-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\athletes\athlete-page.component.css">
+      <DependentUpon>athlete-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\athletes\athlete-paginated-list-page.component.css">
+      <DependentUpon>athlete-paginated-list-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\athletes\athlete-paginated-list.component.css">
+      <DependentUpon>athlete-paginated-list.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\athletes\athletes-left-nav.component.css">
+      <DependentUpon>athletes-left-nav.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\body-parts\body-part-edit-page.component.css">
+      <DependentUpon>body-part-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\body-parts\body-part-edit.component.css">
+      <DependentUpon>body-part-edit.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\body-parts\body-part-list-item.component.css">
+      <DependentUpon>body-part-list-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\body-parts\body-part-paginated-list-page.component.css">
+      <DependentUpon>body-part-paginated-list-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\body-parts\body-part-paginated-list.component.css">
+      <DependentUpon>body-part-paginated-list.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\body-parts\body-parts-left-nav.component.css">
+      <DependentUpon>body-parts-left-nav.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-edit-page.component.css">
+      <DependentUpon>completed-scheduled-exercise-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-edit.component.css">
+      <DependentUpon>completed-scheduled-exercise-edit.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-list-item.component.css">
+      <DependentUpon>completed-scheduled-exercise-list-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-paginated-list-page.component.css">
+      <DependentUpon>completed-scheduled-exercise-paginated-list-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-paginated-list.component.css">
+      <DependentUpon>completed-scheduled-exercise-paginated-list.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercises-left-nav.component.css">
+      <DependentUpon>completed-scheduled-exercises-left-nav.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboard-tiles\add-dashboard-tile-modal-window.component.css">
+      <DependentUpon>add-dashboard-tile-modal-window.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboard-tiles\add-dashboard-tile-modal.component.css">
+      <DependentUpon>add-dashboard-tile-modal.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboard-tiles\configure-dashboard-tile-modal-window.component.css">
+      <DependentUpon>configure-dashboard-tile-modal-window.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboard-tiles\configure-dashboard-tile-modal.component.css">
+      <DependentUpon>configure-dashboard-tile-modal.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboard-tiles\configure-dashboard-tile.component.css">
+      <DependentUpon>configure-dashboard-tile.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboard-tiles\dashboard-tile-edit-page.component.css">
+      <DependentUpon>dashboard-tile-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboard-tiles\dashboard-tile-edit.component.css">
+      <DependentUpon>dashboard-tile-edit.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboard-tiles\dashboard-tile-list-item.component.css">
+      <DependentUpon>dashboard-tile-list-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboard-tiles\dashboard-tile-menu.component.css">
+      <DependentUpon>dashboard-tile-menu.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboard-tiles\dashboard-tile-paginated-list-page.component.css">
+      <DependentUpon>dashboard-tile-paginated-list-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboard-tiles\dashboard-tile-paginated-list.component.css">
+      <DependentUpon>dashboard-tile-paginated-list.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboard-tiles\dashboard-tile.component.css">
+      <DependentUpon>dashboard-tile.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboards\dashboard-edit-page.component.css">
+      <DependentUpon>dashboard-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboards\dashboard-edit.component.css">
+      <DependentUpon>dashboard-edit.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboards\dashboard-grid.component.css">
+      <DependentUpon>dashboard-grid.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboards\dashboard-header.component.css">
+      <DependentUpon>dashboard-header.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboards\dashboard-list-item.component.css">
+      <DependentUpon>dashboard-list-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboards\dashboard-page.component.css">
+      <DependentUpon>dashboard-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboards\dashboard-paginated-list-page.component.css">
+      <DependentUpon>dashboard-paginated-list-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\dashboards\dashboard-paginated-list.component.css">
+      <DependentUpon>dashboard-paginated-list.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\days\day-edit-page.component.css">
+      <DependentUpon>day-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\days\day-edit.component.css">
+      <DependentUpon>day-edit.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\days\day-list-item.component.css">
+      <DependentUpon>day-list-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\days\day-paginated-list-page.component.css">
+      <DependentUpon>day-paginated-list-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\days\day-paginated-list.component.css">
+      <DependentUpon>day-paginated-list.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\days\days-left-nav.component.css">
+      <DependentUpon>days-left-nav.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\exercises\exercise-edit-page.component.css">
+      <DependentUpon>exercise-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\exercises\exercise-edit.component.css">
+      <DependentUpon>exercise-edit.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\exercises\exercise-list-item.component.css">
+      <DependentUpon>exercise-list-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\exercises\exercise-paginated-list-page.component.css">
+      <DependentUpon>exercise-paginated-list-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\exercises\exercise-paginated-list.component.css">
+      <DependentUpon>exercise-paginated-list.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\exercises\exercises-left-nav.component.css">
+      <DependentUpon>exercises-left-nav.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\home\home-page.component.css">
+      <DependentUpon>home-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\scheduled-exercises\scheduled-exercise-edit-page.component.css">
+      <DependentUpon>scheduled-exercise-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\scheduled-exercises\scheduled-exercise-edit.component.css">
+      <DependentUpon>scheduled-exercise-edit.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\scheduled-exercises\scheduled-exercise-list-item.component.css">
+      <DependentUpon>scheduled-exercise-list-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\scheduled-exercises\scheduled-exercise-paginated-list-page.component.css">
+      <DependentUpon>scheduled-exercise-paginated-list-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\scheduled-exercises\scheduled-exercise-paginated-list.component.css">
+      <DependentUpon>scheduled-exercise-paginated-list.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\scheduled-exercises\scheduled-exercises-left-nav.component.css">
+      <DependentUpon>scheduled-exercises-left-nav.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\shared\components\backdrop.component.css">
+      <DependentUpon>backdrop.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\shared\components\backdrop.component.html" />
+    <Content Include="ClientApp\app\shared\components\dots-button.component.css">
+      <DependentUpon>dots-button.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\shared\components\dots-button.component.html" />
+    <Content Include="ClientApp\app\shared\components\hamburger-button.component.css">
+      <DependentUpon>hamburger-button.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\shared\components\hamburger-button.component.html" />
+    <Content Include="ClientApp\app\shared\components\header.component.css">
+      <DependentUpon>header.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\shared\components\header.component.html" />
+    <Content Include="ClientApp\app\shared\components\left-nav.component.css">
+      <DependentUpon>left-nav.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\shared\components\modal-window.component.css">
+      <DependentUpon>modal-window.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\shared\components\modal-window.component.html" />
+    <Content Include="ClientApp\app\shared\components\pager.component.css">
+      <DependentUpon>pager.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\shared\components\plus-button.component.css">
+      <DependentUpon>plus-button.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\shared\components\secondary-header.component.css">
+      <DependentUpon>secondary-header.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\shared\components\secondary-header.component.html" />
+    <Content Include="ClientApp\app\shared\components\tab-content.component.css">
+      <DependentUpon>tab-content.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\shared\components\tab-title.component.css">
+      <DependentUpon>tab-title.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\shared\components\tabs.component.css">
+      <DependentUpon>tabs.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\tenants\set-tenant-form.component.css">
+      <DependentUpon>set-tenant-form.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\tenants\set-tenant-form.component.html" />
+    <Content Include="ClientApp\app\tenants\set-tenant-page.component.css">
+      <DependentUpon>set-tenant-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\tenants\set-tenant-page.component.html" />
+    <Content Include="ClientApp\app\tiles\tile-catalog-item.component.css">
+      <DependentUpon>tile-catalog-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\tiles\tile-catalog-modal-window.component.css">
+      <DependentUpon>tile-catalog-modal-window.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\tiles\tile-catalog.component.css">
+      <DependentUpon>tile-catalog.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\tiles\tile-edit-page.component.css">
+      <DependentUpon>tile-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\tiles\tile-edit.component.css">
+      <DependentUpon>tile-edit.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\tiles\tile-list-item.component.css">
+      <DependentUpon>tile-list-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\tiles\tile-paginated-list-page.component.css">
+      <DependentUpon>tile-paginated-list-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\tiles\tile-paginated-list.component.css">
+      <DependentUpon>tile-paginated-list.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\users\login-page.component.css">
+      <DependentUpon>login-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\users\login-page.component.html" />
+    <Content Include="ClientApp\app\users\login.component.css">
+      <DependentUpon>login.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\users\login.component.html" />
+    <Content Include="ClientApp\styles\edit.css" />
+    <Content Include="ClientApp\styles\forms.css" />
+    <Content Include="ClientApp\styles\list-item.css" />
+    <Content Include="ClientApp\styles\list.css" />
+    <Content Include="ClientApp\styles\modal-window.css" />
+    <Content Include="DesktopApp\index.js" />
+    <Content Include="dist\0.js" />
+    <Content Include="dist\1.js" />
+    <Content Include="dist\2.js" />
+    <Content Include="dist\3.js" />
+    <Content Include="dist\4.js" />
+    <Content Include="dist\5.js" />
+    <Content Include="dist\6.js" />
+    <Content Include="dist\7.js" />
+    <Content Include="dist\app.js" />
+    <Content Include="dist\vendor.js" />
+    <Content Include="index.html" />
+    <Content Include="libs\jquery.js" />
+    <Content Include="libs\jquery.signalR-2.2.1.js" />
+    <Content Include="tsconfig.json" />
+    <Content Include="package.json" />
+    <Content Include="ClientApp\app\shared\components\pager.component.html" />
+    <Content Include="ClientApp\app\shared\components\tabs.component.html" />
+    <Content Include="ClientApp\app\shared\components\tab-content.component.html" />
+    <Content Include="ClientApp\app\shared\components\tab-title.component.html" />
+    <Content Include="ClientApp\app\shared\components\left-nav.component.html" />
+    <Content Include="ClientApp\app\home\home-page.component.html" />
+    <Content Include="ClientApp\app\tiles\tile-edit.component.html" />
+    <Content Include="ClientApp\app\tiles\tile-paginated-list.component.html" />
+    <Content Include="ClientApp\app\tiles\tile-list-item.component.html" />
+    <Content Include="ClientApp\app\tiles\tile-paginated-list-page.component.html" />
+    <Content Include="ClientApp\app\tiles\tile-edit-page.component.html" />
+    <Content Include="ClientApp\app\dashboards\dashboard-edit.component.html" />
+    <Content Include="ClientApp\app\dashboards\dashboard-paginated-list.component.html" />
+    <Content Include="ClientApp\app\dashboards\dashboard-list-item.component.html" />
+    <Content Include="ClientApp\app\dashboards\dashboard-paginated-list-page.component.html" />
+    <Content Include="ClientApp\app\dashboards\dashboard-edit-page.component.html" />
+    <Content Include="ClientApp\app\dashboard-tiles\dashboard-tile-edit.component.html" />
+    <Content Include="ClientApp\app\dashboard-tiles\dashboard-tile-paginated-list.component.html" />
+    <Content Include="ClientApp\app\dashboard-tiles\dashboard-tile-list-item.component.html" />
+    <Content Include="ClientApp\app\dashboard-tiles\dashboard-tile-paginated-list-page.component.html" />
+    <Content Include="ClientApp\app\dashboard-tiles\dashboard-tile-edit-page.component.html" />
+    <Content Include="ClientApp\app\dashboards\dashboard-header.component.html" />
+    <Content Include="ClientApp\app\dashboards\dashboard-page.component.html" />
+    <Content Include="ClientApp\app\tiles\tile-catalog.component.html" />
+    <Content Include="ClientApp\app\dashboard-tiles\add-dashboard-tile-modal.component.html" />
+    <Content Include="ClientApp\app\dashboard-tiles\configure-dashboard-tile.component.html" />
+    <Content Include="ClientApp\app\dashboard-tiles\add-dashboard-tile-modal-window.component.html" />
+    <Content Include="ClientApp\app\shared\components\plus-button.component.html" />
+    <Content Include="ClientApp\app\dashboard-tiles\configure-dashboard-tile-modal-window.component.html" />
+    <Content Include="ClientApp\app\dashboard-tiles\configure-dashboard-tile-modal.component.html" />
+    <Content Include="ClientApp\app\tiles\tile-catalog-item.component.html" />
+    <Content Include="ClientApp\app\dashboard-tiles\dashboard-tile.component.html" />
+    <Content Include="ClientApp\app\dashboards\dashboard-grid.component.html" />
+    <Content Include="ClientApp\app\dashboard-tiles\dashboard-tile-menu.component.html" />
+    <Content Include="ClientApp\app\tiles\tile-catalog-modal-window.component.html" />
+    <Content Include="ClientApp\app\app-left-nav.component.html" />
+    <Content Include="ClientApp\app\body-parts\body-part-edit.component.html" />
+    <Content Include="ClientApp\app\body-parts\body-part-paginated-list.component.html" />
+    <Content Include="ClientApp\app\body-parts\body-part-list-item.component.html" />
+    <Content Include="ClientApp\app\body-parts\body-part-paginated-list-page.component.html" />
+    <Content Include="ClientApp\app\body-parts\body-part-edit-page.component.html" />
+    <Content Include="ClientApp\app\body-parts\body-parts-left-nav.component.html" />
+    <Content Include="ClientApp\app\days\day-edit.component.html" />
+    <Content Include="ClientApp\app\days\day-paginated-list.component.html" />
+    <Content Include="ClientApp\app\days\day-list-item.component.html" />
+    <Content Include="ClientApp\app\days\day-paginated-list-page.component.html" />
+    <Content Include="ClientApp\app\days\day-edit-page.component.html" />
+    <Content Include="ClientApp\app\days\days-left-nav.component.html" />
+    <Content Include="ClientApp\app\exercises\exercise-edit.component.html" />
+    <Content Include="ClientApp\app\exercises\exercise-paginated-list.component.html" />
+    <Content Include="ClientApp\app\exercises\exercise-list-item.component.html" />
+    <Content Include="ClientApp\app\exercises\exercise-paginated-list-page.component.html" />
+    <Content Include="ClientApp\app\exercises\exercise-edit-page.component.html" />
+    <Content Include="ClientApp\app\exercises\exercises-left-nav.component.html" />
+    <Content Include="ClientApp\app\scheduled-exercises\scheduled-exercise-edit.component.html" />
+    <Content Include="ClientApp\app\scheduled-exercises\scheduled-exercise-paginated-list.component.html" />
+    <Content Include="ClientApp\app\scheduled-exercises\scheduled-exercise-list-item.component.html" />
+    <Content Include="ClientApp\app\scheduled-exercises\scheduled-exercise-paginated-list-page.component.html" />
+    <Content Include="ClientApp\app\scheduled-exercises\scheduled-exercise-edit-page.component.html" />
+    <Content Include="ClientApp\app\scheduled-exercises\scheduled-exercises-left-nav.component.html" />
+    <Content Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-edit.component.html" />
+    <Content Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-paginated-list.component.html" />
+    <Content Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-list-item.component.html" />
+    <Content Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-paginated-list-page.component.html" />
+    <Content Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-edit-page.component.html" />
+    <Content Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercises-left-nav.component.html" />
+    <Content Include="ClientApp\app\athletes\athlete-edit.component.html" />
+    <Content Include="ClientApp\app\athletes\athlete-paginated-list.component.html" />
+    <Content Include="ClientApp\app\athletes\athlete-list-item.component.html" />
+    <Content Include="ClientApp\app\athletes\athlete-paginated-list-page.component.html" />
+    <Content Include="ClientApp\app\athletes\athlete-edit-page.component.html" />
+    <Content Include="ClientApp\app\athletes\athletes-left-nav.component.html" />
+    <Content Include="ClientApp\app\athletes\athlete-page.component.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="packages.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="webpack.config.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.cs" />
+    <Compile Include="Data\NoDaysOffAppContext.cs" />
+    <Compile Include="Data\Helpers\SoftDeleteAttribute.cs" />
+    <Compile Include="Data\Helpers\SoftDeleteInterceptor.cs" />
+    <Compile Include="Data\Helpers\SoftDeleteQueryVisitor.cs" />
+    <Compile Include="Data\Migrations\Configuration.cs" />
+    <Compile Include="Data\Migrations\DashboardConfiguration.cs" />
+    <Compile Include="Data\Migrations\TenantConfiguration.cs" />
+    <Compile Include="Features\Core\BaseAuthenticatedRequest.cs" />
+    <Compile Include="Features\Core\ClaimTypes.cs" />
+    <Compile Include="Features\DigitalAssets\AddOrUpdateDigitalAssetCommand.cs" />
+    <Compile Include="Features\DigitalAssets\Constants.cs" />
+    <Compile Include="Features\DigitalAssets\DigitalAssetApiModel.cs" />
+    <Compile Include="Features\DigitalAssets\DigitalAssetController.cs" />
+    <Compile Include="Features\DigitalAssets\GetDigitalAssetByIdQuery.cs" />
+    <Compile Include="Features\DigitalAssets\GetDigitalAssetByUniqueIdQuery.cs" />
+    <Compile Include="Features\DigitalAssets\GetDigitalAssetsQuery.cs" />
+    <Compile Include="Features\DigitalAssets\RemoveDigitalAssetCommand.cs" />
+    <Compile Include="Features\DigitalAssets\UploadDigitalAssetCommand.cs" />
+    <Compile Include="Features\DigitalAssets\UploadHandlers\FileMultipartFormDataStreamProvider.cs" />
+    <Compile Include="Features\DigitalAssets\UploadHandlers\InMemoryMultipartFormDataStreamProvider.cs" />
+    <Compile Include="Features\DigitalAssets\UploadHandlers\StreamHelper.cs" />
+    <Compile Include="Model\ILoggable.cs" />
+    <Compile Include="Model\Tenant.cs" />
+    <Compile Include="Features\Core\BaseApiController.cs" />
+    <Compile Include="Features\Core\BaseEventBusMessage.cs" />
+    <Compile Include="Features\Core\BaseHub.cs" />
+    <Compile Include="Features\Core\BaseRequest.cs" />
+    <Compile Include="Features\Core\Cache.cs" />
+    <Compile Include="Features\Core\CacheProvider.cs" />
+    <Compile Include="Features\Core\CoreConfiguration.cs" />
+    <Compile Include="Features\Core\DateExtensions.cs" />
+    <Compile Include="Features\Core\EventBus.cs" />
+    <Compile Include="Features\Core\EventHub.cs" />
+    <Compile Include="Features\Core\HandleError.cs" />
+    <Compile Include="Features\Core\HttpRequestMessageExtensions.cs" />
+    <Compile Include="Features\Core\ICache.cs" />
+    <Compile Include="Features\Core\ICacheProvider.cs" />
+    <Compile Include="Features\Core\EventBusMessage.cs" />
+    <Compile Include="Features\Core\IEventBusMessageHandler.cs" />
+    <Compile Include="Features\Core\ILogger.cs" />
+    <Compile Include="Features\Core\ILoggerFactory.cs" />
+    <Compile Include="Features\Core\ILoggerProvider.cs" />
+    <Compile Include="Features\Core\ITopicClient.cs" />
+    <Compile Include="Features\Core\Logger.cs" />
+    <Compile Include="Features\Core\LoggerFactory.cs" />
+    <Compile Include="Features\Core\MemoryCache.cs" />
+    <Compile Include="Features\Core\RateLimit.cs" />
+    <Compile Include="Features\Core\RedisCache.cs" />
+    <Compile Include="Features\Core\RedisCacheConfiguration.cs" />
+    <Compile Include="Features\Core\StatusMiddleware.cs" />
+    <Compile Include="Features\Core\StringExtensions.cs" />
+    <Compile Include="Features\Core\WebApiUnityActionFilterProvider.cs" />
+    <Compile Include="Features\Users\UsersController.cs" />
+    <Compile Include="Startup.cs" />
+    <Compile Include="UnityConfiguration.cs" />
+    <Compile Include="Model\Dashboard.cs" />
+    <Compile Include="Model\DashboardTile.cs" />
+    <Compile Include="Model\Tile.cs" />
+    <Compile Include="Features\Dashboards\AddOrUpdateDashboardCommand.cs" />
+    <Compile Include="Features\Dashboards\GetDashboardsQuery.cs" />
+    <Compile Include="Features\Dashboards\GetDashboardByIdQuery.cs" />
+    <Compile Include="Features\Dashboards\RemoveDashboardCommand.cs" />
+    <Compile Include="Features\Dashboards\DashboardsCacheKeyFactory.cs" />
+    <Compile Include="Features\Dashboards\DashboardsEventBusMessageHandler.cs" />
+    <Compile Include="Features\Dashboards\DashboardsEventBusMessages.cs" />
+    <Compile Include="Features\Dashboards\AddedOrUpdatedDashboardMessage.cs" />
+    <Compile Include="Features\Dashboards\RemovedDashboardMessage.cs" />
+    <Compile Include="Features\Dashboards\DashboardApiModel.cs" />
+    <Compile Include="Features\Dashboards\DashboardsController.cs" />
+    <Compile Include="Features\Tiles\AddOrUpdateTileCommand.cs" />
+    <Compile Include="Features\Tiles\GetTilesQuery.cs" />
+    <Compile Include="Features\Tiles\GetTileByIdQuery.cs" />
+    <Compile Include="Features\Tiles\RemoveTileCommand.cs" />
+    <Compile Include="Features\Tiles\TilesCacheKeyFactory.cs" />
+    <Compile Include="Features\Tiles\TilesEventBusMessageHandler.cs" />
+    <Compile Include="Features\Tiles\TilesEventBusMessages.cs" />
+    <Compile Include="Features\Tiles\AddedOrUpdatedTileMessage.cs" />
+    <Compile Include="Features\Tiles\RemovedTileMessage.cs" />
+    <Compile Include="Features\Tiles\TileApiModel.cs" />
+    <Compile Include="Features\Tiles\TilesController.cs" />
+    <Compile Include="Features\DashboardTiles\AddOrUpdateDashboardTileCommand.cs" />
+    <Compile Include="Features\DashboardTiles\GetDashboardTilesQuery.cs" />
+    <Compile Include="Features\DashboardTiles\GetDashboardTileByIdQuery.cs" />
+    <Compile Include="Features\DashboardTiles\RemoveDashboardTileCommand.cs" />
+    <Compile Include="Features\DashboardTiles\DashboardTilesCacheKeyFactory.cs" />
+    <Compile Include="Features\DashboardTiles\DashboardTilesEventBusMessageHandler.cs" />
+    <Compile Include="Features\DashboardTiles\DashboardTilesEventBusMessages.cs" />
+    <Compile Include="Features\DashboardTiles\AddedOrUpdatedDashboardTileMessage.cs" />
+    <Compile Include="Features\DashboardTiles\RemovedDashboardTileMessage.cs" />
+    <Compile Include="Features\DashboardTiles\DashboardTileApiModel.cs" />
+    <Compile Include="Features\DashboardTiles\DashboardTilesController.cs" />
+    <Compile Include="Features\Dashboards\GetDashboardsByCurrentUsernameQuery.cs" />
+    <Compile Include="Features\Dashboards\GetDefaultDashboardQuery.cs" />
+    <Compile Include="Features\DashboardTiles\GetDashboardTilesByDashboardIdQuery.cs" />
+    <Compile Include="Features\DashboardTiles\GetDashboardTilesByDefaultDashboardQuery.cs" />
+    <Compile Include="Model\BodyPart.cs" />
+    <Compile Include="Model\Exercise.cs" />
+    <Compile Include="Model\Day.cs" />
+    <Compile Include="Model\ScheduledExercise.cs" />
+    <Compile Include="Model\CompletedScheduledExercise.cs" />
+    <Compile Include="Features\Exercises\AddOrUpdateExerciseCommand.cs" />
+    <Compile Include="Features\Exercises\GetExercisesQuery.cs" />
+    <Compile Include="Features\Exercises\GetExerciseByIdQuery.cs" />
+    <Compile Include="Features\Exercises\RemoveExerciseCommand.cs" />
+    <Compile Include="Features\Exercises\ExercisesCacheKeyFactory.cs" />
+    <Compile Include="Features\Exercises\ExercisesEventBusMessageHandler.cs" />
+    <Compile Include="Features\Exercises\ExercisesEventBusMessages.cs" />
+    <Compile Include="Features\Exercises\AddedOrUpdatedExerciseMessage.cs" />
+    <Compile Include="Features\Exercises\RemovedExerciseMessage.cs" />
+    <Compile Include="Features\Exercises\ExerciseApiModel.cs" />
+    <Compile Include="Features\Exercises\ExercisesController.cs" />
+    <Compile Include="Features\ScheduledExercises\AddOrUpdateScheduledExerciseCommand.cs" />
+    <Compile Include="Features\ScheduledExercises\GetScheduledExercisesQuery.cs" />
+    <Compile Include="Features\ScheduledExercises\GetScheduledExerciseByIdQuery.cs" />
+    <Compile Include="Features\ScheduledExercises\RemoveScheduledExerciseCommand.cs" />
+    <Compile Include="Features\ScheduledExercises\ScheduledExercisesCacheKeyFactory.cs" />
+    <Compile Include="Features\ScheduledExercises\ScheduledExercisesEventBusMessageHandler.cs" />
+    <Compile Include="Features\ScheduledExercises\ScheduledExercisesEventBusMessages.cs" />
+    <Compile Include="Features\ScheduledExercises\AddedOrUpdatedScheduledExerciseMessage.cs" />
+    <Compile Include="Features\ScheduledExercises\RemovedScheduledExerciseMessage.cs" />
+    <Compile Include="Features\ScheduledExercises\ScheduledExerciseApiModel.cs" />
+    <Compile Include="Features\ScheduledExercises\ScheduledExercisesController.cs" />
+    <Compile Include="Features\CompletedScheduledExercises\AddOrUpdateCompletedScheduledExerciseCommand.cs" />
+    <Compile Include="Features\CompletedScheduledExercises\GetCompletedScheduledExercisesQuery.cs" />
+    <Compile Include="Features\CompletedScheduledExercises\GetCompletedScheduledExerciseByIdQuery.cs" />
+    <Compile Include="Features\CompletedScheduledExercises\RemoveCompletedScheduledExerciseCommand.cs" />
+    <Compile Include="Features\CompletedScheduledExercises\CompletedScheduledExercisesCacheKeyFactory.cs" />
+    <Compile Include="Features\CompletedScheduledExercises\CompletedScheduledExercisesEventBusMessageHandler.cs" />
+    <Compile Include="Features\CompletedScheduledExercises\CompletedScheduledExercisesEventBusMessages.cs" />
+    <Compile Include="Features\CompletedScheduledExercises\AddedOrUpdatedCompletedScheduledExerciseMessage.cs" />
+    <Compile Include="Features\CompletedScheduledExercises\RemovedCompletedScheduledExerciseMessage.cs" />
+    <Compile Include="Features\CompletedScheduledExercises\CompletedScheduledExerciseApiModel.cs" />
+    <Compile Include="Features\CompletedScheduledExercises\CompletedScheduledExercisesController.cs" />
+    <Compile Include="Features\Days\AddOrUpdateDayCommand.cs" />
+    <Compile Include="Features\Days\GetDaysQuery.cs" />
+    <Compile Include="Features\Days\GetDayByIdQuery.cs" />
+    <Compile Include="Features\Days\RemoveDayCommand.cs" />
+    <Compile Include="Features\Days\DaysCacheKeyFactory.cs" />
+    <Compile Include="Features\Days\DaysEventBusMessageHandler.cs" />
+    <Compile Include="Features\Days\DaysEventBusMessages.cs" />
+    <Compile Include="Features\Days\AddedOrUpdatedDayMessage.cs" />
+    <Compile Include="Features\Days\RemovedDayMessage.cs" />
+    <Compile Include="Features\Days\DayApiModel.cs" />
+    <Compile Include="Features\Days\DaysController.cs" />
+    <Compile Include="Features\BodyParts\AddOrUpdateBodyPartCommand.cs" />
+    <Compile Include="Features\BodyParts\GetBodyPartsQuery.cs" />
+    <Compile Include="Features\BodyParts\GetBodyPartByIdQuery.cs" />
+    <Compile Include="Features\BodyParts\RemoveBodyPartCommand.cs" />
+    <Compile Include="Features\BodyParts\BodyPartsCacheKeyFactory.cs" />
+    <Compile Include="Features\BodyParts\BodyPartsEventBusMessageHandler.cs" />
+    <Compile Include="Features\BodyParts\BodyPartsEventBusMessages.cs" />
+    <Compile Include="Features\BodyParts\AddedOrUpdatedBodyPartMessage.cs" />
+    <Compile Include="Features\BodyParts\RemovedBodyPartMessage.cs" />
+    <Compile Include="Features\BodyParts\BodyPartApiModel.cs" />
+    <Compile Include="Features\BodyParts\BodyPartsController.cs" />
+    <Compile Include="Data\Migrations\DayConfiguration.cs" />
+    <Compile Include="Model\Athlete.cs" />
+    <Compile Include="Features\Athletes\AddOrUpdateAthleteCommand.cs" />
+    <Compile Include="Features\Athletes\GetAthletesQuery.cs" />
+    <Compile Include="Features\Athletes\GetAthleteByIdQuery.cs" />
+    <Compile Include="Features\Athletes\RemoveAthleteCommand.cs" />
+    <Compile Include="Features\Athletes\AthletesCacheKeyFactory.cs" />
+    <Compile Include="Features\Athletes\AthletesEventBusMessageHandler.cs" />
+    <Compile Include="Features\Athletes\AthletesEventBusMessages.cs" />
+    <Compile Include="Features\Athletes\AddedOrUpdatedAthleteMessage.cs" />
+    <Compile Include="Features\Athletes\RemovedAthleteMessage.cs" />
+    <Compile Include="Features\Athletes\AthleteApiModel.cs" />
+    <Compile Include="Features\Athletes\AthletesController.cs" />
+    <Compile Include="Model\DigitalAsset.cs" />
+    <Compile Include="Model\ExerciseDigitalAsset.cs" />
+    <Compile Include="Model\AthleteWeight.cs" />
+    <Compile Include="Features\Athletes\GetCurrentAthleteQuery.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="packages\AWSSDK.S3.3.3.5.11\analyzers\dotnet\cs\AWSSDK.S3.CodeAnalysis.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\app-left-nav.component.ts">
+      <DependentUpon>app-left-nav.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\app.component.ts">
+      <DependentUpon>app.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\app.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\app.routing.ts" />
+    <TypeScriptCompile Include="ClientApp\app\athletes\athlete-edit-page.component.ts">
+      <DependentUpon>athlete-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\athletes\athlete-edit.component.ts">
+      <DependentUpon>athlete-edit.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\athletes\athlete-list-item.component.ts">
+      <DependentUpon>athlete-list-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\athletes\athlete-page.component.ts">
+      <DependentUpon>athlete-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\athletes\athlete-paginated-list-page.component.ts">
+      <DependentUpon>athlete-paginated-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\athletes\athlete-paginated-list.component.ts">
+      <DependentUpon>athlete-paginated-list.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\athletes\athletes-left-nav.component.ts">
+      <DependentUpon>athletes-left-nav.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\body-parts\body-part-edit-page.component.ts">
+      <DependentUpon>body-part-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\body-parts\body-part-edit.component.ts">
+      <DependentUpon>body-part-edit.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\body-parts\body-part-list-item.component.ts">
+      <DependentUpon>body-part-list-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\body-parts\body-part-paginated-list-page.component.ts">
+      <DependentUpon>body-part-paginated-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\body-parts\body-part-paginated-list.component.ts">
+      <DependentUpon>body-part-paginated-list.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\body-parts\body-parts-left-nav.component.ts">
+      <DependentUpon>body-parts-left-nav.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-edit-page.component.ts">
+      <DependentUpon>completed-scheduled-exercise-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-edit.component.ts">
+      <DependentUpon>completed-scheduled-exercise-edit.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-list-item.component.ts">
+      <DependentUpon>completed-scheduled-exercise-list-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-paginated-list-page.component.ts">
+      <DependentUpon>completed-scheduled-exercise-paginated-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-paginated-list.component.ts">
+      <DependentUpon>completed-scheduled-exercise-paginated-list.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercises-left-nav.component.ts">
+      <DependentUpon>completed-scheduled-exercises-left-nav.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\add-dashboard-tile-modal-window.component.ts">
+      <DependentUpon>add-dashboard-tile-modal-window.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\add-dashboard-tile-modal.component.ts">
+      <DependentUpon>add-dashboard-tile-modal.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\configure-dashboard-tile-modal-window.component.ts">
+      <DependentUpon>configure-dashboard-tile-modal-window.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\configure-dashboard-tile-modal.component.ts">
+      <DependentUpon>configure-dashboard-tile-modal.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\configure-dashboard-tile.component.ts">
+      <DependentUpon>configure-dashboard-tile.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\dashboard-tile-edit-page.component.ts">
+      <DependentUpon>dashboard-tile-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\dashboard-tile-edit.component.ts">
+      <DependentUpon>dashboard-tile-edit.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\dashboard-tile-list-item.component.ts">
+      <DependentUpon>dashboard-tile-list-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\dashboard-tile-menu.component.ts">
+      <DependentUpon>dashboard-tile-menu.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\dashboard-tile-paginated-list-page.component.ts">
+      <DependentUpon>dashboard-tile-paginated-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\dashboard-tile-paginated-list.component.ts">
+      <DependentUpon>dashboard-tile-paginated-list.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\dashboard-tile.component.ts">
+      <DependentUpon>dashboard-tile.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\dashboard-tiles-guard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\dashboard-tiles.actions.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\dashboard-tiles.custom-events.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dashboards\dashboard-edit-page.component.ts">
+      <DependentUpon>dashboard-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboards\dashboard-edit.component.ts">
+      <DependentUpon>dashboard-edit.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboards\dashboard-grid.component.ts">
+      <DependentUpon>dashboard-grid.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboards\dashboard-header.component.ts">
+      <DependentUpon>dashboard-header.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboards\dashboard-list-item.component.ts">
+      <DependentUpon>dashboard-list-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboards\dashboard-page.component.ts">
+      <DependentUpon>dashboard-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboards\dashboard-paginated-list-page.component.ts">
+      <DependentUpon>dashboard-paginated-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboards\dashboard-paginated-list.component.ts">
+      <DependentUpon>dashboard-paginated-list.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\dashboards\dashboard.actions.ts" />
+    <TypeScriptCompile Include="ClientApp\app\days\day-edit-page.component.ts">
+      <DependentUpon>day-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\days\day-edit.component.ts">
+      <DependentUpon>day-edit.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\days\day-list-item.component.ts">
+      <DependentUpon>day-list-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\days\day-paginated-list-page.component.ts">
+      <DependentUpon>day-paginated-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\days\day-paginated-list.component.ts">
+      <DependentUpon>day-paginated-list.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\days\days-left-nav.component.ts">
+      <DependentUpon>days-left-nav.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\environment.ts" />
+    <TypeScriptCompile Include="ClientApp\app\exercises\exercise-edit-page.component.ts">
+      <DependentUpon>exercise-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\exercises\exercise-edit.component.ts">
+      <DependentUpon>exercise-edit.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\exercises\exercise-list-item.component.ts">
+      <DependentUpon>exercise-list-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\exercises\exercise-paginated-list-page.component.ts">
+      <DependentUpon>exercise-paginated-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\exercises\exercise-paginated-list.component.ts">
+      <DependentUpon>exercise-paginated-list.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\exercises\exercises-left-nav.component.ts">
+      <DependentUpon>exercises-left-nav.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\home\home-page.component.ts">
+      <DependentUpon>home-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\scheduled-exercises\scheduled-exercise-edit-page.component.ts">
+      <DependentUpon>scheduled-exercise-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\scheduled-exercises\scheduled-exercise-edit.component.ts">
+      <DependentUpon>scheduled-exercise-edit.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\scheduled-exercises\scheduled-exercise-list-item.component.ts">
+      <DependentUpon>scheduled-exercise-list-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\scheduled-exercises\scheduled-exercise-paginated-list-page.component.ts">
+      <DependentUpon>scheduled-exercise-paginated-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\scheduled-exercises\scheduled-exercise-paginated-list.component.ts">
+      <DependentUpon>scheduled-exercise-paginated-list.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\scheduled-exercises\scheduled-exercises-left-nav.component.ts">
+      <DependentUpon>scheduled-exercises-left-nav.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\shared\components\backdrop.component.ts">
+      <DependentUpon>backdrop.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\shared\components\dots-button.component.ts">
+      <DependentUpon>dots-button.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\shared\components\hamburger-button.component.ts">
+      <DependentUpon>hamburger-button.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\shared\components\header.component.ts">
+      <DependentUpon>header.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\shared\components\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\components\left-nav.component.ts">
+      <DependentUpon>left-nav.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\shared\components\modal-window.component.ts">
+      <DependentUpon>modal-window.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\shared\components\pager.component.ts">
+      <DependentUpon>pager.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\shared\components\plus-button.component.ts">
+      <DependentUpon>plus-button.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\shared\components\secondary-header.component.ts">
+      <DependentUpon>secondary-header.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\shared\components\tab-content.component.ts">
+      <DependentUpon>tab-content.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\shared\components\tab-title.component.ts">
+      <DependentUpon>tab-title.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\shared\components\tabs.component.ts">
+      <DependentUpon>tabs.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\shared\constants.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\decorators\cache.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\guards\event-hub-connection-guard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\guards\tenant-guard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\interceptors\auth.interceptor.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\interceptors\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\interceptors\jwt.interceptor.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\interceptors\tenant.interceptor.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\guards\auth-guard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\authentication.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\content-ref.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\correlation-ids-list.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\custom-elements-modal.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\custom-events.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\error.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\login-redirect.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\event-hub.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\modal.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\popover.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\position.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\rectangle.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\ruler.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\space.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\storage.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\shared.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\utilities\add-or-update.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\utilities\create-element.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\utilities\guid.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\utilities\pluck-out.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\utilities\pluck.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\utilities\translate-xy.ts" />
+    <TypeScriptCompile Include="ClientApp\app\tenants\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\tenants\set-tenant-form.component.ts">
+      <DependentUpon>set-tenant-form.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\tenants\set-tenant-page.component.ts">
+      <DependentUpon>set-tenant-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\tenants\tenants.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\tiles\tile-catalog-item.component.ts">
+      <DependentUpon>tile-catalog-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\tiles\tile-catalog-modal-window.component.ts">
+      <DependentUpon>tile-catalog-modal-window.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\tiles\tile-catalog.component.ts">
+      <DependentUpon>tile-catalog.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\tiles\tile-edit-page.component.ts">
+      <DependentUpon>tile-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\tiles\tile-edit.component.ts">
+      <DependentUpon>tile-edit.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\tiles\tile-list-item.component.ts">
+      <DependentUpon>tile-list-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\tiles\tile-paginated-list-page.component.ts">
+      <DependentUpon>tile-paginated-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\tiles\tile-paginated-list.component.ts">
+      <DependentUpon>tile-paginated-list.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\tiles\tiles-guard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\tiles\tiles.actions.ts" />
+    <TypeScriptCompile Include="ClientApp\app\users\current-user-guard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\users\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\users\login-page.component.ts">
+      <DependentUpon>login-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\users\login.component.ts">
+      <DependentUpon>login.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\users\users.service.ts" />
+    <TypeScriptCompile Include="ClientApp\main.ts" />
+    <TypeScriptCompile Include="ClientApp\polyfills.ts" />
+    <TypeScriptCompile Include="ClientApp\app\users\users.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\guards\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\home\home.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\tiles\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\tiles\tile.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\tiles\tiles.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\tiles\tiles.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dashboards\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dashboards\dashboard.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dashboards\dashboards.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dashboards\dashboards.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\dashboard-tile.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\dashboard-tiles.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\dashboard-tiles\dashboard-tiles.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\body-parts\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\body-parts\body-part.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\body-parts\body-parts.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\body-parts\body-parts.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\days\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\days\day.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\days\days.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\days\days.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\exercises\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\exercises\exercise.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\exercises\exercises.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\exercises\exercises.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\scheduled-exercises\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\scheduled-exercises\scheduled-exercise.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\scheduled-exercises\scheduled-exercises.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\scheduled-exercises\scheduled-exercises.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\completed-scheduled-exercises\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercises.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercises.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\athletes\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\athletes\athlete.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\athletes\athletes.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\athletes\athletes.module.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\dashboard-service - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\dashboard-service - Web Deploy.pubxml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58691</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:58691/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl></CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

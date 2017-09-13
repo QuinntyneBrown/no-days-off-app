@@ -1,0 +1,15 @@
+<ce-dashboard-header [dashboards]="dashboards"
+                     [dashboard]="newDashboard"
+                     (tryToAddDashboard)="tryToAddDashboard($event)"
+                     (tryToSaveDashboard)="tryToSaveDashboard($event)"></ce-dashboard-header>
+
+<h1>{{ dashboard.name }}</h1>
+<ul>
+    <li><a (click)="tryToDelete(dashboard.id)">DELETE</a></li>
+</ul>
+
+<ce-dashboard-grid [dashboardTiles]="dashboardTiles">
+
+</ce-dashboard-grid>
+
+<ce-plus-button (click)="openTileCatalog()"></ce-plus-button>

@@ -1,0 +1,13 @@
+:host {
+    display:block;
+    content:contain;
+    margin:0px 20px;
+}
+
+h1 {
+    font-size: 1.15em;
+    font-weight: 100;
+    line-height: 3em;
+    margin: 0px 20px 0px 0px;
+    padding: 0;    
+}

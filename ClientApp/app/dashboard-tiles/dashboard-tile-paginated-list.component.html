@@ -1,0 +1,17 @@
+<h1>Dashboard Tile List</h1>
+<label>Filter</label>
+<input type="text" placeholder="Filter" (keyup)="filterKeyUp.emit({ detail: { value: $event.target.value } })" />
+<div>
+    <h2>Name</h2>
+    <h2>Actions</h2>
+</div>
+<ce-dashboard-tile-list-item *ngFor="let dashboardTile of pagedList.data"
+                      [dashboardTile]="dashboardTile"
+                      (edit)="edit.emit($event)"
+                      (delete)="delete.emit($event)">
+</ce-dashboard-tile-list-item>
+<ce-pager [pageNumber]="pageNumber" 
+          [totalPages]="pagedList.totalPages" 
+          (next)="setPageNumber($event)" 
+          (previous)="setPageNumber($event)">
+</ce-pager>

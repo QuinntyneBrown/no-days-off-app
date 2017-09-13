@@ -1,0 +1,21 @@
+﻿:host {
+    background-color: #fff;
+    border-bottom: 1px solid #EEF1F5;
+    cursor: pointer;
+    display: grid;    
+    grid-template-columns: 1fr 100px;
+    height: 2em;
+    line-height: 2em;    
+    padding: 10px 10px 10px 10px;    
+    width: calc(100% - 20px);
+}
+
+:host > span {
+    grid-column: 1;
+}
+
+div {
+    font-size: 0.625em;
+    grid-column: 2;
+    text-align: center;    
+}

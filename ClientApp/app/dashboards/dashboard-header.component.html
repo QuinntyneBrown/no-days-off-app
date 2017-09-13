@@ -1,0 +1,14 @@
+<ul>
+    <li *ngFor="let dashboard of dashboards">
+        <a routerLink="/dashboards/view/{{ dashboard.id }}">{{ dashboard.name }}</a>
+    </li>
+    <li *ngIf="!dashboard">
+        <a (click)="tryToAddDashboard.emit()">+</a>
+    </li>
+    <li *ngIf="dashboard">
+        <form novalidate [formGroup]="form">
+            <input type="text" id="name" formControlName="name" />
+            <button (click)="tryToSaveDashboard.emit({ details: { dashboard: form.value } })">Save</button>
+        </form>
+    </li>
+</ul>

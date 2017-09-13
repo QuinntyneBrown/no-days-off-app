@@ -1,0 +1,15 @@
+<h1>Create Body Part</h1>
+
+<form novalidate [formGroup]="form">
+
+    <ce-tabs>
+        <ce-tab-title>General</ce-tab-title>
+        <ce-tab-content>
+            <label>Name</label>
+            <input type="text" placeholder="Name" id="name" formControlName="name" />
+        </ce-tab-content>
+    </ce-tabs>
+
+    <button type="submit" (click)="tryToSave.emit({ detail:{ bodyPart: form.value } })">Save</button>
+
+</form> 

@@ -1,0 +1,11 @@
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+:host > div {
+    background-color: #fff;
+    width: 120px;
+    height: 190px;
+}

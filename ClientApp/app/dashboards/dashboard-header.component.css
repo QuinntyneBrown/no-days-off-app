@@ -1,0 +1,42 @@
+:host {
+    display:block;
+    background-color:rgb(241,241,241);
+    height:40px;
+}
+
+ul li {
+    list-style:none;
+    display:inline-block;
+    margin:0px 10px 0px 0px;
+    padding:0;
+}
+
+ul {
+    margin: 0px 0px 0px 20px;
+    padding: 0;
+}
+
+a,
+a:active,
+a:visited,
+a:link {
+    line-height:40px;
+    cursor:pointer;    
+    color:#333;
+    text-decoration:none;
+}
+
+a.active {
+    border-bottom: 3px solid #333;
+}
+
+input[type=text] {
+    display:inline;    
+    width:200px;
+    margin:0;
+}
+
+button {
+    display: inline;
+    margin: 0;
+}

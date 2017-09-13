@@ -1,0 +1,34 @@
+:host {
+    display: block;
+}
+
+ce-plus-button {
+    position:fixed;
+    bottom:20px;
+    right:20px;
+}
+
+ul li a {
+    cursor:pointer;
+    font-size:0.85em;
+}
+
+h1 {
+    margin: 24px 0px 0px 20px;
+    font-weight:100;
+    font-size:1.5em;
+    display:inline-block;
+}
+
+ul,li {
+    margin:0;
+    padding:0;
+    list-style:none;
+    display:inline-block;
+}
+
+ul {
+    margin:0px 0px 0px 20px;
+}
+
+

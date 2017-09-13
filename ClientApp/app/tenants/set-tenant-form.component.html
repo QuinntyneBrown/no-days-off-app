@@ -1,0 +1,8 @@
+<form novalidate [formGroup]="form">
+
+    <label>Id</label>
+    <input type="text" placeholder="Set Tenant..." id="id" formControlName="id" />
+
+    <button type="submit" (click)="tryToSubmit.emit({ detail:{ tenant: form.value } })">Save</button>
+
+</form> 

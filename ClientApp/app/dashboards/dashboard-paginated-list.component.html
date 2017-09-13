@@ -1,0 +1,17 @@
+<h1>Dashboard List</h1>
+<label>Filter</label>
+<input type="text" placeholder="Filter" (keyup)="filterKeyUp.emit({ detail: { value: $event.target.value } })" />
+<div>
+    <h2>Name</h2>
+    <h2>Actions</h2>
+</div>
+<ce-dashboard-list-item *ngFor="let dashboard of pagedList.data"
+                      [dashboard]="dashboard"
+                      (edit)="edit.emit($event)"
+                      (delete)="delete.emit($event)">
+</ce-dashboard-list-item>
+<ce-pager [pageNumber]="pageNumber" 
+          [totalPages]="pagedList.totalPages" 
+          (next)="setPageNumber($event)" 
+          (previous)="setPageNumber($event)">
+</ce-pager>

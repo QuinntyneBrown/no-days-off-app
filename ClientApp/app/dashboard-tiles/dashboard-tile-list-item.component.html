@@ -1,0 +1,6 @@
+<span (click)="select.emit({ detail: { dashboardTile: dashboardTile} })">{{ dashboardTile.name }}</span>
+<div>
+    <span (click)="edit.emit({ detail: { dashboardTile: dashboardTile} })">EDIT</span>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <span (click)="delete.emit({ detail: { dashboardTile: dashboardTile} })">DELETE</span>
+</div>

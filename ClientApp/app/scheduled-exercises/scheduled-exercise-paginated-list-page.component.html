@@ -1,0 +1,5 @@
+<ce-scheduled-exercise-paginated-list [scheduledExercises]="scheduledExercises"                           
+                           (delete)="tryToDelete($event)"
+                           (edit)="tryToEdit($event)"
+                           (filterKeyUp)="handleScheduledExercisesFilterKeyUp($event)">
+</ce-scheduled-exercise-paginated-list>

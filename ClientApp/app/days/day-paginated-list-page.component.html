@@ -1,0 +1,5 @@
+<ce-day-paginated-list [days]="days"                           
+                           (delete)="tryToDelete($event)"
+                           (edit)="tryToEdit($event)"
+                           (filterKeyUp)="handleDaysFilterKeyUp($event)">
+</ce-day-paginated-list>
