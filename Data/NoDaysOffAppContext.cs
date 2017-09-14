@@ -12,6 +12,8 @@ namespace NoDaysOffApp.Data
     {
         DbSet<Athlete> Athletes { get; set; }
         DbSet<AthleteWeight> AthleteWeights { get; set; }
+        DbSet<Conversation> Conversations { get; set; }
+        DbSet<Message> Messages { get; set; }
         DbSet<Tenant> Tenants { get; set; }
         DbSet<DigitalAsset> DigitalAssets { get; set; }
         DbSet<Dashboard> Dashboards { get; set; }
@@ -22,6 +24,8 @@ namespace NoDaysOffApp.Data
         DbSet<Day> Days { get; set; }
         DbSet<ScheduledExercise> ScheduledExercises { get; set; }
         DbSet<CompletedScheduledExercise> CompletedScheduledExercises { get; set; }
+        DbSet<Video> Videos { get; set; }
+        DbSet<Profile> Profiles { get; set; }
         Task<int> SaveChangesAsync();
     }
     
@@ -47,7 +51,10 @@ namespace NoDaysOffApp.Data
         public DbSet<Day> Days { get; set; }
         public DbSet<ScheduledExercise> ScheduledExercises { get; set; }
         public DbSet<CompletedScheduledExercise> CompletedScheduledExercises { get; set; }
-
+        public DbSet<Video> Videos { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Conversation> Conversations { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
         public override int SaveChanges()
         {

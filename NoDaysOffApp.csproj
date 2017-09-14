@@ -6,8 +6,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
+    <ProductVersion></ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{2250BEF5-1F73-47F6-8C6C-8FFBFC22F496}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -22,8 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.4</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -840,6 +838,54 @@
     <Compile Include="Features\AthleteWeights\AthleteWeightApiModel.cs" />
     <Compile Include="Features\AthleteWeights\AthleteWeightsController.cs" />
     <Compile Include="Features\AthleteWeights\GetCurrentAthleteWeightQuery.cs" />
+    <Compile Include="Model\Video.cs" />
+    <Compile Include="Model\Profile.cs" />
+    <Compile Include="Features\Profiles\AddOrUpdateProfileCommand.cs" />
+    <Compile Include="Features\Profiles\GetProfilesQuery.cs" />
+    <Compile Include="Features\Profiles\GetProfileByIdQuery.cs" />
+    <Compile Include="Features\Profiles\RemoveProfileCommand.cs" />
+    <Compile Include="Features\Profiles\ProfilesCacheKeyFactory.cs" />
+    <Compile Include="Features\Profiles\ProfilesEventBusMessageHandler.cs" />
+    <Compile Include="Features\Profiles\ProfilesEventBusMessages.cs" />
+    <Compile Include="Features\Profiles\AddedOrUpdatedProfileMessage.cs" />
+    <Compile Include="Features\Profiles\RemovedProfileMessage.cs" />
+    <Compile Include="Features\Profiles\ProfileApiModel.cs" />
+    <Compile Include="Features\Profiles\ProfilesController.cs" />
+    <Compile Include="Features\Videos\AddOrUpdateVideoCommand.cs" />
+    <Compile Include="Features\Videos\GetVideosQuery.cs" />
+    <Compile Include="Features\Videos\GetVideoByIdQuery.cs" />
+    <Compile Include="Features\Videos\RemoveVideoCommand.cs" />
+    <Compile Include="Features\Videos\VideosCacheKeyFactory.cs" />
+    <Compile Include="Features\Videos\VideosEventBusMessageHandler.cs" />
+    <Compile Include="Features\Videos\VideosEventBusMessages.cs" />
+    <Compile Include="Features\Videos\AddedOrUpdatedVideoMessage.cs" />
+    <Compile Include="Features\Videos\RemovedVideoMessage.cs" />
+    <Compile Include="Features\Videos\VideoApiModel.cs" />
+    <Compile Include="Features\Videos\VideosController.cs" />
+    <Compile Include="Model\Message.cs" />
+    <Compile Include="Model\Conversation.cs" />
+    <Compile Include="Features\Conversations\AddOrUpdateConversationCommand.cs" />
+    <Compile Include="Features\Conversations\GetConversationsQuery.cs" />
+    <Compile Include="Features\Conversations\GetConversationByIdQuery.cs" />
+    <Compile Include="Features\Conversations\RemoveConversationCommand.cs" />
+    <Compile Include="Features\Conversations\ConversationsCacheKeyFactory.cs" />
+    <Compile Include="Features\Conversations\ConversationsEventBusMessageHandler.cs" />
+    <Compile Include="Features\Conversations\ConversationsEventBusMessages.cs" />
+    <Compile Include="Features\Conversations\AddedOrUpdatedConversationMessage.cs" />
+    <Compile Include="Features\Conversations\RemovedConversationMessage.cs" />
+    <Compile Include="Features\Conversations\ConversationApiModel.cs" />
+    <Compile Include="Features\Conversations\ConversationsController.cs" />
+    <Compile Include="Features\Messages\AddOrUpdateMessageCommand.cs" />
+    <Compile Include="Features\Messages\GetMessagesQuery.cs" />
+    <Compile Include="Features\Messages\GetMessageByIdQuery.cs" />
+    <Compile Include="Features\Messages\RemoveMessageCommand.cs" />
+    <Compile Include="Features\Messages\MessagesCacheKeyFactory.cs" />
+    <Compile Include="Features\Messages\MessagesEventBusMessageHandler.cs" />
+    <Compile Include="Features\Messages\MessagesEventBusMessages.cs" />
+    <Compile Include="Features\Messages\AddedOrUpdatedMessageMessage.cs" />
+    <Compile Include="Features\Messages\RemovedMessageMessage.cs" />
+    <Compile Include="Features\Messages\MessageApiModel.cs" />
+    <Compile Include="Features\Messages\MessagesController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="packages\AWSSDK.S3.3.3.5.11\analyzers\dotnet\cs\AWSSDK.S3.CodeAnalysis.dll" />
@@ -847,7 +893,10 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Features\Conversations\" />
+    <Folder Include="Features\Messages\" />
+  </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\app-left-nav.component.ts">
       <DependentUpon>app-left-nav.component.html</DependentUpon>
@@ -1246,8 +1295,7 @@
           <IISUrl>http://localhost:58691/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <CustomServerUrl></CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

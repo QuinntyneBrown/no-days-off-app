@@ -9,22 +9,18 @@ using static NoDaysOffApp.Constants;
 namespace NoDaysOffApp.Model
 {
     [SoftDelete("IsDeleted")]
-    public class Tile: ILoggable
+    public class Video: ILoggable
     {
         public int Id { get; set; }
         
 		[ForeignKey("Tenant")]
         public int? TenantId { get; set; }
         
-		[Index("TileNameIndex", IsUnique = false)]
+		[Index("VideoNameIndex", IsUnique = false)]
         [Column(TypeName = "VARCHAR")]     
         [StringLength(MaxStringLength)]		   
 		public string Name { get; set; }
-
-        public int DefaultHeight { get; set; }
-
-        public int DefaultWidth { get; set; }
-
+        
 		public DateTime CreatedOn { get; set; }
         
 		public DateTime LastModifiedOn { get; set; }

@@ -9,23 +9,18 @@ using static NoDaysOffApp.Constants;
 namespace NoDaysOffApp.Model
 {
     [SoftDelete("IsDeleted")]
-    public class Tile: ILoggable
+    public class Conversation: ILoggable
     {
         public int Id { get; set; }
         
 		[ForeignKey("Tenant")]
         public int? TenantId { get; set; }
-        
-		[Index("TileNameIndex", IsUnique = false)]
-        [Column(TypeName = "VARCHAR")]     
-        [StringLength(MaxStringLength)]		   
-		public string Name { get; set; }
 
-        public int DefaultHeight { get; set; }
+        public ICollection<Profile> Profiles { get; set; } = new HashSet<Profile>();
 
-        public int DefaultWidth { get; set; }
+        public ICollection<Message> Messages { get; set; } = new HashSet<Message>();
 
-		public DateTime CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
         
 		public DateTime LastModifiedOn { get; set; }
         
