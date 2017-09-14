@@ -1,7 +1,7 @@
 :host {
     display: grid;
     margin: 20px;
-    background-color: #fff;
+    background-color: rgb(241,241,241);
     width: 100%;
     max-width: calc(100% - 40px);
     max-height: calc(100% - 40px);

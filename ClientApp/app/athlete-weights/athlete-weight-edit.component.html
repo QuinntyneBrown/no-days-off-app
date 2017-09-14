@@ -2,13 +2,11 @@
 
 <form novalidate [formGroup]="form">
 
-    <ce-tabs>
-        <ce-tab-title>General</ce-tab-title>
-        <ce-tab-content>
-            <label>Name</label>
-            <input type="text" placeholder="Name" id="name" formControlName="name" />
-        </ce-tab-content>
-    </ce-tabs>
+    <label>Weight In Kgs</label>
+    <input type="text" placeholder="Weight In Kgs" id="weight-in-kgs" formControlName="weightInKgs" />
+
+    <label>Weighed On</label>
+    <input type="text" placeholder="Weighed On" id="weighed-on" formControlName="weighedOn" />
 
     <button type="submit" (click)="tryToSave.emit({ detail:{ athleteWeight: form.value } })">Save</button>
 

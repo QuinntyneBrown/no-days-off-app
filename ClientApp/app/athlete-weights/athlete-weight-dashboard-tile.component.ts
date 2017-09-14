@@ -9,12 +9,12 @@ import { fetchClient } from "../shared/services/fetch-client";
 import { AthleteWeight } from "./athlete-weight.model";
 
 const template = document.createElement("template");
-
 const html = require("./athlete-weight-dashboard-tile.component.html");
 const css = [
-    require("./athlete-weight-dashboard-tile.component.css"),
-    require("../../styles/dashboard-tile.css")
+    require("../../styles/dashboard-tile.css"),
+    require("./athlete-weight-dashboard-tile.component.css")
 ].join(' ');
+
 
 export class AthleteWeightDashboardTileComponent extends HTMLElement {
     constructor(
@@ -27,6 +27,7 @@ export class AthleteWeightDashboardTileComponent extends HTMLElement {
         this.removeTile = this.removeTile.bind(this);
         this.toggleCustomerDashboardTileMenu = this.toggleCustomerDashboardTileMenu.bind(this);
         this.onConfigureDashboardTileMenuClick = this.onConfigureDashboardTileMenuClick.bind(this);
+        this.onAnchorClick = this.onAnchorClick.bind(this);
     }
 
     static get observedAttributes() {
@@ -59,7 +60,6 @@ export class AthleteWeightDashboardTileComponent extends HTMLElement {
     private async _bind() {
 
         this.dashboardTile$.subscribe(x => {
-            this.titleElement.innerText = x.tile.name;
             this.setCssCustomProperty({ name: '--grid-column-start', value: x.left });
             this.setCssCustomProperty({ name: '--grid-row-start', value: x.top });
             this.setCssCustomProperty({ name: '--grid-column-stop', value: `${x.left + x.width}` });
@@ -67,10 +67,12 @@ export class AthleteWeightDashboardTileComponent extends HTMLElement {
         });
 
         this.athleteWeight$.subscribe(x => {
+             
             const cssClass = "no-athlete-weight-info";
             if (x == null) {
                 this.classList.add(cssClass);
             } else {
+                this.subTitleElement.innerHTML = `${x.weightInKgs} kgs`;
                 if (this.classList.contains(cssClass))
                     this.classList.remove(cssClass)
             }
@@ -113,7 +115,7 @@ export class AthleteWeightDashboardTileComponent extends HTMLElement {
     }
     private _setEventListeners() {
         this.buttonElement.addEventListener("click", this.toggleCustomerDashboardTileMenu);
-
+        this.anchorElement.addEventListener("click", this.onAnchorClick);
         document.body.addEventListener(CONFIGURE_DASHBOARD_TILE_MENU_CLICK, this.configure);
         document.body.addEventListener(REMOVE_DASHBOARD_TILE_MENU_CLICK, this.removeTile);
     }
@@ -125,6 +127,7 @@ export class AthleteWeightDashboardTileComponent extends HTMLElement {
     disconnectedCallback() {
         document.body.removeEventListener(CONFIGURE_DASHBOARD_TILE_MENU_CLICK, this.configure);
         document.body.removeEventListener(REMOVE_DASHBOARD_TILE_MENU_CLICK, this.removeTile);
+        this.anchorElement.removeEventListener("click", this.onAnchorClick);
         this.buttonElement.removeEventListener("click", this.toggleCustomerDashboardTileMenu);
     }
 
@@ -139,9 +142,16 @@ export class AthleteWeightDashboardTileComponent extends HTMLElement {
         return (<HTMLElement>this.shadowRoot.querySelector("ce-dots-button"));
     }
 
+    public onAnchorClick() {
+        window.location.href = "athleteWeights/create";
+    }
+
     public get titleElement(): HTMLElement { return this.shadowRoot.querySelector("h1") as HTMLElement; }
 
     public get subTitleElement(): HTMLElement { return this.shadowRoot.querySelector("h2") as HTMLElement; }
+
+    public get anchorElement(): HTMLElement { return this.shadowRoot.querySelector("a") as HTMLElement; }
+
 }
 
 customElements.define(`ce-athlete-weight-dashboard-tile`, AthleteWeightDashboardTileComponent);

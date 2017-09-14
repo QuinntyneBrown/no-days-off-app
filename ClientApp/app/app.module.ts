@@ -5,6 +5,7 @@ import {RouterModule} from '@angular/router';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
 
+import {AthleteWeightsModule} from "./athlete-weights/athlete-weights.module";
 import {AthletesModule} from "./athletes/athletes.module";
 import {BodyPartsModule} from "./body-parts/body-parts.module";
 import {CompletedScheduledExercisesModule} from "./completed-scheduled-exercises/completed-scheduled-exercises.module";
@@ -40,6 +41,7 @@ const providers = [];
         FormsModule,
         RouterModule,
 
+        AthleteWeightsModule,
         AthletesModule,
         BodyPartsModule,
         CompletedScheduledExercisesModule,

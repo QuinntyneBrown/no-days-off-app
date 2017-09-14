@@ -1,5 +1,7 @@
 :host {
     display: block;
+    background-color: rgb(241,241,241);
+    height:100%;
 }
 
 ce-plus-button {

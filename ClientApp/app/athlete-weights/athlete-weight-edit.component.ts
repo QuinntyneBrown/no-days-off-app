@@ -36,12 +36,14 @@ export class AthleteWeightEditComponent {
 
         this.form.patchValue({
             id: this._athleteWeight.id,
-            name: this._athleteWeight.name,
+            weightInKgs: this._athleteWeight.weightInKgs,
+            weighedOn: this._athleteWeight.weighedOn
         });
     }
    
     public form = new FormGroup({
         id: new FormControl(0, []),
-        name: new FormControl('', [Validators.required])
+        weightInKgs: new FormControl('', [Validators.required]),
+        weighedOn: new FormControl('', [Validators.required])
     });
 }

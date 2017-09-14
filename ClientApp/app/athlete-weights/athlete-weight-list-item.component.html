@@ -1,4 +1,4 @@
-<span (click)="select.emit({ detail: { athleteWeight: athleteWeight} })">{{ athleteWeight.name }}</span>
+<span (click)="select.emit({ detail: { athleteWeight: athleteWeight} })">{{ athleteWeight.weighedOn | date: 'MMMM d,yyyy' }}</span>
 <div>
     <span (click)="edit.emit({ detail: { athleteWeight: athleteWeight} })">EDIT</span>
     &nbsp;&nbsp;|&nbsp;&nbsp;

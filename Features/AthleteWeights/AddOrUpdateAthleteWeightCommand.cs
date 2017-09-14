@@ -12,7 +12,7 @@ namespace NoDaysOffApp.Features.AthleteWeights
 {
     public class AddOrUpdateAthleteWeightCommand
     {
-        public class Request : BaseRequest, IRequest<Response>
+        public class Request : BaseAuthenticatedRequest, IRequest<Response>
         {
             public AthleteWeightApiModel AthleteWeight { get; set; }            
 			public Guid CorrelationId { get; set; }
@@ -32,16 +32,23 @@ namespace NoDaysOffApp.Features.AthleteWeights
             {
                 var entity = await _context.AthleteWeights
                     .Include(x => x.Tenant)
-                    .SingleOrDefaultAsync(x => x.Id == request.AthleteWeight.Id && x.Tenant.UniqueId == request.TenantUniqueId);
+                    .Include(x => x.Athlete)
+                    .SingleOrDefaultAsync(x => x.Id == request.AthleteWeight.Id 
+                    && x.Tenant.UniqueId == request.TenantUniqueId);
                 
                 if (entity == null) {
                     var tenant = await _context.Tenants.SingleAsync(x => x.UniqueId == request.TenantUniqueId);
-                    _context.AthleteWeights.Add(entity = new AthleteWeight() { TenantId = tenant.Id });
+                    var athlete = await _context.Athletes.SingleAsync(x => x.Username == request.Username);
+                    _context.AthleteWeights.Add(entity = new AthleteWeight() { TenantId = tenant.Id, AthleteId = athlete.Id });
                 }
-                
+
+                entity.WeightInKgs = request.AthleteWeight.WeightInKgs;
+
+                entity.WeighedOn = request.AthleteWeight.WeighedOn;
+
                 await _context.SaveChangesAsync();
 
-                _bus.Publish(new AddedOrUpdatedAthleteWeightMessage(entity, request.CorrelationId, request.TenantUniqueId));
+                _bus.Publish(new AddedOrUpdatedAthleteWeightMessage(AthleteWeightApiModel.FromAthleteWeight(entity), request.CorrelationId, request.TenantUniqueId));
 
                 return new Response();
             }

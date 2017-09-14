@@ -7,7 +7,7 @@ namespace NoDaysOffApp.Features.AthleteWeights
 
     public class AddedOrUpdatedAthleteWeightMessage : BaseEventBusMessage
     {
-        public AddedOrUpdatedAthleteWeightMessage(AthleteWeight athleteWeight, Guid correlationId, Guid tenantId)
+        public AddedOrUpdatedAthleteWeightMessage(dynamic athleteWeight, Guid correlationId, Guid tenantId)
         {
             Payload = new { Entity = athleteWeight, CorrelationId = correlationId };
             TenantUniqueId = tenantId;
