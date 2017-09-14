@@ -6,6 +6,10 @@
     
     <input type="text" placeholder="Name" id="name" formControlName="name" />
 
+    <label>Image Url</label>
+
+    <ce-digital-asset-input-url id="image-url" formControlName="imageUrl"></ce-digital-asset-input-url>
+
     <button type="submit" (click)="tryToSave.emit({ detail:{ athlete: form.value } })">Save</button>
 
 </form> 

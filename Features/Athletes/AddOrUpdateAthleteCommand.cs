@@ -46,8 +46,11 @@ namespace NoDaysOffApp.Features.Athletes
                 }
 
                 entity.Name = request.Athlete.Name;
+
                 entity.Username = request.Username;
-                
+
+                entity.ImageUrl = request.Athlete.ImageUrl;
+
                 await _context.SaveChangesAsync();
 
                 _bus.Publish(new AddedOrUpdatedAthleteMessage(entity, request.CorrelationId, request.TenantUniqueId));

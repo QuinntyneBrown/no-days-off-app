@@ -94,4 +94,4 @@ const providers = [DashboardsService];
     declarations: [declarables],
     providers: providers
 })
-export class DashboardsModule { }[]
+export class DashboardsModule { }

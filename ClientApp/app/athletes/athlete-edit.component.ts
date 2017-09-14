@@ -37,11 +37,13 @@ export class AthleteEditComponent {
         this.form.patchValue({
             id: this._athlete.id,
             name: this._athlete.name,
+            imageUrl: this._athlete.imageUrl
         });
     }
    
     public form = new FormGroup({
         id: new FormControl(0, []),
-        name: new FormControl('', [Validators.required])
+        name: new FormControl('', [Validators.required]),
+        imageUrl: new FormControl('')
     });
 }

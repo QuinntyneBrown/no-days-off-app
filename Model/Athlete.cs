@@ -16,15 +16,14 @@ namespace NoDaysOffApp.Model
 		[ForeignKey("Tenant")]
         public int? TenantId { get; set; }
         
-        [ForeignKey("DigitalAsset")]
-        public int? DigitalAssetId { get; set; }
-
 		[Index("AthleteNameIndex", IsUnique = false)]
         [Column(TypeName = "VARCHAR")]     
         [StringLength(MaxStringLength)]		   
 		public string Name { get; set; }
 
         public string Username { get; set; }
+
+        public string ImageUrl { get; set; }
 
         public ICollection<CompletedScheduledExercise> CompletedScheduledExercises { get; set; } = new HashSet<CompletedScheduledExercise>();
 
@@ -41,8 +40,5 @@ namespace NoDaysOffApp.Model
 		public bool IsDeleted { get; set; }
 
         public virtual Tenant Tenant { get; set; }
-
-        public virtual DigitalAsset DigitalAsset { get; set; }
-
     }
 }

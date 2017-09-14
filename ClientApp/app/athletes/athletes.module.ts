@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
 import { UsersModule } from "../users/users.module";
-
+import { DigitalAssetsModule } from "../digital-assets/digital-assets.module";
 import { AuthGuardService } from "../shared/guards/auth-guard.service";
 import { TenantGuardService } from "../shared/guards/tenant-guard.service";
 import { EventHubConnectionGuardService } from "../shared/guards/event-hub-connection-guard.service";
@@ -63,7 +63,7 @@ const declarables = [
 const providers = [AthletesService];
 
 @NgModule({
-    imports: [CommonModule, FormsModule, HttpClientModule, ReactiveFormsModule, RouterModule.forChild(ATHLETE_ROUTES), SharedModule, UsersModule],
+    imports: [CommonModule, FormsModule, HttpClientModule, ReactiveFormsModule, RouterModule.forChild(ATHLETE_ROUTES), DigitalAssetsModule, SharedModule, UsersModule],
     exports: [declarables],
     declarations: [declarables],
     providers: providers

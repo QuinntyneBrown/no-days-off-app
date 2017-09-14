@@ -23,6 +23,7 @@ export class AthleteEditPageComponent {
     }
 
     public tryToSave($event) {
+        alert(JSON.stringify($event));
         const correlationId = this._correlationIdsList.newId();
         this._athletesService.addOrUpdate({ athlete: $event.detail.athlete, correlationId }).subscribe();
         this._router.navigateByUrl("/athletes");
