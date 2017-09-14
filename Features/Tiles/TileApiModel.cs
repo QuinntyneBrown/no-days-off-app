@@ -8,6 +8,7 @@ namespace NoDaysOffApp.Features.Tiles
         public int? TenantId { get; set; }
         public string Name { get; set; }
 
+        public bool IsVisibleInCatalog { get; set; }
         public static TModel FromTile<TModel>(Tile tile) where
             TModel : TileApiModel, new()
         {
@@ -15,6 +16,7 @@ namespace NoDaysOffApp.Features.Tiles
             model.Id = tile.Id;
             model.TenantId = tile.TenantId;
             model.Name = tile.Name;
+            model.IsVisibleInCatalog = tile.IsVisibleInCatalog;
             return model;
         }
 

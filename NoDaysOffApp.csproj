@@ -6,7 +6,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion></ProductVersion>
+    <ProductVersion>
+    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{2250BEF5-1F73-47F6-8C6C-8FFBFC22F496}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -21,7 +22,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.4</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -316,6 +318,9 @@
     <Content Include="ClientApp\app\body-parts\body-parts-left-nav.component.css">
       <DependentUpon>body-parts-left-nav.component.html</DependentUpon>
     </Content>
+    <Content Include="ClientApp\app\bounded-contexts\create-page.component.css">
+      <DependentUpon>create-page.component.html</DependentUpon>
+    </Content>
     <Content Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-edit-page.component.css">
       <DependentUpon>completed-scheduled-exercise-edit-page.component.html</DependentUpon>
     </Content>
@@ -536,6 +541,24 @@
       <DependentUpon>login.component.html</DependentUpon>
     </Content>
     <Content Include="ClientApp\app\users\login.component.html" />
+    <Content Include="ClientApp\app\videos\video-edit-page.component.css">
+      <DependentUpon>video-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\videos\video-edit.component.css">
+      <DependentUpon>video-edit.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\videos\video-list-item.component.css">
+      <DependentUpon>video-list-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\videos\video-paginated-list-page.component.css">
+      <DependentUpon>video-paginated-list-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\videos\video-paginated-list.component.css">
+      <DependentUpon>video-paginated-list.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\videos\videos-left-nav.component.css">
+      <DependentUpon>videos-left-nav.component.html</DependentUpon>
+    </Content>
     <Content Include="ClientApp\styles\dashboard-tile.css" />
     <Content Include="ClientApp\styles\edit.css" />
     <Content Include="ClientApp\styles\forms.css" />
@@ -642,6 +665,13 @@
     <Content Include="ClientApp\app\athlete-weights\athlete-weight-edit-page.component.html" />
     <Content Include="ClientApp\app\athlete-weights\athlete-weights-left-nav.component.html" />
     <Content Include="ClientApp\app\athlete-weights\athlete-weight-dashboard-tile.component.html" />
+    <Content Include="ClientApp\app\bounded-contexts\create-page.component.html" />
+    <Content Include="ClientApp\app\videos\video-edit.component.html" />
+    <Content Include="ClientApp\app\videos\video-paginated-list.component.html" />
+    <Content Include="ClientApp\app\videos\video-list-item.component.html" />
+    <Content Include="ClientApp\app\videos\video-paginated-list-page.component.html" />
+    <Content Include="ClientApp\app\videos\video-edit-page.component.html" />
+    <Content Include="ClientApp\app\videos\videos-left-nav.component.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
@@ -662,6 +692,7 @@
     <Compile Include="Data\Migrations\TenantConfiguration.cs" />
     <Compile Include="Features\Core\BaseAuthenticatedRequest.cs" />
     <Compile Include="Features\Core\ClaimTypes.cs" />
+    <Compile Include="Features\Core\NamingConventionConverter.cs" />
     <Compile Include="Features\DigitalAssets\AddOrUpdateDigitalAssetCommand.cs" />
     <Compile Include="Features\DigitalAssets\Constants.cs" />
     <Compile Include="Features\DigitalAssets\DigitalAssetApiModel.cs" />
@@ -886,6 +917,19 @@
     <Compile Include="Features\Messages\RemovedMessageMessage.cs" />
     <Compile Include="Features\Messages\MessageApiModel.cs" />
     <Compile Include="Features\Messages\MessagesController.cs" />
+    <Compile Include="Model\BoundedContext.cs" />
+    <Compile Include="Features\BoundedContexts\AddOrUpdateBoundedContextCommand.cs" />
+    <Compile Include="Features\BoundedContexts\GetBoundedContextsQuery.cs" />
+    <Compile Include="Features\BoundedContexts\GetBoundedContextByIdQuery.cs" />
+    <Compile Include="Features\BoundedContexts\RemoveBoundedContextCommand.cs" />
+    <Compile Include="Features\BoundedContexts\BoundedContextsCacheKeyFactory.cs" />
+    <Compile Include="Features\BoundedContexts\BoundedContextsEventBusMessageHandler.cs" />
+    <Compile Include="Features\BoundedContexts\BoundedContextsEventBusMessages.cs" />
+    <Compile Include="Features\BoundedContexts\AddedOrUpdatedBoundedContextMessage.cs" />
+    <Compile Include="Features\BoundedContexts\RemovedBoundedContextMessage.cs" />
+    <Compile Include="Features\BoundedContexts\BoundedContextApiModel.cs" />
+    <Compile Include="Features\BoundedContexts\BoundedContextsController.cs" />
+    <Compile Include="Data\Migrations\BoundedContextConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="packages\AWSSDK.S3.3.3.5.11\analyzers\dotnet\cs\AWSSDK.S3.CodeAnalysis.dll" />
@@ -893,10 +937,7 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\Conversations\" />
-    <Folder Include="Features\Messages\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\app-left-nav.component.ts">
       <DependentUpon>app-left-nav.component.html</DependentUpon>
@@ -965,6 +1006,10 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\app\body-parts\body-parts-left-nav.component.ts">
       <DependentUpon>body-parts-left-nav.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\bounded-contexts\bounded-contexts.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\bounded-contexts\create-page.component.ts">
+      <DependentUpon>create-page.component.html</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\app\completed-scheduled-exercises\completed-scheduled-exercise-edit-page.component.ts">
       <DependentUpon>completed-scheduled-exercise-edit-page.component.html</DependentUpon>
@@ -1225,6 +1270,24 @@
       <DependentUpon>login.component.html</DependentUpon>
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\app\users\users.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\videos\video-edit-page.component.ts">
+      <DependentUpon>video-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\videos\video-edit.component.ts">
+      <DependentUpon>video-edit.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\videos\video-list-item.component.ts">
+      <DependentUpon>video-list-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\videos\video-paginated-list-page.component.ts">
+      <DependentUpon>video-paginated-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\videos\video-paginated-list.component.ts">
+      <DependentUpon>video-paginated-list.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\videos\videos-left-nav.component.ts">
+      <DependentUpon>videos-left-nav.component.html</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\main.ts" />
     <TypeScriptCompile Include="ClientApp\polyfills.ts" />
     <TypeScriptCompile Include="ClientApp\app\users\users.module.ts" />
@@ -1271,6 +1334,13 @@
     <TypeScriptCompile Include="ClientApp\app\athlete-weights\athlete-weight.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\athlete-weights\athlete-weights.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\athlete-weights\athlete-weights.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\videos\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\videos\video.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\videos\videos.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\videos\videos.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\bounded-contexts\bounded-contexts.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\bounded-contexts\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\bounded-contexts\bounded-context.model.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\dashboard-service - FTP.pubxml" />
@@ -1295,7 +1365,8 @@
           <IISUrl>http://localhost:58691/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl></CustomServerUrl>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

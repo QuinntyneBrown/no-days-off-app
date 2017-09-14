@@ -3,5 +3,12 @@
 </div>
 
 <div>
-    <h3><span>+</span>New</h3>
+    <h3 routerLink="/create"><span>+</span>New</h3>
+    <label>Filter</label>
+    <input type="text" placeholder="Filter" [formControl]="filterControl"/>
+    <ul>
+        <li *ngFor="let boundedContext of boundedContexts">
+            <a routerLink="/{{ boundedContext.nameCamelCase }}">{{ boundedContext.nameTitleCase }}</a>
+        </li>
+    </ul>
 </div>

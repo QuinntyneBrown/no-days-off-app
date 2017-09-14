@@ -1,0 +1,5 @@
+<ul>
+    <li *ngFor="let boundedContext of boundedContexts">
+        <a routerLink="/{{ boundedContext.nameCamelCase }}/create">{{ boundedContext.nameTitleCase }}</a>
+    </li>
+</ul>

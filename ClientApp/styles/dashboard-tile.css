@@ -2,10 +2,12 @@
     grid-column: var(--grid-column-start,1) / var(--grid-column-stop,1);
     grid-row: var(--grid-row-start,1) / var(--grid-row-stop,1);
     background-color: rgb(241,241,241);
-    box-shadow: 5px 3px 11px rgba(0,0,0,0.2);
+    box-shadow: 2px 2px 3px rgba(0,0,0,0.2);
     overflow: hidden;
     cursor: pointer;
 }
+
+
 
 .content {
     display: grid;

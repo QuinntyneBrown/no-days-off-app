@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
 
-namespace NoDaysOffApp.Features.Videos
+namespace NoDaysOffApp.Features.BoundedContexts
 {
-    public class AddOrUpdateVideoCommand
+    public class RemoveBoundedContextCommand
     {
         public class Request : BaseRequest, IRequest<Response>
         {
-            public VideoApiModel Video { get; set; }            
-			public Guid CorrelationId { get; set; }
+            public int Id { get; set; }
+            public Guid CorrelationId { get; set; }
         }
 
         public class Response { }
@@ -30,21 +30,10 @@ namespace NoDaysOffApp.Features.Videos
 
             public async Task<Response> Handle(Request request)
             {
-                var entity = await _context.Videos
-                    .Include(x => x.Tenant)
-                    .SingleOrDefaultAsync(x => x.Id == request.Video.Id && x.Tenant.UniqueId == request.TenantUniqueId);
-                
-                if (entity == null) {
-                    var tenant = await _context.Tenants.SingleAsync(x => x.UniqueId == request.TenantUniqueId);
-                    _context.Videos.Add(entity = new Video() { TenantId = tenant.Id });
-                }
-
-                entity.Title = request.Video.Title;
-                
+                var boundedContext = await _context.BoundedContexts.SingleAsync(x=>x.Id == request.Id && x.Tenant.UniqueId == request.TenantUniqueId);
+                boundedContext.IsDeleted = true;
                 await _context.SaveChangesAsync();
-
-                _bus.Publish(new AddedOrUpdatedVideoMessage(entity, request.CorrelationId, request.TenantUniqueId));
-
+                _bus.Publish(new RemovedBoundedContextMessage(request.Id, request.CorrelationId, request.TenantUniqueId));
                 return new Response();
             }
 

@@ -1,0 +1,14 @@
+:host {
+    display:block;
+    cursor:pointer;
+}
+
+.name {
+    display:inline-block;
+    width:100%;
+    max-width:200px;
+}
+
+.actions {
+    font-size:0.625em;
+}

@@ -40,6 +40,8 @@ namespace NoDaysOffApp.Features.Tiles
                 }
 
                 entity.Name = request.Tile.Name;
+
+                entity.IsVisibleInCatalog = request.Tile.IsVisibleInCatalog;
                 
                 await _context.SaveChangesAsync();
 

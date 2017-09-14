@@ -12,6 +12,7 @@ namespace NoDaysOffApp.Data
     {
         DbSet<Athlete> Athletes { get; set; }
         DbSet<AthleteWeight> AthleteWeights { get; set; }
+        DbSet<BoundedContext> BoundedContexts { get; set; }
         DbSet<Conversation> Conversations { get; set; }
         DbSet<Message> Messages { get; set; }
         DbSet<Tenant> Tenants { get; set; }
@@ -41,6 +42,7 @@ namespace NoDaysOffApp.Data
 
         public DbSet<Athlete> Athletes { get; set; }
         public DbSet<AthleteWeight> AthleteWeights { get; set; }
+        public DbSet<BoundedContext> BoundedContexts { get; set; }
         public DbSet<DigitalAsset> DigitalAssets { get; set; }
         public DbSet<Tenant> Tenants { get; set; }
         public DbSet<Dashboard> Dashboards { get; set; }

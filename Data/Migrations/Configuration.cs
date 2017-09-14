@@ -19,6 +19,7 @@ namespace NoDaysOffApp.Migrations
             DashboardConfiguration.Seed(context);
             DayConfiguration.Seed(context);
             TileConfiguration.Seed(context);
+            BoundedContextConfiguration.Seed(context);
         }
     }
 

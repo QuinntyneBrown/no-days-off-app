@@ -23,8 +23,10 @@ namespace NoDaysOffApp.Model
         [Column(TypeName = "VARCHAR")]     
         [StringLength(MaxStringLength)]		   
 		public string Name { get; set; }
+
+        public ICollection<ExerciseDigitalAsset> ExerciseDigitalAssets { get; set; } = new HashSet<ExerciseDigitalAsset>();
         
-		public DateTime CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
         
 		public DateTime LastModifiedOn { get; set; }
         

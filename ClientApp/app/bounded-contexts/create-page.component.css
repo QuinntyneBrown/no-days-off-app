@@ -1,0 +1,24 @@
+:host {
+    display:block;
+    content:contain;
+}
+
+
+a,
+a:link,
+a:visited {
+    text-decoration:none;
+    color: #333;
+}
+
+ul {
+    margin:20px 0px 0px 20px;
+    padding:0;
+    list-style:none;
+}
+
+li {
+    line-height:2em;
+    margin:0;
+    padding:0;
+}

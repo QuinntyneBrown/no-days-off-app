@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Data.Entity;
 
-namespace NoDaysOffApp.Features.Videos
+namespace NoDaysOffApp.Features.BoundedContexts
 {
-    public class AddOrUpdateVideoCommand
+    public class AddOrUpdateBoundedContextCommand
     {
         public class Request : BaseRequest, IRequest<Response>
         {
-            public VideoApiModel Video { get; set; }            
+            public BoundedContextApiModel BoundedContext { get; set; }            
 			public Guid CorrelationId { get; set; }
         }
 
@@ -30,20 +30,24 @@ namespace NoDaysOffApp.Features.Videos
 
             public async Task<Response> Handle(Request request)
             {
-                var entity = await _context.Videos
+                var entity = await _context.BoundedContexts
                     .Include(x => x.Tenant)
-                    .SingleOrDefaultAsync(x => x.Id == request.Video.Id && x.Tenant.UniqueId == request.TenantUniqueId);
+                    .SingleOrDefaultAsync(x => x.Id == request.BoundedContext.Id && x.Tenant.UniqueId == request.TenantUniqueId);
                 
                 if (entity == null) {
                     var tenant = await _context.Tenants.SingleAsync(x => x.UniqueId == request.TenantUniqueId);
-                    _context.Videos.Add(entity = new Video() { TenantId = tenant.Id });
+                    _context.BoundedContexts.Add(entity = new BoundedContext() { TenantId = tenant.Id });
                 }
 
-                entity.Title = request.Video.Title;
+                entity.Name = request.BoundedContext.Name;
+
+                entity.Description = request.BoundedContext.Description;
+
+                entity.ImageUrl = request.BoundedContext.ImageUrl;
                 
                 await _context.SaveChangesAsync();
 
-                _bus.Publish(new AddedOrUpdatedVideoMessage(entity, request.CorrelationId, request.TenantUniqueId));
+                _bus.Publish(new AddedOrUpdatedBoundedContextMessage(entity, request.CorrelationId, request.TenantUniqueId));
 
                 return new Response();
             }

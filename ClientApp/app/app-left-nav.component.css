@@ -1,17 +1,21 @@
 :host {
     color: #fff;
     background-color: rgb(61,61,61);
+    user-select:none;
 }
     
 :host > div {
     margin:20px 0px 0px 0px;
+    user-select:none;
 }
 
-h3 {   
+h3 {
     margin: 0px 0px 0px 20px;
     padding: 0px 0px 0px 0px;
     line-height: 3em;
-    cursor:pointer;
+    cursor: pointer;
+    user-select: none;
+    border:none;
 }
 
 ul {
@@ -43,4 +47,13 @@ span {
 
 ce-hamburger-button {
     margin: 0px 0px 0px 20px;
+}
+
+label {
+    margin: 0px 0px 0px 20px;
+}
+
+input {
+    margin: 10px 20px 10px 20px;
+    width: calc(100% - 61px);
 }
