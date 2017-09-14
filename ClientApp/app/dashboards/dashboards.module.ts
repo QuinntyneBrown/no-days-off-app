@@ -60,7 +60,8 @@ export const DASHBOARD_ROUTES: Routes = [
         ]
     },
     {
-        path: 'dashboard',
+        path: '',
+        pathMatch:'full',
         component: DashboardPageComponent,
         canActivate: [
             TenantGuardService,

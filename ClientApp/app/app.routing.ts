@@ -16,7 +16,7 @@ import {TILE_ROUTES} from "./tiles/tiles.module";
 
 const ROUTES = [
     {
-        path: '',
+        path: 'myprofile',
         component: AthletePageComponent,
         pathMatch: 'full',
         canActivate: [

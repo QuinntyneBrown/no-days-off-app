@@ -2,3 +2,20 @@
     display:block;
     user-select:none;
 }
+
+p {
+    text-align:center;
+}
+
+.update-needed-message {
+    display:none;
+    text-align:center;
+}
+
+:host(.no-athlete-weight-info) .update-needed-message {
+    display: block;
+}
+
+:host(.no-athlete-weight-info) .weight-info {
+    display: none;
+}

@@ -67,10 +67,12 @@ export class AthleteWeightDashboardTileComponent extends HTMLElement {
         });
 
         this.athleteWeight$.subscribe(x => {
+            const cssClass = "no-athlete-weight-info";
             if (x == null) {
-                this.textElement.innerHTML = "No weight info yet!";
+                this.classList.add(cssClass);
             } else {
-                this.textElement.innerHTML = "";
+                if (this.classList.contains(cssClass))
+                    this.classList.remove(cssClass)
             }
         });
 
@@ -140,8 +142,6 @@ export class AthleteWeightDashboardTileComponent extends HTMLElement {
     public get titleElement(): HTMLElement { return this.shadowRoot.querySelector("h1") as HTMLElement; }
 
     public get subTitleElement(): HTMLElement { return this.shadowRoot.querySelector("h2") as HTMLElement; }
-
-    public get textElement(): HTMLElement { return this.shadowRoot.querySelector("p") as HTMLElement; }
 }
 
 customElements.define(`ce-athlete-weight-dashboard-tile`, AthleteWeightDashboardTileComponent);
