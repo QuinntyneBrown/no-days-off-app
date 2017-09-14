@@ -8,12 +8,16 @@ p {
     text-align:center;
 }
 
-h2 {
-    text-align:center;
-    font-size: var(--font-size,4em);
-    line-height:1em;
+.info-value {
+    display:block;
+    color:#333;
+    font-weight:400;
+    text-align:left;
+    font-size: var(--font-size,3em);
+    line-height:2em;
     margin:0;
     padding:0;
+    margin:0px 0px 0px 20px;
 }
 
 .update-needed-message {
@@ -21,10 +25,24 @@ h2 {
     text-align:center;
 }
 
-:host(.no-athlete-weight-info) .update-needed-message {
+:host(.no-data) .update-needed-message {
     display: block;
 }
 
-:host(.no-athlete-weight-info) .weight-info {
+:host(.no-data) .weight-info {
     display: none;
+}
+
+.info-description {
+    display: block;
+    font-size: 1em;
+    line-height: 1em;
+    margin: 0px 0px 0px 20px;
+}
+
+h3 {
+    line-height:1.5em;
+    font-size:1.5em;
+    margin:20px 0px 0px 20px;
+    padding:0px 0px 0px 0px;
 }

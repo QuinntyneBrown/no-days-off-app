@@ -2,6 +2,7 @@ import {Component,Input, Output, EventEmitter, NgZone} from "@angular/core";
 import {toPageListFromInMemory,IPagedList} from "../shared/components/pager.component";
 import {Observable} from "rxjs/Observable";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {AthleteWeight} from "./athlete-weight.model";
 
 @Component({
     templateUrl: "./athlete-weight-paginated-list.component.html",
@@ -21,23 +22,18 @@ export class AthleteWeightPaginatedListComponent {
     }
 
     ngOnInit() {
-        this.pagedList = toPageListFromInMemory(this.athleteWeights, this.pageNumber, this.pageSize);
+        this.athleteWeights$.subscribe(x => this.pagedList = toPageListFromInMemory(x, this.pageNumber, this.pageSize));        
     }
 
     public setPageNumber($event) {        
         this.pageNumber = $event.detail.pageNumber;
         this.pagedList = toPageListFromInMemory(this.athleteWeights, this.pageNumber, this.pageSize);
     }
-    private _athleteWeights = [];
 
-    public get athleteWeights() {
-        return this._athleteWeights;
-    }
+    public athleteWeights$: BehaviorSubject<Array<AthleteWeight>> = new BehaviorSubject(<Array<AthleteWeight>>[]);
+    
     @Input("athleteWeights")
-    public set athleteWeights(value) {        
-        this._athleteWeights = value;
-        this.pagedList = toPageListFromInMemory(this.athleteWeights, this.pageNumber, this.pageSize);           
-    }
+    public set athleteWeights(value) { this.athleteWeights$.next(value); }
     
     public pagedList: IPagedList<any> = <any>{};
 

@@ -3,6 +3,22 @@
     content: contain;
 }
 
+:host div {
+    display: grid;
+    grid-template-columns: 1fr 1fr 100px;
+    margin: 0px 0px 0px 20px;
+}
+
 h1 {
-    margin:0px 0px 0px 0px;
+    font-size: 1.15em;
+    font-weight: 100;
+    line-height: 3em;
+    margin: 0px 0px 0px 0px;
+    padding: 0;
+}
+
+h2 {
+    display: inline-block;
+    font-size: 1em;
+    text-align:left;
 }

@@ -558,6 +558,9 @@
     <Content Include="index.html" />
     <Content Include="libs\jquery.js" />
     <Content Include="libs\jquery.signalR-2.2.1.js" />
+    <Content Include="libs\moment.min.js" />
+    <Content Include="libs\quill.min.js" />
+    <Content Include="libs\rome.min.js" />
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
     <Content Include="ClientApp\app\shared\components\pager.component.html" />

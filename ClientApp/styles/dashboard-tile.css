@@ -10,7 +10,7 @@
 .content {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 21px 1fr;
 }
 
 h1 {
@@ -23,6 +23,6 @@ h1 {
 }
 
 ce-dots-button {
-    width: 30px;
+    width: 30px;    
     grid-row: 1;
 }

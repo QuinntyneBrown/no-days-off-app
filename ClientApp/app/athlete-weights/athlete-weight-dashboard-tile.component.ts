@@ -15,6 +15,7 @@ const css = [
     require("./athlete-weight-dashboard-tile.component.css")
 ].join(' ');
 
+declare var moment: any;
 
 export class AthleteWeightDashboardTileComponent extends HTMLElement {
     constructor(
@@ -68,11 +69,13 @@ export class AthleteWeightDashboardTileComponent extends HTMLElement {
 
         this.athleteWeight$.subscribe(x => {
              
-            const cssClass = "no-athlete-weight-info";
+            const cssClass = "no-data";
             if (x == null) {
                 this.classList.add(cssClass);
             } else {
-                this.subTitleElement.innerHTML = `${x.weightInKgs} kgs`;
+                this.subTitle1Element.innerHTML = `${x.weightInKgs} kgs`;
+                this.subTitle2Element.innerHTML = `${moment(x.weighedOn).format('MMMM d, YYYY')}`;
+
                 if (this.classList.contains(cssClass))
                     this.classList.remove(cssClass)
             }
@@ -148,7 +151,9 @@ export class AthleteWeightDashboardTileComponent extends HTMLElement {
 
     public get titleElement(): HTMLElement { return this.shadowRoot.querySelector("h1") as HTMLElement; }
 
-    public get subTitleElement(): HTMLElement { return this.shadowRoot.querySelector("h2") as HTMLElement; }
+    public get subTitle1Element(): HTMLElement { return this.shadowRoot.querySelector(".info-value") as HTMLElement; }
+
+    public get subTitle2Element(): HTMLElement { return this.shadowRoot.querySelector(".info-description") as HTMLElement; }
 
     public get anchorElement(): HTMLElement { return this.shadowRoot.querySelector("a") as HTMLElement; }
 
