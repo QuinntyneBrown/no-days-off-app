@@ -74,8 +74,19 @@ export class DashboardGridComponent {
     
     private _updateGrid() {        
         this._nativeElement.innerHTML = null;                
-        for (let i = 0; i < this._dashboardTiles.length; i++) {            
-            var el = document.createElement("ce-dashboard-tile");
+        for (let i = 0; i < this._dashboardTiles.length; i++) {        
+            var el = null;
+            switch (this._dashboardTiles[i].tile.name) {
+                case "Athlete Weight":
+                    el = document.createElement("ce-athlete-weight-dashboard-tile");
+                    break;
+
+                default:
+                    el = document.createElement("ce-dashboard-tile");
+                    break;
+
+            }
+            
             el.setAttribute("dashboard-tile", JSON.stringify(this._dashboardTiles[i]));
             this._nativeElement.appendChild(el);
         }

@@ -7,6 +7,7 @@ import { DashboardTilesModule } from "../dashboard-tiles/dashboard-tiles.module"
 import { SharedModule } from "../shared/shared.module";
 import { UsersModule } from "../users/users.module";
 import { TilesModule } from "../tiles/tiles.module";
+import { AthleteWeightsModule } from "../athlete-weights/athlete-weights.module";
 
 import { TilesGuardService } from "../tiles/tiles-guard.service";
 import { DashboardTilesGuardService } from "../dashboard-tiles/dashboard-tiles-guard.service";
@@ -59,6 +60,18 @@ export const DASHBOARD_ROUTES: Routes = [
         ]
     },
     {
+        path: 'dashboard',
+        component: DashboardPageComponent,
+        canActivate: [
+            TenantGuardService,
+            AuthGuardService,
+            EventHubConnectionGuardService,
+            CurrentUserGuardService,
+            TilesGuardService,
+            DashboardTilesGuardService
+        ]
+    },
+    {
         path: 'dashboards/:id',
         component: DashboardEditPageComponent,
         canActivate
@@ -88,7 +101,8 @@ const providers = [DashboardsService];
         RouterModule.forChild(DASHBOARD_ROUTES),
         SharedModule,
         TilesModule,
-        UsersModule
+        UsersModule,
+        AthleteWeightsModule
     ],
     exports: [declarables],
     declarations: [declarables],

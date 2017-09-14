@@ -1,0 +1,6 @@
+<span (click)="select.emit({ detail: { athleteWeight: athleteWeight} })">{{ athleteWeight.name }}</span>
+<div>
+    <span (click)="edit.emit({ detail: { athleteWeight: athleteWeight} })">EDIT</span>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <span (click)="delete.emit({ detail: { athleteWeight: athleteWeight} })">DELETE</span>
+</div>

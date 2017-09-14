@@ -11,6 +11,7 @@ namespace NoDaysOffApp.Data
     public interface INoDaysOffAppContext
     {
         DbSet<Athlete> Athletes { get; set; }
+        DbSet<AthleteWeight> AthleteWeights { get; set; }
         DbSet<Tenant> Tenants { get; set; }
         DbSet<DigitalAsset> DigitalAssets { get; set; }
         DbSet<Dashboard> Dashboards { get; set; }
@@ -35,6 +36,7 @@ namespace NoDaysOffApp.Data
         }
 
         public DbSet<Athlete> Athletes { get; set; }
+        public DbSet<AthleteWeight> AthleteWeights { get; set; }
         public DbSet<DigitalAsset> DigitalAssets { get; set; }
         public DbSet<Tenant> Tenants { get; set; }
         public DbSet<Dashboard> Dashboards { get; set; }

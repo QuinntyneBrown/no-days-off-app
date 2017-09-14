@@ -18,6 +18,7 @@ namespace NoDaysOffApp.Migrations
             TenantConfiguration.Seed(context);
             DashboardConfiguration.Seed(context);
             DayConfiguration.Seed(context);
+            TileConfiguration.Seed(context);
         }
     }
 

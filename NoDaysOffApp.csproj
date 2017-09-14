@@ -258,6 +258,27 @@
       <DependentUpon>app.component.html</DependentUpon>
     </Content>
     <Content Include="ClientApp\app\app.component.html" />
+    <Content Include="ClientApp\app\athlete-weights\athlete-weight-dashboard-tile.component.css">
+      <DependentUpon>athlete-weight-dashboard-tile.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\athlete-weights\athlete-weight-edit-page.component.css">
+      <DependentUpon>athlete-weight-edit-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\athlete-weights\athlete-weight-edit.component.css">
+      <DependentUpon>athlete-weight-edit.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\athlete-weights\athlete-weight-list-item.component.css">
+      <DependentUpon>athlete-weight-list-item.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\athlete-weights\athlete-weight-paginated-list-page.component.css">
+      <DependentUpon>athlete-weight-paginated-list-page.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\athlete-weights\athlete-weight-paginated-list.component.css">
+      <DependentUpon>athlete-weight-paginated-list.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\athlete-weights\athlete-weights-left-nav.component.css">
+      <DependentUpon>athlete-weights-left-nav.component.html</DependentUpon>
+    </Content>
     <Content Include="ClientApp\app\athletes\athlete-edit-page.component.css">
       <DependentUpon>athlete-edit-page.component.html</DependentUpon>
     </Content>
@@ -517,6 +538,7 @@
       <DependentUpon>login.component.html</DependentUpon>
     </Content>
     <Content Include="ClientApp\app\users\login.component.html" />
+    <Content Include="ClientApp\styles\dashboard-tile.css" />
     <Content Include="ClientApp\styles\edit.css" />
     <Content Include="ClientApp\styles\forms.css" />
     <Content Include="ClientApp\styles\list-item.css" />
@@ -612,6 +634,13 @@
     <Content Include="ClientApp\app\athletes\athletes-left-nav.component.html" />
     <Content Include="ClientApp\app\athletes\athlete-page.component.html" />
     <Content Include="ClientApp\app\digital-assets\digital-asset-input-url.component.html" />
+    <Content Include="ClientApp\app\athlete-weights\athlete-weight-edit.component.html" />
+    <Content Include="ClientApp\app\athlete-weights\athlete-weight-paginated-list.component.html" />
+    <Content Include="ClientApp\app\athlete-weights\athlete-weight-list-item.component.html" />
+    <Content Include="ClientApp\app\athlete-weights\athlete-weight-paginated-list-page.component.html" />
+    <Content Include="ClientApp\app\athlete-weights\athlete-weight-edit-page.component.html" />
+    <Content Include="ClientApp\app\athlete-weights\athlete-weights-left-nav.component.html" />
+    <Content Include="ClientApp\app\athlete-weights\athlete-weight-dashboard-tile.component.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
@@ -795,6 +824,19 @@
     <Compile Include="Model\ExerciseDigitalAsset.cs" />
     <Compile Include="Model\AthleteWeight.cs" />
     <Compile Include="Features\Athletes\GetCurrentAthleteQuery.cs" />
+    <Compile Include="Data\Migrations\TileConfiguration.cs" />
+    <Compile Include="Features\AthleteWeights\AddOrUpdateAthleteWeightCommand.cs" />
+    <Compile Include="Features\AthleteWeights\GetAthleteWeightsQuery.cs" />
+    <Compile Include="Features\AthleteWeights\GetAthleteWeightByIdQuery.cs" />
+    <Compile Include="Features\AthleteWeights\RemoveAthleteWeightCommand.cs" />
+    <Compile Include="Features\AthleteWeights\AthleteWeightsCacheKeyFactory.cs" />
+    <Compile Include="Features\AthleteWeights\AthleteWeightsEventBusMessageHandler.cs" />
+    <Compile Include="Features\AthleteWeights\AthleteWeightsEventBusMessages.cs" />
+    <Compile Include="Features\AthleteWeights\AddedOrUpdatedAthleteWeightMessage.cs" />
+    <Compile Include="Features\AthleteWeights\RemovedAthleteWeightMessage.cs" />
+    <Compile Include="Features\AthleteWeights\AthleteWeightApiModel.cs" />
+    <Compile Include="Features\AthleteWeights\AthleteWeightsController.cs" />
+    <Compile Include="Features\AthleteWeights\GetCurrentAthleteWeightQuery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="packages\AWSSDK.S3.3.3.5.11\analyzers\dotnet\cs\AWSSDK.S3.CodeAnalysis.dll" />
@@ -812,6 +854,27 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\app\app.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\app.routing.ts" />
+    <TypeScriptCompile Include="ClientApp\app\athlete-weights\athlete-weight-dashboard-tile.component.ts">
+      <DependentUpon>athlete-weight-dashboard-tile.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\athlete-weights\athlete-weight-edit-page.component.ts">
+      <DependentUpon>athlete-weight-edit-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\athlete-weights\athlete-weight-edit.component.ts">
+      <DependentUpon>athlete-weight-edit.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\athlete-weights\athlete-weight-list-item.component.ts">
+      <DependentUpon>athlete-weight-list-item.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\athlete-weights\athlete-weight-paginated-list-page.component.ts">
+      <DependentUpon>athlete-weight-paginated-list-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\athlete-weights\athlete-weight-paginated-list.component.ts">
+      <DependentUpon>athlete-weight-paginated-list.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\athlete-weights\athlete-weights-left-nav.component.ts">
+      <DependentUpon>athlete-weights-left-nav.component.html</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\app\athletes\athlete-edit-page.component.ts">
       <DependentUpon>athlete-edit-page.component.html</DependentUpon>
     </TypeScriptCompile>
@@ -1049,6 +1112,7 @@
     <TypeScriptCompile Include="ClientApp\app\shared\services\custom-elements-modal.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\services\custom-events.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\services\error.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\services\fetch-client.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\services\index.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\services\login-redirect.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\services\event-hub.ts" />
@@ -1151,6 +1215,10 @@
     <TypeScriptCompile Include="ClientApp\app\athletes\athletes.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\athletes\athletes.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\digital-assets\digital-assets.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\athlete-weights\index.ts" />
+    <TypeScriptCompile Include="ClientApp\app\athlete-weights\athlete-weight.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\athlete-weights\athlete-weights.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\athlete-weights\athlete-weights.module.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\dashboard-service - FTP.pubxml" />
