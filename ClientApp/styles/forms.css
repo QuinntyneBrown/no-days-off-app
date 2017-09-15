@@ -52,3 +52,14 @@ button {
 button:hover {
     color: #333;
 }
+
+select {
+    display: block;
+    margin: 10px 0px 10px 0px;
+    padding: 0px 10px 0px 10px;
+    width: calc(100%);
+    font-size: 1.125em;
+    height: 2.25em;
+    border: 0.5px solid #888;
+    border-radius: 0px;
+}

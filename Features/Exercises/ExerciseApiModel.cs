@@ -7,7 +7,7 @@ namespace NoDaysOffApp.Features.Exercises
         public int Id { get; set; }
         public int? TenantId { get; set; }
         public string Name { get; set; }
-
+        public int? BodyPartId { get; set; }
         public static TModel FromExercise<TModel>(Exercise exercise) where
             TModel : ExerciseApiModel, new()
         {
@@ -15,6 +15,7 @@ namespace NoDaysOffApp.Features.Exercises
             model.Id = exercise.Id;
             model.TenantId = exercise.TenantId;
             model.Name = exercise.Name;
+            model.BodyPartId = exercise.BodyPartId;
             return model;
         }
 

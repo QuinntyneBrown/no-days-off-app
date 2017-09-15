@@ -2,13 +2,8 @@
 
 <form novalidate [formGroup]="form">
 
-    <ce-tabs>
-        <ce-tab-title>General</ce-tab-title>
-        <ce-tab-content>
-            <label>Name</label>
-            <input type="text" placeholder="Name" id="name" formControlName="name" />
-        </ce-tab-content>
-    </ce-tabs>
+    <label>Name</label>
+    <input type="text" placeholder="Name" id="name" formControlName="name" />
 
     <button type="submit" (click)="tryToSave.emit({ detail:{ video: form.value } })">Save</button>
 

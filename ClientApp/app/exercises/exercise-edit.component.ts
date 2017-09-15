@@ -12,6 +12,8 @@ import {
 
 import {FormGroup,FormControl,Validators} from "@angular/forms";
 
+import { BodyPart } from "../body-parts/body-part.model";
+
 @Component({
     templateUrl: "./exercise-edit.component.html",
     styleUrls: [
@@ -37,11 +39,16 @@ export class ExerciseEditComponent {
         this.form.patchValue({
             id: this._exercise.id,
             name: this._exercise.name,
+            bodyPartId: this._exercise.bodyPartId
         });
     }
    
     public form = new FormGroup({
         id: new FormControl(0, []),
-        name: new FormControl('', [Validators.required])
+        name: new FormControl('', [Validators.required]),
+        bodyPartId: new FormControl('')
     });
+
+    @Input()
+    public bodyParts: Array<BodyPart> = [];
 }

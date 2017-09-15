@@ -28,6 +28,8 @@ namespace NoDaysOffApp.Features.Athletes
 
             public async Task<Response> Handle(Request request)
             {
+                var athletes = await _context.Athletes.ToListAsync();
+
                 var athlete = await _context.Athletes.SingleOrDefaultAsync(x => x.Username == request.Username);
 
                 if (athlete == null)

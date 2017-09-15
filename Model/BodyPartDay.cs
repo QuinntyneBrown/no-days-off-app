@@ -9,21 +9,20 @@ using static NoDaysOffApp.Constants;
 namespace NoDaysOffApp.Model
 {
     [SoftDelete("IsDeleted")]
-    public class Day: ILoggable
+    public class BodyPartDay: ILoggable
     {
         public int Id { get; set; }
         
 		[ForeignKey("Tenant")]
         public int? TenantId { get; set; }
-        
-		[Index("DayNameIndex", IsUnique = false)]
-        [Column(TypeName = "VARCHAR")]     
-        [StringLength(MaxStringLength)]		   
-		public string Name { get; set; }
 
-        public ICollection<BodyPartDay> BodyPartDays { get; set; } = new HashSet<BodyPartDay>();
+        [ForeignKey("BodyPart")]
+        public int? BodyPartId { get; set; }
 
-        public DateTime CreatedOn { get; set; }
+        [ForeignKey("Day")]
+        public int? DayId { get; set; }
+
+		public DateTime CreatedOn { get; set; }
         
 		public DateTime LastModifiedOn { get; set; }
         
@@ -34,5 +33,9 @@ namespace NoDaysOffApp.Model
 		public bool IsDeleted { get; set; }
 
         public virtual Tenant Tenant { get; set; }
+
+        public virtual BodyPart BodyPart { get; set; }
+
+        public virtual Day Day { get; set; }
     }
 }

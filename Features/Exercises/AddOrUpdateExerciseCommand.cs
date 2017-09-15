@@ -32,6 +32,7 @@ namespace NoDaysOffApp.Features.Exercises
             {
                 var entity = await _context.Exercises
                     .Include(x => x.Tenant)
+                    .Include(x => x.BodyPart)
                     .SingleOrDefaultAsync(x => x.Id == request.Exercise.Id && x.Tenant.UniqueId == request.TenantUniqueId);
                 
                 if (entity == null) {
@@ -40,6 +41,8 @@ namespace NoDaysOffApp.Features.Exercises
                 }
 
                 entity.Name = request.Exercise.Name;
+
+                entity.BodyPartId = request.Exercise.BodyPartId;
                 
                 await _context.SaveChangesAsync();
 

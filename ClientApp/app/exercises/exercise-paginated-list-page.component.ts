@@ -1,10 +1,11 @@
-import {Component, ChangeDetectorRef} from "@angular/core";
+import {Component, ChangeDetectorRef, NgZone} from "@angular/core";
 import {ExercisesService} from "./exercises.service";
 import {Router} from "@angular/router";
 import {pluckOut} from "../shared/utilities/pluck-out";
 import {EventHub} from "../shared/services/event-hub";
 import {Subscription} from "rxjs/Subscription";
 import {CorrelationIdsList} from "../shared/services/correlation-ids-list";
+
 
 @Component({
     templateUrl: "./exercise-paginated-list-page.component.html",
@@ -17,15 +18,17 @@ export class ExercisePaginatedListPageComponent {
         private _exercisesService: ExercisesService,
         private _correlationIdsList: CorrelationIdsList,
         private _eventHub: EventHub,
-        private _router: Router
+        private _router: Router,
+        private _ngZone: NgZone
     ) {
         this.subscription = this._eventHub.events.subscribe(x => {      
             
             if (this._correlationIdsList.hasId(x.payload.correlationId) && x.type == "[Exercises] ExerciseAddedOrUpdated") {
-                this._exercisesService.get().toPromise().then(x => {
-                    this.unfilteredExercises = x.exercises;
-                    this.exercises = this.filterTerm != null ? this.filteredExercises : this.unfilteredExercises;
-                    this._changeDetectorRef.detectChanges();
+                this._ngZone.run(() => {
+                    this._exercisesService.get().toPromise().then(x => {
+                        this.unfilteredExercises = x.exercises;
+                        this.exercises = this.filterTerm != null ? this.filteredExercises : this.unfilteredExercises;
+                    });
                 });
             } else if (x.type == "[Exercises] ExerciseAddedOrUpdated") {
                 
@@ -74,6 +77,6 @@ export class ExercisePaginatedListPageComponent {
     public exercises: Array<any> = [];
     public unfilteredExercises: Array<any> = [];
     public get filteredExercises() {
-        return this.unfilteredExercises.filter((x) => x.email.indexOf(this.filterTerm) > -1);
+        return this.unfilteredExercises.filter((x) => x.name.toLowerCase().indexOf(this.filterTerm.toLowerCase()) > -1);
     }
 }

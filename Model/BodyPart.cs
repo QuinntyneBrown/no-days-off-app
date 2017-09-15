@@ -22,6 +22,8 @@ namespace NoDaysOffApp.Model
 		public string Name { get; set; }
 
         public ICollection<Exercise> Exercises { get; set; } = new HashSet<Exercise>();
+
+        public ICollection<BodyPartDay> BodyPartDays { get; set; } = new HashSet<BodyPartDay>();
         
         public DateTime CreatedOn { get; set; }
         

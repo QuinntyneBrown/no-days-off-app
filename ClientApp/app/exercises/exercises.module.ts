@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
 import { UsersModule } from "../users/users.module";
-
+import { BodyPartsModule } from "../body-parts/body-parts.module";
 import { AuthGuardService } from "../shared/guards/auth-guard.service";
 import { TenantGuardService } from "../shared/guards/tenant-guard.service";
 import { EventHubConnectionGuardService } from "../shared/guards/event-hub-connection-guard.service";
@@ -61,7 +61,7 @@ const declarables = [
 const providers = [ExercisesService];
 
 @NgModule({
-    imports: [CommonModule, FormsModule, HttpClientModule, ReactiveFormsModule, RouterModule.forChild(EXERCISE_ROUTES), SharedModule, UsersModule],
+    imports: [BodyPartsModule, CommonModule, FormsModule, HttpClientModule, ReactiveFormsModule, RouterModule.forChild(EXERCISE_ROUTES), SharedModule, UsersModule],
     exports: [declarables],
     declarations: [declarables],
     providers: providers

@@ -1,4 +1,4 @@
-import {Component, ChangeDetectorRef} from "@angular/core";
+import {Component, NgZone} from "@angular/core";
 import {BodyPartsService} from "./body-parts.service";
 import {Router} from "@angular/router";
 import {pluckOut} from "../shared/utilities/pluck-out";
@@ -13,23 +13,23 @@ import {CorrelationIdsList} from "../shared/services/correlation-ids-list";
 })
 export class BodyPartPaginatedListPageComponent {
     constructor(
-        private _changeDetectorRef: ChangeDetectorRef,
         private _bodyPartsService: BodyPartsService,
         private _correlationIdsList: CorrelationIdsList,
         private _eventHub: EventHub,
-        private _router: Router
+        private _router: Router,
+        private _ngZone: NgZone
     ) {
         this.subscription = this._eventHub.events.subscribe(x => {      
-            
-            if (this._correlationIdsList.hasId(x.payload.correlationId) && x.type == "[BodyParts] BodyPartAddedOrUpdated") {
-                this._bodyPartsService.get().toPromise().then(x => {
-                    this.unfilteredBodyParts = x.bodyParts;
-                    this.bodyParts = this.filterTerm != null ? this.filteredBodyParts : this.unfilteredBodyParts;
-                    this._changeDetectorRef.detectChanges();
-                });
-            } else if (x.type == "[BodyParts] BodyPartAddedOrUpdated") {
-                
-            }
+            this._ngZone.run(() => {
+                if (this._correlationIdsList.hasId(x.payload.correlationId) && x.type == "[BodyParts] BodyPartAddedOrUpdated") {
+                    this._bodyPartsService.get().toPromise().then(x => {
+                        this.unfilteredBodyParts = x.bodyParts;
+                        this.bodyParts = this.filterTerm != null ? this.filteredBodyParts : this.unfilteredBodyParts;
+                    });
+                } else if (x.type == "[BodyParts] BodyPartAddedOrUpdated") {
+
+                }
+            });
         });      
     }
     
@@ -74,6 +74,6 @@ export class BodyPartPaginatedListPageComponent {
     public bodyParts: Array<any> = [];
     public unfilteredBodyParts: Array<any> = [];
     public get filteredBodyParts() {
-        return this.unfilteredBodyParts.filter((x) => x.email.indexOf(this.filterTerm) > -1);
+        return this.unfilteredBodyParts.filter((x) => x.name.toLowerCase().indexOf(this.filterTerm.toLowerCase()) > -1);
     }
 }

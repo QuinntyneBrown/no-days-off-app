@@ -52,5 +52,5 @@ export class BodyPartPaginatedListComponent {
     
     public pageNumber: number = 1;
 
-    public pageSize: number = 5;    
+    public pageSize: number = 10;    
 }
