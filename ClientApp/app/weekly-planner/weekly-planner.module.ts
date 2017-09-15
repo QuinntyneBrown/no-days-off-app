@@ -1,25 +1,23 @@
-import { NgModule } from '@angular/core';
+﻿import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
 import { UsersModule } from "../users/users.module";
-import { BodyPartsModule } from "../body-parts/body-parts.module";
 import { DaysModule } from "../days/days.module";
+import { BodyPartsModule } from "../body-parts/body-parts.module";
 
 import { AuthGuardService } from "../shared/guards/auth-guard.service";
 import { TenantGuardService } from "../shared/guards/tenant-guard.service";
 import { EventHubConnectionGuardService } from "../shared/guards/event-hub-connection-guard.service";
 import { CurrentUserGuardService } from "../users/current-user-guard.service";
 
-import { BodyPartDayAssignComponent } from "./body-part-day-assign.component";
-import { BodyPartDayAssignPageComponent } from "./body-part-day-assign-page.component";
-import { BodyPartDaysService } from "./body-part-days.service";
+import { WeeklyPlannerPageComponent } from "./weekly-planner-page.component";
 
-export const BODY_PART_DAY_ROUTES: Routes = [{
-    path: 'bodyPartDays/assign',
-    component: BodyPartDayAssignPageComponent,
+export const WEEKLY_PLANNER_ROUTES: Routes = [{
+    path: 'weeklyPlanner',
+    component: WeeklyPlannerPageComponent,
     canActivate: [
         TenantGuardService,
         AuthGuardService,
@@ -29,18 +27,15 @@ export const BODY_PART_DAY_ROUTES: Routes = [{
 }];
 
 const declarables = [
-    BodyPartDayAssignComponent,
-    BodyPartDayAssignPageComponent
+    WeeklyPlannerPageComponent
 ];
 
-const providers = [
-    BodyPartDaysService
-];
+const providers = [];
 
 @NgModule({
-    imports: [BodyPartsModule, CommonModule, DaysModule, FormsModule, HttpClientModule, ReactiveFormsModule, RouterModule.forChild(BODY_PART_DAY_ROUTES), SharedModule, UsersModule],
+    imports: [BodyPartsModule, CommonModule, DaysModule, FormsModule, HttpClientModule, ReactiveFormsModule, RouterModule.forChild(WEEKLY_PLANNER_ROUTES), SharedModule, UsersModule],
     exports: [declarables],
     declarations: [declarables],
     providers: providers
 })
-export class BodyPartDaysModule { }
+export class WeeklyPlannerModule { }

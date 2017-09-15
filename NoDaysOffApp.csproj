@@ -6,7 +6,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion></ProductVersion>
+    <ProductVersion>
+    </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{2250BEF5-1F73-47F6-8C6C-8FFBFC22F496}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -21,7 +22,8 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.4</TypeScriptToolsVersion>
     <TypeScriptEmitDecoratorMetadata>true</TypeScriptEmitDecoratorMetadata>
     <TypeScriptModuleKind>commonjs</TypeScriptModuleKind>
@@ -557,6 +559,21 @@
     <Content Include="ClientApp\app\videos\videos-left-nav.component.css">
       <DependentUpon>videos-left-nav.component.html</DependentUpon>
     </Content>
+    <Content Include="ClientApp\app\weekly-planner\weekly-planner-body-part-list.component.css">
+      <DependentUpon>weekly-planner-body-part-list.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\weekly-planner\weekly-planner-body-part.component.css">
+      <DependentUpon>weekly-planner-body-part.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\weekly-planner\weekly-planner-day.component.css">
+      <DependentUpon>weekly-planner-day.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\weekly-planner\weekly-planner-days-grid.component.css">
+      <DependentUpon>weekly-planner-days-grid.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\weekly-planner\weekly-planner-page.component.css">
+      <DependentUpon>weekly-planner-page.component.html</DependentUpon>
+    </Content>
     <Content Include="ClientApp\styles\dashboard-tile.css" />
     <Content Include="ClientApp\styles\edit.css" />
     <Content Include="ClientApp\styles\forms.css" />
@@ -670,10 +687,11 @@
     <Content Include="ClientApp\app\videos\video-paginated-list-page.component.html" />
     <Content Include="ClientApp\app\videos\video-edit-page.component.html" />
     <Content Include="ClientApp\app\videos\videos-left-nav.component.html" />
-    <Content Include="ClientApp\app\body-part-days\body-part-day-assign.component.css" />
-    <Content Include="ClientApp\app\body-part-days\body-part-day-assign.component.html" />
-    <Content Include="ClientApp\app\body-part-days\body-part-day-assign-page.component.css" />
-    <Content Include="ClientApp\app\body-part-days\body-part-day-assign-page.component.html" />
+    <Content Include="ClientApp\app\weekly-planner\weekly-planner-page.component.html" />
+    <Content Include="ClientApp\app\weekly-planner\weekly-planner-day.component.html" />
+    <Content Include="ClientApp\app\weekly-planner\weekly-planner-body-part.component.html" />
+    <Content Include="ClientApp\app\weekly-planner\weekly-planner-body-part-list.component.html" />
+    <Content Include="ClientApp\app\weekly-planner\weekly-planner-days-grid.component.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
@@ -940,9 +958,7 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ClientApp\app\body-part-days\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\app-left-nav.component.ts">
       <DependentUpon>app-left-nav.component.html</DependentUpon>
@@ -1293,6 +1309,22 @@
     <TypeScriptCompile Include="ClientApp\app\videos\videos-left-nav.component.ts">
       <DependentUpon>videos-left-nav.component.html</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\weekly-planner\weekly-planner-body-part-list.component.ts">
+      <DependentUpon>weekly-planner-body-part-list.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\weekly-planner\weekly-planner-body-part.component.ts">
+      <DependentUpon>weekly-planner-body-part.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\weekly-planner\weekly-planner-day.component.ts">
+      <DependentUpon>weekly-planner-day.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\weekly-planner\weekly-planner-days-grid.component.ts">
+      <DependentUpon>weekly-planner-days-grid.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\weekly-planner\weekly-planner-page.component.ts">
+      <DependentUpon>weekly-planner-page.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\weekly-planner\weekly-planner.module.ts" />
     <TypeScriptCompile Include="ClientApp\main.ts" />
     <TypeScriptCompile Include="ClientApp\polyfills.ts" />
     <TypeScriptCompile Include="ClientApp\app\users\users.module.ts" />
@@ -1346,12 +1378,6 @@
     <TypeScriptCompile Include="ClientApp\app\bounded-contexts\bounded-contexts.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\bounded-contexts\index.ts" />
     <TypeScriptCompile Include="ClientApp\app\bounded-contexts\bounded-context.model.ts" />
-    <TypeScriptCompile Include="ClientApp\app\body-part-days\body-part-days.module.ts" />
-    <TypeScriptCompile Include="ClientApp\app\body-part-days\index.ts" />
-    <TypeScriptCompile Include="ClientApp\app\body-part-days\body-part-day.model.ts" />
-    <TypeScriptCompile Include="ClientApp\app\body-part-days\body-part-days.service.ts" />
-    <TypeScriptCompile Include="ClientApp\app\body-part-days\body-part-day-assign.component.ts" />
-    <TypeScriptCompile Include="ClientApp\app\body-part-days\body-part-day-assign-page.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\dashboard-service - FTP.pubxml" />
@@ -1376,7 +1402,8 @@
           <IISUrl>http://localhost:58691/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl></CustomServerUrl>
+          <CustomServerUrl>
+          </CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

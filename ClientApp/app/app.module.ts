@@ -21,6 +21,7 @@ import {UsersModule} from "./users/users.module";
 import {TenantsModule} from "./tenants/tenants.module";
 import {TilesModule} from "./tiles/tiles.module";
 import {VideosModule} from "./videos/videos.module";
+import {WeeklyPlannerModule} from "./weekly-planner/weekly-planner.module";
 
 import {AppLeftNavComponent} from "./app-left-nav.component";
 import {AppComponent} from './app.component';
@@ -59,7 +60,8 @@ const providers = [];
         TenantsModule,
         TilesModule,
         UsersModule,
-        VideosModule
+        VideosModule,
+        WeeklyPlannerModule
     ],
     providers: providers,
     declarations: [declarables],
