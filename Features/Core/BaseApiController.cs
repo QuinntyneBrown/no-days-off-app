@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using System;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -28,7 +27,7 @@ namespace NoDaysOffApp.Features.Core
                 (request as BaseRequest).TenantUniqueId = TenantUniqueId;
 
             if (request.GetType().IsSubclassOf(typeof(BaseAuthenticatedRequest)))
-                (request as BaseAuthenticatedRequest).ClaimsPrincipal = User as ClaimsPrincipal;
+                (request as BaseAuthenticatedRequest).Username = User.Identity.Name;
 
             return _mediator.Send(request);
         }

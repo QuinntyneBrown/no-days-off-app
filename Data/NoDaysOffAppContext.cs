@@ -27,7 +27,7 @@ namespace NoDaysOffApp.Data
         DbSet<CompletedScheduledExercise> CompletedScheduledExercises { get; set; }
         DbSet<Video> Videos { get; set; }
         DbSet<Profile> Profiles { get; set; }
-        Task<int> SaveChangesAsync();
+        Task<int> SaveChangesAsync(string username = null);
     }
     
     public class NoDaysOffAppContext : DbContext, INoDaysOffAppContext
@@ -58,26 +58,33 @@ namespace NoDaysOffApp.Data
         public DbSet<Conversation> Conversations { get; set; }
         public DbSet<Message> Messages { get; set; }
 
-        public override int SaveChanges()
+        public int SaveChanges(string username)
         {
-            UpdateLoggableEntries();
+            UpdateLoggableEntries(username);
             return base.SaveChanges();
         }
 
-        public override Task<int> SaveChangesAsync()
+        public Task<int> SaveChangesAsync(string username)
         {
-            UpdateLoggableEntries();
+            UpdateLoggableEntries(username);
             return base.SaveChangesAsync();
         }
 
-        public void UpdateLoggableEntries()
+        public override int SaveChanges() => this.SaveChanges(null);
+
+        public override Task<int> SaveChangesAsync() => this.SaveChangesAsync(null);
+
+        public void UpdateLoggableEntries(string username = null)
         {
             foreach (var entity in ChangeTracker.Entries()
                 .Where(e => e.Entity is ILoggable && ((e.State == EntityState.Added || (e.State == EntityState.Modified))))
                 .Select(x => x.Entity as ILoggable))
             {
-                entity.CreatedOn = entity.CreatedOn == default(DateTime) ? DateTime.UtcNow : entity.CreatedOn;
+                var isNew = entity.CreatedOn == default(DateTime);
+                entity.CreatedOn = isNew ? DateTime.UtcNow : entity.CreatedOn;
                 entity.LastModifiedOn = DateTime.UtcNow;
+                entity.CreatedBy = isNew ? username : entity.CreatedBy;
+                entity.LastModifiedBy = username;
             }
         }
 
