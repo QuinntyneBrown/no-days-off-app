@@ -1,1 +1,3 @@
-<cs-weekly-planner-body-part-list-item *ngFor="let weeklyPlannerBodyPart of weeklyPlannerBodyParts" [weeklyPlannerBodyPart]="weeklyPlannerBodyPart" (select)="select.emit($event)" (delete)="delete.emit($event)"></cs-weekly-planner-body-part-list-item>
+<ce-weekly-planner-body-part *ngFor="let bodyPart of bodyParts" 
+                                       [bodyPart]="bodyPart">
+</ce-weekly-planner-body-part>

@@ -467,6 +467,18 @@
       <DependentUpon>dots-button.component.html</DependentUpon>
     </Content>
     <Content Include="ClientApp\app\shared\components\dots-button.component.html" />
+    <Content Include="ClientApp\app\shared\components\flip-card-back.component.css">
+      <DependentUpon>flip-card-back.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\shared\components\flip-card-back.component.html" />
+    <Content Include="ClientApp\app\shared\components\flip-card-front.component.css">
+      <DependentUpon>flip-card-front.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\shared\components\flip-card-front.component.html" />
+    <Content Include="ClientApp\app\shared\components\flip-card.component.css">
+      <DependentUpon>flip-card.component.html</DependentUpon>
+    </Content>
+    <Content Include="ClientApp\app\shared\components\flip-card.component.html" />
     <Content Include="ClientApp\app\shared\components\hamburger-button.component.css">
       <DependentUpon>hamburger-button.component.html</DependentUpon>
     </Content>
@@ -951,6 +963,12 @@
     <Compile Include="Features\BoundedContexts\BoundedContextsController.cs" />
     <Compile Include="Data\Migrations\BoundedContextConfiguration.cs" />
     <Compile Include="Model\BodyPartDay.cs" />
+    <Compile Include="Model\Set.cs" />
+    <Compile Include="Model\ScheduledExerciseSet.cs" />
+    <Compile Include="Model\ExerciseSet.cs" />
+    <Compile Include="Model\Workout.cs" />
+    <Compile Include="Model\ExerciseVideo.cs" />
+    <Compile Include="Model\WorkoutBodyPart.cs" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="packages\AWSSDK.S3.3.3.5.11\analyzers\dotnet\cs\AWSSDK.S3.CodeAnalysis.dll" />
@@ -1183,6 +1201,16 @@
     <TypeScriptCompile Include="ClientApp\app\shared\components\dots-button.component.ts">
       <DependentUpon>dots-button.component.html</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\shared\components\flip-card-back.component.ts">
+      <DependentUpon>flip-card-back.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\shared\components\flip-card-front.component.ts">
+      <DependentUpon>flip-card-front.component.html</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\shared\components\flip-card.actions.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\components\flip-card.component.ts">
+      <DependentUpon>flip-card.component.html</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\app\shared\components\hamburger-button.component.ts">
       <DependentUpon>hamburger-button.component.html</DependentUpon>
     </TypeScriptCompile>
@@ -1324,6 +1352,7 @@
     <TypeScriptCompile Include="ClientApp\app\weekly-planner\weekly-planner-page.component.ts">
       <DependentUpon>weekly-planner-page.component.html</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\app\weekly-planner\weekly-planner.manager.ts" />
     <TypeScriptCompile Include="ClientApp\app\weekly-planner\weekly-planner.module.ts" />
     <TypeScriptCompile Include="ClientApp\main.ts" />
     <TypeScriptCompile Include="ClientApp\polyfills.ts" />

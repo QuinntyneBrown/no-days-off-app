@@ -9,28 +9,19 @@ using static NoDaysOffApp.Constants;
 namespace NoDaysOffApp.Model
 {
     [SoftDelete("IsDeleted")]
-    public class Exercise: ILoggable
+    public class ExerciseVideo: ILoggable
     {
         public int Id { get; set; }
         
 		[ForeignKey("Tenant")]
         public int? TenantId { get; set; }
-
-        [ForeignKey("BodyPart")]
-        public int? BodyPartId { get; set; }
         
-		[Index("ExerciseNameIndex", IsUnique = false)]
+		[Index("ExerciseVideoNameIndex", IsUnique = false)]
         [Column(TypeName = "VARCHAR")]     
         [StringLength(MaxStringLength)]		   
 		public string Name { get; set; }
-
-        public int DefaultSets { get; set; } = 0;
-
-        public int DefaultRepititions { get; set; } = 0;
         
-        public ICollection<ExerciseDigitalAsset> ExerciseDigitalAssets { get; set; } = new HashSet<ExerciseDigitalAsset>();
-        
-        public DateTime CreatedOn { get; set; }
+		public DateTime CreatedOn { get; set; }
         
 		public DateTime LastModifiedOn { get; set; }
         
@@ -40,10 +31,6 @@ namespace NoDaysOffApp.Model
         
 		public bool IsDeleted { get; set; }
 
-        public virtual BodyPart BodyPart { get; set; }
-
         public virtual Tenant Tenant { get; set; }
-
-        public virtual ICollection<ExerciseSet> DefaultSetCollection { get; set; } = new HashSet<ExerciseSet>();        
     }
 }

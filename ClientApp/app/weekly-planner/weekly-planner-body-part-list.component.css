@@ -1,8 +1,11 @@
-:host{
+:host {
     display: block;
-    content: contain;
+    user-select:none;
+    background-color:#333;
+    height:100%;
+    width:300px;
 }
 
-cs-weekly-planner-body-part-list-item {
+ce-weekly-planner-body-part {
     margin: 10px 0px 10px 0px;
 }

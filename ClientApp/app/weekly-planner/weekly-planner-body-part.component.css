@@ -1,4 +1,5 @@
 :host {
     display:block;
-    content:contain;
+    user-select:none;
+    background-color:#fff;
 }

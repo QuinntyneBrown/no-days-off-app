@@ -1,6 +1,7 @@
 :host {
     display:block;
     user-select:none;
+    height:100%;
 }
 
 h1 {

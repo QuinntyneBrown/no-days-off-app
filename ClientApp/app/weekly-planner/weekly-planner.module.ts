@@ -14,6 +14,10 @@ import { EventHubConnectionGuardService } from "../shared/guards/event-hub-conne
 import { CurrentUserGuardService } from "../users/current-user-guard.service";
 
 import { WeeklyPlannerPageComponent } from "./weekly-planner-page.component";
+import { WeeklyPlannerBodyPartListComponent } from "./weekly-planner-body-part-list.component";
+import { WeeklyPlannerBodyPartComponent } from "./weekly-planner-body-part.component";
+import { WeeklyPlannerDayComponent } from "./weekly-planner-day.component";
+import { WeeklyPlannerDaysGridComponent } from "./weekly-planner-days-grid.component";
 
 export const WEEKLY_PLANNER_ROUTES: Routes = [{
     path: 'weeklyPlanner',
@@ -27,7 +31,11 @@ export const WEEKLY_PLANNER_ROUTES: Routes = [{
 }];
 
 const declarables = [
-    WeeklyPlannerPageComponent
+    WeeklyPlannerPageComponent,
+    WeeklyPlannerBodyPartListComponent,
+    WeeklyPlannerBodyPartComponent,
+    WeeklyPlannerDayComponent,
+    WeeklyPlannerDaysGridComponent
 ];
 
 const providers = [];
