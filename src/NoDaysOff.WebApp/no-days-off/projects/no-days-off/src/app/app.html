@@ -1,0 +1,21 @@
+<div class="app">
+  <ndo-header [isAuthenticated]="isAuthenticated()">
+    <ndo-hamburger-button
+      [isOpen]="isNavOpen()"
+      (clicked)="toggleNav()">
+    </ndo-hamburger-button>
+  </ndo-header>
+
+  <ndo-left-nav [isOpen]="isNavOpen()" (closed)="closeNav()">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" (click)="closeNav()">Home</a>
+      <a mat-list-item routerLink="/dashboard" (click)="closeNav()">Dashboard</a>
+      <a mat-list-item routerLink="/athletes" (click)="closeNav()">Athletes</a>
+      <a mat-list-item routerLink="/weekly-planner" (click)="closeNav()">Weekly Planner</a>
+    </mat-nav-list>
+  </ndo-left-nav>
+
+  <main class="app__content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

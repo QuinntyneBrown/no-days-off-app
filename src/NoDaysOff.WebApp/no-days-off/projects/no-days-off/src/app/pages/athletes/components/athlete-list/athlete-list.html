@@ -1,0 +1,13 @@
+<div class="athlete-list">
+  @for (athlete of athletes(); track athlete.athleteId) {
+    <ndo-athlete-card
+      [athlete]="athlete"
+      (edit)="onEdit($event)"
+      (delete)="onDelete($event)">
+    </ndo-athlete-card>
+  } @empty {
+    <div class="athlete-list__empty">
+      <p>No athletes found. Add your first athlete to get started!</p>
+    </div>
+  }
+</div>

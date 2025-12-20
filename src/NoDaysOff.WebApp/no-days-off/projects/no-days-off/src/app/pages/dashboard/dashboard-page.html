@@ -1,0 +1,33 @@
+<div class="dashboard-page">
+  <ndo-dashboard-header
+    [dashboards]="dashboards()"
+    [currentDashboard]="currentDashboard()"
+    (addDashboard)="onAddDashboard()"
+    (selectDashboard)="onSelectDashboard($event)"
+    (deleteDashboard)="onDeleteDashboard($event)">
+  </ndo-dashboard-header>
+
+  @if (currentDashboard()) {
+    <h1 class="dashboard-page__title">{{ currentDashboard()!.name }}</h1>
+
+    <ndo-dashboard-grid
+      [dashboardTiles]="currentDashboard()!.dashboardTiles"
+      (configureTile)="onConfigureTile($event)"
+      (removeTile)="onRemoveTile($event)"
+      (saveTile)="onSaveTile($event)">
+    </ndo-dashboard-grid>
+  } @else {
+    <div class="dashboard-page__empty">
+      <p>No dashboard selected. Create a new dashboard to get started.</p>
+    </div>
+  }
+
+  <ndo-plus-button (clicked)="onOpenTileCatalog()"></ndo-plus-button>
+
+  <ndo-modal-window
+    [isOpen]="isAddTileModalOpen()"
+    title="Add Tile"
+    (closed)="onCloseTileModal()">
+    <p>Select a tile to add to your dashboard.</p>
+  </ndo-modal-window>
+</div>

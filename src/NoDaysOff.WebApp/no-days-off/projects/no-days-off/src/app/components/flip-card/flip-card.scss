@@ -1,0 +1,20 @@
+@use '../../../styles/design-tokens' as tokens;
+
+.flip-card {
+  perspective: 1000px;
+  cursor: pointer;
+
+  &__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+
+  &--flipped {
+    .flip-card__inner {
+      transform: rotateY(180deg);
+    }
+  }
+}

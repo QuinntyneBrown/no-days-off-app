@@ -1,0 +1,10 @@
+<div
+  class="flip-card"
+  [class.flip-card--flipped]="isFlipped()"
+  [style.width]="width()"
+  [style.height]="height()"
+  (click)="flip()">
+  <div class="flip-card__inner">
+    <ng-content></ng-content>
+  </div>
+</div>

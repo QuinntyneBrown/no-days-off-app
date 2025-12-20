@@ -1,0 +1,49 @@
+// Import Angular Material theme
+@use './styles/theme';
+@use './styles/design-tokens' as tokens;
+
+// Global styles
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: tokens.$font-family-base;
+}
+
+body {
+  padding: 0;
+  background-color: #fafafa;
+}
+
+// BEM base styles
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 tokens.$spacing-md;
+
+  @media (min-width: tokens.$breakpoint-md) {
+    padding: 0 tokens.$spacing-lg;
+  }
+}
+
+// Global link styles
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Utility classes
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

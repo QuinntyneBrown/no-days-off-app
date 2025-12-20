@@ -1,0 +1,49 @@
+@use '../../../../styles/design-tokens' as tokens;
+
+.home-page {
+  padding: tokens.$spacing-lg;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &__hero {
+    text-align: center;
+    padding: tokens.$spacing-3xl 0;
+  }
+
+  &__title {
+    font-size: tokens.$font-size-2xl;
+    margin-bottom: tokens.$spacing-sm;
+
+    @media (min-width: tokens.$breakpoint-md) {
+      font-size: 2.5rem;
+    }
+  }
+
+  &__subtitle {
+    font-size: tokens.$font-size-lg;
+    opacity: 0.8;
+    margin-bottom: tokens.$spacing-lg;
+  }
+
+  &__actions {
+    display: flex;
+    gap: tokens.$spacing-md;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: tokens.$spacing-lg;
+    padding: tokens.$spacing-xl 0;
+
+    @media (min-width: tokens.$breakpoint-md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__feature-card {
+    text-align: center;
+  }
+}

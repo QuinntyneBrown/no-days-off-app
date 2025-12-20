@@ -1,0 +1,11 @@
+@use '../../../../styles/design-tokens' as tokens;
+
+.athletes-page {
+  min-height: calc(100vh - 64px);
+
+  &__pager {
+    padding: tokens.$spacing-lg;
+    display: flex;
+    justify-content: center;
+  }
+}

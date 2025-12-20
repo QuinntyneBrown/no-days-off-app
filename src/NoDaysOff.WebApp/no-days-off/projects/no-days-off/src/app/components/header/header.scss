@@ -1,0 +1,26 @@
+@use '../../../styles/design-tokens' as tokens;
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: tokens.$spacing-md;
+
+  &__title {
+    font-weight: 500;
+    cursor: pointer;
+    font-size: tokens.$font-size-xl;
+  }
+
+  &__spacer {
+    flex: 1 1 auto;
+  }
+
+  &__nav {
+    display: flex;
+    gap: tokens.$spacing-sm;
+  }
+
+  &__link {
+    text-transform: uppercase;
+  }
+}

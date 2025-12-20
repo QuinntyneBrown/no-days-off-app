@@ -1,0 +1,17 @@
+@if (isOpen()) {
+  <div class="modal-window__backdrop" (click)="onBackdropClick($event)">
+    <div class="modal-window__dialog">
+      <div class="modal-window__header">
+        @if (title()) {
+          <h2 class="modal-window__title">{{ title() }}</h2>
+        }
+        <button mat-icon-button class="modal-window__close" (click)="onClose()" aria-label="Close modal">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <div class="modal-window__content">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+}
