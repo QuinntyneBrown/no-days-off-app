@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>NoDaysOff.Infrastructure</RootNamespace>
+    <AssemblyName>NoDaysOff.Infrastructure</AssemblyName>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NoDaysOff.Core\NoDaysOff.Core.csproj" />
+  </ItemGroup>
+
+</Project>
