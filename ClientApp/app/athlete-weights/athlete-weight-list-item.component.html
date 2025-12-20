@@ -1,7 +1,0 @@
-<span class="weighed-on" (click)="select.emit({ detail: { athleteWeight: athleteWeight} })">{{ athleteWeight.weighedOn | date: 'MMMM d,yyyy' }}</span>
-<span class="weight-in-kgs" (click)="select.emit({ detail: { athleteWeight: athleteWeight} })">{{ athleteWeight.weightInKgs }} kgs</span>
-<div>
-    <span (click)="edit.emit({ detail: { athleteWeight: athleteWeight} })">EDIT</span>
-    &nbsp;&nbsp;|&nbsp;&nbsp;
-    <span (click)="delete.emit({ detail: { athleteWeight: athleteWeight} })">DELETE</span>
-</div>

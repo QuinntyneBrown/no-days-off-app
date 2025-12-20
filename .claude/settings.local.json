@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "Bash(mv:*)",
-      "Bash(powershell -Command:*)"
+      "Bash(powershell -Command:*)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npm run build-storybook:*)",
+      "Bash(npx storybook automigrate)",
+      "Bash(npx ng run:*)",
+      "Bash(npm run storybook:*)",
+      "Bash(timeout:*)",
+      "Bash(tee:*)",
+      "Bash(taskkill:*)"
     ],
     "deny": [],
     "ask": []

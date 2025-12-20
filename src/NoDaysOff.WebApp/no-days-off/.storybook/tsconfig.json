@@ -1,0 +1,14 @@
+{
+  "extends": "../projects/no-days-off/tsconfig.app.json",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "files": [
+    "./preview.ts"
+  ],
+  "include": [
+    "../projects/no-days-off/src/**/*.stories.ts",
+    "../projects/no-days-off/src/**/*.ts",
+    "./**/*.ts"
+  ]
+}

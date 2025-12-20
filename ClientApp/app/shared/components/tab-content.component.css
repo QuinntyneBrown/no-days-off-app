@@ -1,7 +1,0 @@
-:host {
-    display:none;
-}
-
-:host(.is-active) {
-    display:block;
-}
