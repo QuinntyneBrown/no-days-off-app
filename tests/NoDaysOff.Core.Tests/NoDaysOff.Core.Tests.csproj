@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NoDaysOff.Core\NoDaysOff.Core.csproj" />
+    <ProjectReference Include="..\..\src\NoDaysOff.Core\NoDaysOff.Core.csproj" />
   </ItemGroup>
 
 </Project>
