@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>NoDaysOff.Api</RootNamespace>
+    <AssemblyName>NoDaysOff.Api</AssemblyName>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NoDaysOff.Core\NoDaysOff.Core.csproj" />
+    <ProjectReference Include="..\NoDaysOff.Infrastructure\NoDaysOff.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
