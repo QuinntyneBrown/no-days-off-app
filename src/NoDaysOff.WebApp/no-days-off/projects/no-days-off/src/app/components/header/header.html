@@ -1,0 +1,10 @@
+<mat-toolbar class="header" color="primary">
+  <span class="header__title" routerLink="/">No Days Off App</span>
+  <span class="header__spacer"></span>
+  <nav class="header__nav">
+    @if (isAuthenticated()) {
+      <a mat-button routerLink="/myprofile" class="header__link">My Profile</a>
+      <a mat-button routerLink="/login" class="header__link">Logout</a>
+    }
+  </nav>
+</mat-toolbar>

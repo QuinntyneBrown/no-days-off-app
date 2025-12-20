@@ -1,0 +1,10 @@
+<mat-toolbar class="secondary-header">
+  @if (backLink()) {
+    <a mat-icon-button [routerLink]="backLink()" class="secondary-header__back" aria-label="Go back">
+      <mat-icon>arrow_back</mat-icon>
+    </a>
+  }
+  <h2 class="secondary-header__title">{{ title() }}</h2>
+  <span class="secondary-header__spacer"></span>
+  <ng-content></ng-content>
+</mat-toolbar>

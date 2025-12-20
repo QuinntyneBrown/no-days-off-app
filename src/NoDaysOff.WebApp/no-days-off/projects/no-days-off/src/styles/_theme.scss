@@ -1,0 +1,21 @@
+// Angular Material 3 Theme Configuration
+@use '@angular/material' as mat;
+
+// Define custom theme using M3 color system
+$primary-palette: mat.m2-define-palette(mat.$m2-indigo-palette);
+$accent-palette: mat.m2-define-palette(mat.$m2-pink-palette);
+$warn-palette: mat.m2-define-palette(mat.$m2-red-palette);
+
+$light-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $primary-palette,
+    accent: $accent-palette,
+    warn: $warn-palette,
+  ),
+  typography: mat.m2-define-typography-config(),
+  density: 0,
+));
+
+// Apply the theme globally
+@include mat.core();
+@include mat.all-component-themes($light-theme);

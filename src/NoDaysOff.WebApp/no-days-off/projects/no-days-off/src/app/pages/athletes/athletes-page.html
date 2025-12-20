@@ -1,0 +1,36 @@
+<div class="athletes-page">
+  <ndo-secondary-header title="Athletes" backLink="/">
+  </ndo-secondary-header>
+
+  @if (pagedAthletes()) {
+    <ndo-athlete-list
+      [athletes]="pagedAthletes()!.data"
+      (editAthlete)="onEditAthlete($event)"
+      (deleteAthlete)="onDeleteAthlete($event)">
+    </ndo-athlete-list>
+
+    @if (pagedAthletes()!.totalPages > 1) {
+      <div class="athletes-page__pager">
+        <ndo-pager
+          [pageNumber]="pagedAthletes()!.page"
+          [totalPages]="pagedAthletes()!.totalPages"
+          (next)="onPageChange($event.pageNumber)"
+          (previous)="onPageChange($event.pageNumber)">
+        </ndo-pager>
+      </div>
+    }
+  }
+
+  <ndo-plus-button (clicked)="onAddAthlete()"></ndo-plus-button>
+
+  <ndo-modal-window
+    [isOpen]="isEditModalOpen()"
+    [title]="selectedAthlete() ? 'Edit Athlete' : 'Add Athlete'"
+    (closed)="onCloseModal()">
+    <ndo-athlete-edit
+      [athlete]="selectedAthlete()"
+      (saved)="onSaveAthlete($event)"
+      (cancelled)="onCloseModal()">
+    </ndo-athlete-edit>
+  </ndo-modal-window>
+</div>

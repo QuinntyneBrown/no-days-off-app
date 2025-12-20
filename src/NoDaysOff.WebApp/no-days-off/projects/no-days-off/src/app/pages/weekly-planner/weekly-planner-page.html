@@ -1,0 +1,17 @@
+<div class="weekly-planner-page">
+  <ndo-secondary-header title="Weekly Planner" backLink="/">
+  </ndo-secondary-header>
+
+  <ndo-weekly-planner-grid
+    [days]="days()"
+    (exerciseToggled)="onExerciseToggled($event)"
+    (addExercise)="onAddExercise($event)">
+  </ndo-weekly-planner-grid>
+
+  <ndo-modal-window
+    [isOpen]="isAddExerciseModalOpen()"
+    [title]="'Add Exercise to ' + (selectedDay()?.name ?? '')"
+    (closed)="onCloseModal()">
+    <p>Select an exercise to add to this day.</p>
+  </ndo-modal-window>
+</div>

@@ -1,0 +1,29 @@
+@use '../../../../../../styles/design-tokens' as tokens;
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  padding: 0 tokens.$spacing-md;
+
+  &__left {
+    display: flex;
+    align-items: center;
+  }
+
+  &__selector {
+    display: flex;
+    align-items: center;
+    gap: tokens.$spacing-xs;
+  }
+
+  &__spacer {
+    flex: 1 1 auto;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: tokens.$spacing-xs;
+  }
+}

@@ -1,0 +1,39 @@
+<mat-toolbar class="dashboard-header">
+  <div class="dashboard-header__left">
+    @if (dashboards().length > 0) {
+      <button mat-button [matMenuTriggerFor]="dashboardMenu" class="dashboard-header__selector">
+        <span>{{ currentDashboard()?.name ?? 'Select Dashboard' }}</span>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #dashboardMenu="matMenu">
+        @for (dashboard of dashboards(); track dashboard.dashboardId) {
+          <button mat-menu-item (click)="onSelectDashboard(dashboard)">
+            {{ dashboard.name }}
+            @if (dashboard.isDefault) {
+              <mat-icon>star</mat-icon>
+            }
+          </button>
+        }
+      </mat-menu>
+    }
+  </div>
+
+  <span class="dashboard-header__spacer"></span>
+
+  <div class="dashboard-header__actions">
+    <button mat-icon-button (click)="onAddDashboard()" aria-label="Add dashboard">
+      <mat-icon>add</mat-icon>
+    </button>
+    @if (currentDashboard()) {
+      <button mat-icon-button [matMenuTriggerFor]="actionMenu" aria-label="Dashboard actions">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #actionMenu="matMenu">
+        <button mat-menu-item (click)="onDeleteDashboard(currentDashboard()!)">
+          <mat-icon>delete</mat-icon>
+          <span>Delete Dashboard</span>
+        </button>
+      </mat-menu>
+    }
+  </div>
+</mat-toolbar>

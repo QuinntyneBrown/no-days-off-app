@@ -1,0 +1,31 @@
+@use '../../../styles/design-tokens' as tokens;
+
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: tokens.$spacing-sm;
+
+  &__button {
+    color: inherit;
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: tokens.$spacing-xs;
+    font-size: tokens.$font-size-base;
+  }
+
+  &__current {
+    font-weight: 500;
+  }
+
+  &__separator {
+    opacity: 0.6;
+  }
+
+  &__total {
+    opacity: 0.8;
+  }
+}

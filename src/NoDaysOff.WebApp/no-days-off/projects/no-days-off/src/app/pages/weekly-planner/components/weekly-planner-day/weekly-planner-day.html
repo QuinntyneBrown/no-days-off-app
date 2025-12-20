@@ -1,0 +1,34 @@
+<mat-card class="weekly-planner-day">
+  <mat-card-header class="weekly-planner-day__header">
+    <mat-card-title>{{ day().name }}</mat-card-title>
+    <mat-card-subtitle>{{ formatDate(day().date) }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="weekly-planner-day__content">
+    @if (day().scheduledExercises.length > 0) {
+      <mat-list class="weekly-planner-day__list">
+        @for (exercise of day().scheduledExercises; track exercise.scheduledExerciseId) {
+          <mat-list-item class="weekly-planner-day__exercise">
+            <mat-checkbox
+              [checked]="exercise.isCompleted"
+              (change)="onToggleExercise(exercise)"
+              class="weekly-planner-day__checkbox">
+              <span [class.weekly-planner-day__exercise--completed]="exercise.isCompleted">
+                {{ exercise.sets }}x{{ exercise.reps }}
+              </span>
+            </mat-checkbox>
+          </mat-list-item>
+        }
+      </mat-list>
+    } @else {
+      <p class="weekly-planner-day__empty">No exercises scheduled</p>
+    }
+  </mat-card-content>
+
+  <mat-card-actions class="weekly-planner-day__actions">
+    <button mat-button color="primary" (click)="onAddExercise()">
+      <mat-icon>add</mat-icon>
+      Add Exercise
+    </button>
+  </mat-card-actions>
+</mat-card>

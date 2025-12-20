@@ -1,0 +1,8 @@
+<button
+  mat-icon-button
+  class="hamburger-button"
+  [class.hamburger-button--open]="isOpen()"
+  (click)="onClick()"
+  aria-label="Toggle menu">
+  <mat-icon>{{ isOpen() ? 'close' : 'menu' }}</mat-icon>
+</button>

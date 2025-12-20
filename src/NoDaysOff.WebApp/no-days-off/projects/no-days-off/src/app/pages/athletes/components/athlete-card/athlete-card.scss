@@ -1,0 +1,52 @@
+@use '../../../../../../styles/design-tokens' as tokens;
+
+.athlete-card {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: tokens.$shadow-lg;
+  }
+
+  &__image {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  &__placeholder {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.04);
+
+    mat-icon {
+      font-size: 64px;
+      width: 64px;
+      height: 64px;
+      color: rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  &__content {
+    padding: tokens.$spacing-md;
+  }
+
+  &__name {
+    margin: 0 0 tokens.$spacing-xs;
+    font-size: tokens.$font-size-lg;
+  }
+
+  &__email {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.6);
+    font-size: tokens.$font-size-sm;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 tokens.$spacing-sm tokens.$spacing-sm;
+  }
+}

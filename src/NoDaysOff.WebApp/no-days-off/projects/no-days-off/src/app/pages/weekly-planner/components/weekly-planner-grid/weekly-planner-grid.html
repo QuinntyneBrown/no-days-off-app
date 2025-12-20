@@ -1,0 +1,13 @@
+<div class="weekly-planner-grid">
+  @for (day of days(); track day.dayId) {
+    <ndo-weekly-planner-day
+      [day]="day"
+      (exerciseToggled)="onExerciseToggled($event)"
+      (addExercise)="onAddExercise($event)">
+    </ndo-weekly-planner-day>
+  } @empty {
+    <div class="weekly-planner-grid__empty">
+      <p>No days configured for this week.</p>
+    </div>
+  }
+</div>

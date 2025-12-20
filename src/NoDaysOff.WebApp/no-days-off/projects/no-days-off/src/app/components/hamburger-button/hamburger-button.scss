@@ -1,0 +1,14 @@
+@use '../../../styles/design-tokens' as tokens;
+
+.hamburger-button {
+  transition: transform 0.2s ease;
+
+  &--open {
+    transform: rotate(90deg);
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}

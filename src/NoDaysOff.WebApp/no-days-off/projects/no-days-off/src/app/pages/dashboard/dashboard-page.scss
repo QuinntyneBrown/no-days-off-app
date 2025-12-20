@@ -1,0 +1,17 @@
+@use '../../../../styles/design-tokens' as tokens;
+
+.dashboard-page {
+  min-height: calc(100vh - 64px);
+
+  &__title {
+    padding: tokens.$spacing-md tokens.$spacing-lg;
+    margin: 0;
+    font-size: tokens.$font-size-2xl;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: tokens.$spacing-3xl;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}

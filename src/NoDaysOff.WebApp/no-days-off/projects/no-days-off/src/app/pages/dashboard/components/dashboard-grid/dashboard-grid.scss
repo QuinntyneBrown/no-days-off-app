@@ -1,0 +1,19 @@
+@use '../../../../../../styles/design-tokens' as tokens;
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: tokens.$spacing-md;
+  padding: tokens.$spacing-md;
+
+  @media (min-width: tokens.$breakpoint-md) {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+
+  &__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: tokens.$spacing-3xl;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}

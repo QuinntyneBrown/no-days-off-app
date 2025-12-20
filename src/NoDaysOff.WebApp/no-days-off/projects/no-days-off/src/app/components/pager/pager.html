@@ -1,0 +1,13 @@
+<div class="pager">
+  <button mat-icon-button class="pager__button" (click)="emitPrevious()" aria-label="Previous page">
+    <mat-icon>chevron_left</mat-icon>
+  </button>
+  <span class="pager__info">
+    <span class="pager__current">{{ pageNumber() }}</span>
+    <span class="pager__separator">/</span>
+    <span class="pager__total">{{ totalPages() }}</span>
+  </span>
+  <button mat-icon-button class="pager__button" (click)="emitNext()" aria-label="Next page">
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+</div>

@@ -1,0 +1,27 @@
+@use '../../../../../../styles/design-tokens' as tokens;
+
+.weekly-planner-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: tokens.$spacing-md;
+  padding: tokens.$spacing-md;
+
+  @media (min-width: tokens.$breakpoint-sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: tokens.$breakpoint-md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width: tokens.$breakpoint-lg) {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  &__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: tokens.$spacing-3xl;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}

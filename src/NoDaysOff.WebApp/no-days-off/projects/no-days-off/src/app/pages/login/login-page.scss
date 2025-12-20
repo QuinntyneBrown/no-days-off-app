@@ -1,0 +1,29 @@
+@use '../../../../styles/design-tokens' as tokens;
+
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 64px);
+  padding: tokens.$spacing-md;
+
+  &__card {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: tokens.$spacing-md;
+    padding-top: tokens.$spacing-md;
+  }
+
+  &__field {
+    width: 100%;
+  }
+
+  &__submit {
+    margin-top: tokens.$spacing-sm;
+  }
+}

@@ -1,0 +1,36 @@
+@use '../../../styles/design-tokens' as tokens;
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+
+  &__nav {
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    gap: tokens.$spacing-xs;
+  }
+
+  &__tab {
+    padding: tokens.$spacing-sm tokens.$spacing-md;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-size: tokens.$font-size-base;
+    font-family: inherit;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+    }
+
+    &--active {
+      border-bottom-color: var(--mat-primary-color, #3f51b5);
+      color: var(--mat-primary-color, #3f51b5);
+    }
+  }
+
+  &__content {
+    padding: tokens.$spacing-md 0;
+  }
+}

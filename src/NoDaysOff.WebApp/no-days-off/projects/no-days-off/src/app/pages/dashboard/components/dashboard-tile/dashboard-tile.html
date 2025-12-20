@@ -1,0 +1,26 @@
+<mat-card class="dashboard-tile">
+  <mat-card-header class="dashboard-tile__header">
+    <mat-card-title>Tile {{ tile().tileId }}</mat-card-title>
+    <button mat-icon-button [matMenuTriggerFor]="tileMenu" class="dashboard-tile__menu-button" aria-label="Tile options">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #tileMenu="matMenu">
+      <button mat-menu-item (click)="onConfigure()">
+        <mat-icon>settings</mat-icon>
+        <span>Configure</span>
+      </button>
+      <button mat-menu-item (click)="onRemove()">
+        <mat-icon>delete</mat-icon>
+        <span>Remove</span>
+      </button>
+    </mat-menu>
+  </mat-card-header>
+
+  <mat-card-content class="dashboard-tile__content">
+    <ng-content></ng-content>
+    <div class="dashboard-tile__placeholder">
+      <mat-icon>widgets</mat-icon>
+      <p>Tile Content</p>
+    </div>
+  </mat-card-content>
+</mat-card>

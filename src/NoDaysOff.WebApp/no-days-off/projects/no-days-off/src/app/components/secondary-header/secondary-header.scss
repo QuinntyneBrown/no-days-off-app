@@ -1,0 +1,23 @@
+@use '../../../styles/design-tokens' as tokens;
+
+.secondary-header {
+  display: flex;
+  align-items: center;
+  gap: tokens.$spacing-sm;
+  background-color: transparent;
+  padding: tokens.$spacing-sm tokens.$spacing-md;
+
+  &__back {
+    color: inherit;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: tokens.$font-size-lg;
+    font-weight: 500;
+  }
+
+  &__spacer {
+    flex: 1 1 auto;
+  }
+}

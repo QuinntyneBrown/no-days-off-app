@@ -1,0 +1,23 @@
+<mat-card class="athlete-card" [routerLink]="['/athletes', athlete().athleteId]">
+  @if (athlete().imageUrl) {
+    <img mat-card-image [src]="athlete().imageUrl" [alt]="athlete().name" class="athlete-card__image">
+  } @else {
+    <div class="athlete-card__placeholder">
+      <mat-icon>person</mat-icon>
+    </div>
+  }
+
+  <mat-card-content class="athlete-card__content">
+    <h3 class="athlete-card__name">{{ athlete().name }}</h3>
+    <p class="athlete-card__email">{{ athlete().email }}</p>
+  </mat-card-content>
+
+  <mat-card-actions class="athlete-card__actions">
+    <button mat-icon-button (click)="onEdit(); $event.stopPropagation()" aria-label="Edit athlete">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button (click)="onDelete(); $event.stopPropagation()" aria-label="Delete athlete">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

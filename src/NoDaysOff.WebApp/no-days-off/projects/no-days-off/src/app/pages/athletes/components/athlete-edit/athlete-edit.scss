@@ -1,0 +1,18 @@
+@use '../../../../../../styles/design-tokens' as tokens;
+
+.athlete-edit {
+  display: flex;
+  flex-direction: column;
+  gap: tokens.$spacing-md;
+
+  &__field {
+    width: 100%;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: tokens.$spacing-sm;
+    margin-top: tokens.$spacing-md;
+  }
+}

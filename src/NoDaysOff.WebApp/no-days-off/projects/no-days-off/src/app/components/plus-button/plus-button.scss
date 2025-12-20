@@ -1,0 +1,13 @@
+@use '../../../styles/design-tokens' as tokens;
+
+.plus-button {
+  position: fixed;
+  bottom: tokens.$spacing-lg;
+  right: tokens.$spacing-lg;
+  z-index: tokens.$z-index-dropdown;
+
+  @media (min-width: tokens.$breakpoint-md) {
+    bottom: tokens.$spacing-xl;
+    right: tokens.$spacing-xl;
+  }
+}

@@ -1,0 +1,14 @@
+<div class="dashboard-grid">
+  @for (tile of dashboardTiles(); track tile.dashboardTileId) {
+    <ndo-dashboard-tile
+      [tile]="tile"
+      (configure)="onConfigureTile($event)"
+      (remove)="onRemoveTile($event)"
+      (save)="onSaveTile($event)">
+    </ndo-dashboard-tile>
+  } @empty {
+    <div class="dashboard-grid__empty">
+      <p>No tiles added yet. Click the + button to add tiles.</p>
+    </div>
+  }
+</div>

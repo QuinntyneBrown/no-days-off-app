@@ -1,0 +1,17 @@
+<div class="tabs">
+  <nav class="tabs__nav" role="tablist">
+    @for (tab of tabs(); track $index) {
+      <button
+        class="tabs__tab"
+        [class.tabs__tab--active]="selectedIndex() === $index"
+        role="tab"
+        [attr.aria-selected]="selectedIndex() === $index"
+        (click)="selectTab($index)">
+        {{ tab.label() }}
+      </button>
+    }
+  </nav>
+  <div class="tabs__content">
+    <ng-content></ng-content>
+  </div>
+</div>
