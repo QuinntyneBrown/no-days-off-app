@@ -19,7 +19,7 @@ public sealed class DeleteConversationCommandHandler : IRequestHandler<DeleteCon
             .FirstOrDefaultAsync(x => x.Id == request.ConversationId, cancellationToken)
             ?? throw new InvalidOperationException($"Conversation with id {request.ConversationId} not found.");
 
-        conversation.Delete(request.DeletedBy);
+        conversation.Delete();
 
         await _context.SaveChangesAsync(cancellationToken);
     }

@@ -19,7 +19,7 @@ public sealed class DeleteExerciseCommandHandler : IRequestHandler<DeleteExercis
             .FirstOrDefaultAsync(x => x.Id == request.ExerciseId, cancellationToken)
             ?? throw new InvalidOperationException($"Exercise with id {request.ExerciseId} not found.");
 
-        exercise.Delete(request.DeletedBy);
+        exercise.Delete();
 
         await _context.SaveChangesAsync(cancellationToken);
     }

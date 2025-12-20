@@ -19,7 +19,7 @@ public sealed class DeleteDashboardCommandHandler : IRequestHandler<DeleteDashbo
             .FirstOrDefaultAsync(x => x.Id == request.DashboardId, cancellationToken)
             ?? throw new InvalidOperationException($"Dashboard with id {request.DashboardId} not found.");
 
-        dashboard.Delete(request.DeletedBy);
+        dashboard.Delete();
 
         await _context.SaveChangesAsync(cancellationToken);
     }

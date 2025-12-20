@@ -19,7 +19,7 @@ public sealed class DeleteBodyPartCommandHandler : IRequestHandler<DeleteBodyPar
             .FirstOrDefaultAsync(x => x.Id == request.BodyPartId, cancellationToken)
             ?? throw new InvalidOperationException($"BodyPart with id {request.BodyPartId} not found.");
 
-        bodyPart.Delete(request.DeletedBy);
+        bodyPart.Delete();
 
         await _context.SaveChangesAsync(cancellationToken);
     }

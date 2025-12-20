@@ -19,7 +19,7 @@ public sealed class DeleteProfileCommandHandler : IRequestHandler<DeleteProfileC
             .FirstOrDefaultAsync(x => x.Id == request.ProfileId, cancellationToken)
             ?? throw new InvalidOperationException($"Profile with id {request.ProfileId} not found.");
 
-        profile.Delete(request.DeletedBy);
+        profile.Delete();
 
         await _context.SaveChangesAsync(cancellationToken);
     }

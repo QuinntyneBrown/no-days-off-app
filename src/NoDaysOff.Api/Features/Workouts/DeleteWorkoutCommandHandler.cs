@@ -19,7 +19,7 @@ public sealed class DeleteWorkoutCommandHandler : IRequestHandler<DeleteWorkoutC
             .FirstOrDefaultAsync(x => x.Id == request.WorkoutId, cancellationToken)
             ?? throw new InvalidOperationException($"Workout with id {request.WorkoutId} not found.");
 
-        workout.Delete(request.DeletedBy);
+        workout.Delete();
 
         await _context.SaveChangesAsync(cancellationToken);
     }

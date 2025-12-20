@@ -19,7 +19,7 @@ public sealed class DeleteDayCommandHandler : IRequestHandler<DeleteDayCommand>
             .FirstOrDefaultAsync(x => x.Id == request.DayId, cancellationToken)
             ?? throw new InvalidOperationException($"Day with id {request.DayId} not found.");
 
-        day.Delete(request.DeletedBy);
+        day.Delete();
 
         await _context.SaveChangesAsync(cancellationToken);
     }

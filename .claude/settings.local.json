@@ -11,7 +11,11 @@
       "Bash(npm run storybook:*)",
       "Bash(timeout:*)",
       "Bash(tee:*)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(dir:*)",
+      "Bash(npm view:*)",
+      "Bash(if exist node_modules rmdir /s /q node_modules)",
+      "Bash(if exist package-lock.json del package-lock.json)"
     ],
     "deny": [],
     "ask": []

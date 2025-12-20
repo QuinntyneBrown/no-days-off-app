@@ -19,7 +19,7 @@ public sealed class DeleteTileCommandHandler : IRequestHandler<DeleteTileCommand
             .FirstOrDefaultAsync(x => x.Id == request.TileId, cancellationToken)
             ?? throw new InvalidOperationException($"Tile with id {request.TileId} not found.");
 
-        tile.Delete(request.DeletedBy);
+        tile.Delete();
 
         await _context.SaveChangesAsync(cancellationToken);
     }

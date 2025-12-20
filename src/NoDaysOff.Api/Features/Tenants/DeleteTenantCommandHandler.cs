@@ -19,7 +19,7 @@ public sealed class DeleteTenantCommandHandler : IRequestHandler<DeleteTenantCom
             .FirstOrDefaultAsync(x => x.Id == request.TenantId, cancellationToken)
             ?? throw new InvalidOperationException($"Tenant with id {request.TenantId} not found.");
 
-        tenant.Delete(request.DeletedBy);
+        tenant.Delete();
 
         await _context.SaveChangesAsync(cancellationToken);
     }

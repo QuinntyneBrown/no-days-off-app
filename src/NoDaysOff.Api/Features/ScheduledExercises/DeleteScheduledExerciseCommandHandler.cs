@@ -19,7 +19,7 @@ public sealed class DeleteScheduledExerciseCommandHandler : IRequestHandler<Dele
             .FirstOrDefaultAsync(x => x.Id == request.ScheduledExerciseId, cancellationToken)
             ?? throw new InvalidOperationException($"ScheduledExercise with id {request.ScheduledExerciseId} not found.");
 
-        scheduledExercise.Delete(request.DeletedBy);
+        scheduledExercise.Delete();
 
         await _context.SaveChangesAsync(cancellationToken);
     }

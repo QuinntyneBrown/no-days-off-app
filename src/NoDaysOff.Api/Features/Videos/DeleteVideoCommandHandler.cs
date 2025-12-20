@@ -19,7 +19,7 @@ public sealed class DeleteVideoCommandHandler : IRequestHandler<DeleteVideoComma
             .FirstOrDefaultAsync(x => x.Id == request.VideoId, cancellationToken)
             ?? throw new InvalidOperationException($"Video with id {request.VideoId} not found.");
 
-        video.Delete(request.DeletedBy);
+        video.Delete();
 
         await _context.SaveChangesAsync(cancellationToken);
     }

@@ -19,7 +19,7 @@ public sealed class DeleteAthleteCommandHandler : IRequestHandler<DeleteAthleteC
             .FirstOrDefaultAsync(x => x.Id == request.AthleteId, cancellationToken)
             ?? throw new InvalidOperationException($"Athlete with id {request.AthleteId} not found.");
 
-        athlete.Delete(request.DeletedBy);
+        athlete.Delete();
 
         await _context.SaveChangesAsync(cancellationToken);
     }

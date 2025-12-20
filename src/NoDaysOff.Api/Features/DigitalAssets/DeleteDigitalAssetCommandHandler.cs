@@ -19,7 +19,7 @@ public sealed class DeleteDigitalAssetCommandHandler : IRequestHandler<DeleteDig
             .FirstOrDefaultAsync(x => x.Id == request.DigitalAssetId, cancellationToken)
             ?? throw new InvalidOperationException($"DigitalAsset with id {request.DigitalAssetId} not found.");
 
-        digitalAsset.Delete(request.DeletedBy);
+        digitalAsset.Delete();
 
         await _context.SaveChangesAsync(cancellationToken);
     }
