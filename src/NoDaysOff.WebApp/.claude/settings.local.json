@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(ng serve:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(npm run storybook:*)",
+      "Bash(timeout /t 15 /nobreak)"
     ],
     "deny": [],
     "ask": []

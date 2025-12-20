@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <!-- Gradient for fur texture -->
+    <linearGradient id="furGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B7355"/>
+      <stop offset="50%" style="stop-color:#A08060"/>
+      <stop offset="100%" style="stop-color:#8B7355"/>
+    </linearGradient>
+    
+    <!-- Sweatband gradient -->
+    <linearGradient id="sweatbandGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B6B"/>
+      <stop offset="100%" style="stop-color:#EE5A5A"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Main body/head shape - rounded like a squishmallow -->
+  <ellipse cx="200" cy="210" rx="155" ry="140" fill="#C4A882"/>
+  
+  <!-- Fur stripes - horizontal bands -->
+  <ellipse cx="200" cy="145" rx="140" ry="25" fill="#9C8567" opacity="0.7"/>
+  <ellipse cx="200" cy="195" rx="150" ry="28" fill="#9C8567" opacity="0.6"/>
+  <ellipse cx="200" cy="245" rx="145" ry="25" fill="#9C8567" opacity="0.7"/>
+  <ellipse cx="200" cy="290" rx="120" ry="20" fill="#9C8567" opacity="0.5"/>
+  
+  <!-- Face mask area - lighter -->
+  <ellipse cx="200" cy="230" rx="85" ry="75" fill="#E8DCC8"/>
+  
+  <!-- Eye patches - darker circles around eyes -->
+  <ellipse cx="155" cy="200" rx="35" ry="38" fill="#6B5A47"/>
+  <ellipse cx="245" cy="200" rx="35" ry="38" fill="#6B5A47"/>
+  
+  <!-- Eyes - white with black pupils -->
+  <ellipse cx="155" cy="205" rx="18" ry="20" fill="#FFFFFF"/>
+  <ellipse cx="245" cy="205" rx="18" ry="20" fill="#FFFFFF"/>
+  
+  <!-- Pupils -->
+  <circle cx="158" cy="208" r="10" fill="#2D2D2D"/>
+  <circle cx="248" cy="208" r="10" fill="#2D2D2D"/>
+  
+  <!-- Eye shine -->
+  <circle cx="162" cy="203" r="4" fill="#FFFFFF"/>
+  <circle cx="252" cy="203" r="4" fill="#FFFFFF"/>
+  
+  <!-- Nose -->
+  <ellipse cx="200" cy="255" rx="22" ry="18" fill="#4A4A4A"/>
+  <ellipse cx="200" cy="252" rx="8" ry="5" fill="#6A6A6A" opacity="0.5"/>
+  
+  <!-- Smile -->
+  <path d="M 175 275 Q 200 295 225 275" stroke="#5A4A3A" stroke-width="4" fill="none" stroke-linecap="round"/>
+  
+  <!-- Small tuft on top -->
+  <ellipse cx="200" cy="72" rx="12" ry="15" fill="#9C8567"/>
+  <ellipse cx="190" cy="78" rx="8" ry="12" fill="#A89070"/>
+  <ellipse cx="210" cy="78" rx="8" ry="12" fill="#A89070"/>
+  
+  <!-- SWEATBAND - Fitness element -->
+  <path d="M 55 140 Q 200 100 345 140 Q 350 155 345 170 Q 200 130 55 170 Q 50 155 55 140" fill="url(#sweatbandGradient)"/>
+  
+  <!-- Sweatband stripe detail -->
+  <path d="M 70 152 Q 200 115 330 152" stroke="#FFFFFF" stroke-width="4" fill="none" opacity="0.8"/>
+  <path d="M 75 162 Q 200 125 325 162" stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.6"/>
+  
+  <!-- DUMBBELL on right side -->
+  <g transform="translate(295, 280) rotate(-25)">
+    <!-- Bar -->
+    <rect x="-35" y="-5" width="70" height="10" rx="3" fill="#6B6B6B"/>
+    <!-- Left weight -->
+    <rect x="-50" y="-15" width="18" height="30" rx="4" fill="#4A4A4A"/>
+    <rect x="-48" y="-12" width="3" height="24" fill="#5A5A5A"/>
+    <!-- Right weight -->
+    <rect x="32" y="-15" width="18" height="30" rx="4" fill="#4A4A4A"/>
+    <rect x="45" y="-12" width="3" height="24" fill="#5A5A5A"/>
+  </g>
+  
+  <!-- Small sweat drops for fitness theme -->
+  <path d="M 320 180 Q 325 190 320 200 Q 315 190 320 180" fill="#87CEEB" opacity="0.8"/>
+  <path d="M 335 200 Q 338 207 335 214 Q 332 207 335 200" fill="#87CEEB" opacity="0.6"/>
+  
+  <!-- Lightning bolt fitness logo on face (like the Bowie bolt but fitness-themed) -->
+  <path d="M 125 175 L 140 200 L 130 200 L 145 235 L 120 205 L 132 205 Z" fill="#FF6B6B"/>
+  <path d="M 125 175 L 140 200 L 130 200 L 145 235 L 120 205 L 132 205 Z" fill="none" stroke="#EE5A5A" stroke-width="1"/>
+  
+  <!-- Small heart rate/pulse line element -->
+  <path d="M 255 175 L 265 175 L 270 165 L 278 190 L 285 170 L 290 175 L 300 175" 
+        stroke="#FF6B6B" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.svg" alt="No Days Off App Logo" width="200"/>
+</p>
+
 # No Days Off App
 
 A comprehensive fitness management application built with modern .NET technologies and Domain-Driven Design principles.
