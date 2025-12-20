@@ -1,4 +1,4 @@
-@use '../../../../styles/design-tokens' as tokens;
+@use '../../../styles/design-tokens' as tokens;
 
 .weekly-planner-page {
   min-height: calc(100vh - 64px);
