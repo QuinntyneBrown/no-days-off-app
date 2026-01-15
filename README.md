@@ -11,18 +11,20 @@ A comprehensive fitness management application built with modern .NET technologi
 - **Backend**: ASP.NET Core (.NET 9.0)
 - **Database**: SQL Server with Entity Framework Core 9.0
 - **Architecture**: Domain-Driven Design (DDD) with CQRS pattern using MediatR
+- **Messaging**: MessagePack serialization with UDP (dev) and Redis Pub/Sub (production)
 - **API Documentation**: Swagger/OpenAPI
 - **Testing**: xUnit with FluentAssertions and code coverage
 
 ## Project Structure
 
-The solution follows a clean, layered architecture with three main projects:
+The solution follows a clean, layered architecture with microservices-ready infrastructure:
 
 ### Core Projects
 
 - **[NoDaysOff.Core](src/NoDaysOff.Core/)** - Domain layer containing business logic, aggregates, value objects, and domain events
 - **[NoDaysOff.Infrastructure](src/NoDaysOff.Infrastructure/)** - Data access layer with Entity Framework Core DbContext and configurations
 - **[NoDaysOff.Api](src/NoDaysOff.Api/)** - REST API layer with controllers, MediatR commands/queries, and DTOs
+- **[NoDaysOff.Shared](src/NoDaysOff.Shared/)** - Shared messaging infrastructure for microservices communication
 
 ### Test Projects
 
@@ -51,6 +53,7 @@ The application implements 14 bounded contexts for comprehensive fitness managem
 
 ## Key Architectural Features
 
+- **Microservices-Ready** - Event-driven messaging infrastructure with MessagePack serialization
 - **Multi-tenancy Support** - Built-in tenant isolation for SaaS deployment
 - **Soft Delete** - All entities support soft deletion with IsDeleted flag
 - **Audit Tracking** - Automatic tracking of creation and modification timestamps with user attribution
@@ -58,6 +61,7 @@ The application implements 14 bounded contexts for comprehensive fitness managem
 - **Value Objects** - Rich domain modeling with custom value types (Weight, Duration, etc.)
 - **CQRS Pattern** - Command and Query separation using MediatR
 - **No Repository Pattern** - Direct DbContext interface for simplified data access
+- **Message Bus** - UDP for local development, Redis Pub/Sub for production
 
 ## Getting Started
 
@@ -89,6 +93,7 @@ dotnet test
 Comprehensive documentation is available in the [docs](docs/) directory:
 
 - **[system.md](docs/system.md)** - Technical specifications and coding standards
+- **[microservices-architecture.md](docs/microservices-architecture.md)** - Microservices patterns and messaging infrastructure
 - **[core-domain.md](docs/core-domain.md)** - DDD architecture and domain model
 - **[athlete-management.md](docs/athlete-management.md)** - Athlete features
 - **[exercise-management.md](docs/exercise-management.md)** - Exercise definitions
