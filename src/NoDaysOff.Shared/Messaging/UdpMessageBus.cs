@@ -68,7 +68,7 @@ public class UdpMessageBus : IMessageBus, IDisposable
             {
                 try
                 {
-                    var result = await receiver.ReceiveAsync(cts.Token);
+                    var result = await receiver.ReceiveAsync();
                     var message = MessagePackSerializer.Deserialize<T>(result.Buffer);
                     
                     _logger.LogInformation("Received message {MessageId} on topic {Topic}", 
@@ -113,8 +113,10 @@ public class UdpMessageBus : IMessageBus, IDisposable
 
     private int GetPortForTopic(string topic)
     {
-        var hash = topic.GetHashCode();
-        return _basePort + Math.Abs(hash % 1000);
+        // Use a simple hash to ensure deterministic port assignment
+        // Take the sum of character codes modulo 1000 for consistent results
+        var hash = topic.Sum(c => (int)c) % 1000;
+        return _basePort + hash;
     }
 
     public void Dispose()

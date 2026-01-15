@@ -67,7 +67,7 @@ public class RedisMessageBus : IMessageBus, IDisposable
         if (_disposed)
             return;
 
-        _redis.Dispose();
+        // Don't dispose _redis as it's managed by the DI container
         _disposed = true;
     }
 }

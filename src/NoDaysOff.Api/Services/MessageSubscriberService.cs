@@ -34,8 +34,6 @@ public class MessageSubscriberService : BackgroundService
                 // - Setting up a dashboard
                 // - Sending a welcome email
                 // - etc.
-                
-                await Task.CompletedTask;
             },
             stoppingToken);
 
@@ -53,8 +51,6 @@ public class MessageSubscriberService : BackgroundService
                 // - Calculating achievements
                 // - Updating dashboard widgets
                 // - etc.
-                
-                await Task.CompletedTask;
             },
             stoppingToken);
 
