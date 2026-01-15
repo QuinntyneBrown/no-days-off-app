@@ -1,4 +1,5 @@
 using NoDaysOff.Infrastructure;
+using NoDaysOff.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddInfrastructure(builder.Configuration);
+
+// Add messaging infrastructure for microservices communication
+builder.Services.AddSharedMessaging(builder.Configuration);
 
 var app = builder.Build();
 

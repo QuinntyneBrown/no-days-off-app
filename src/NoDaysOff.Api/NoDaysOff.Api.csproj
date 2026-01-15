@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NoDaysOff.Core\NoDaysOff.Core.csproj" />
     <ProjectReference Include="..\NoDaysOff.Infrastructure\NoDaysOff.Infrastructure.csproj" />
+    <ProjectReference Include="..\NoDaysOff.Shared\NoDaysOff.Shared.csproj" />
   </ItemGroup>
 
 </Project>
