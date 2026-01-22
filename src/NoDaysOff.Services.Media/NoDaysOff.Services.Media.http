@@ -1,0 +1,6 @@
+@NoDaysOff.Services.Media_HostAddress = http://localhost:5196
+
+GET {{NoDaysOff.Services.Media_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
