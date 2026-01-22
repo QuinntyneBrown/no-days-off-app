@@ -17,14 +17,23 @@ A comprehensive fitness management application built with modern .NET technologi
 
 ## Project Structure
 
-The solution follows a clean, layered architecture with microservices-ready infrastructure:
+The solution follows a microservices architecture with domain-driven design principles:
+
+### Microservices
+
+- **[NoDaysOff.Services.Athletes](src/NoDaysOff.Services.Athletes/)** - Athlete management and profiles microservice
+- **[NoDaysOff.Services.Workouts](src/NoDaysOff.Services.Workouts/)** - Workout planning and scheduling microservice
+- **[NoDaysOff.Services.Exercises](src/NoDaysOff.Services.Exercises/)** - Exercise definitions and body parts microservice
+- **[NoDaysOff.Services.Dashboards](src/NoDaysOff.Services.Dashboards/)** - User dashboards and widgets microservice
+- **[NoDaysOff.Services.Media](src/NoDaysOff.Services.Media/)** - Video content and digital assets microservice
+- **[NoDaysOff.Services.Communication](src/NoDaysOff.Services.Communication/)** - User conversations and messaging microservice
 
 ### Core Projects
 
 - **[NoDaysOff.Core](src/NoDaysOff.Core/)** - Domain layer containing business logic, aggregates, value objects, and domain events
 - **[NoDaysOff.Infrastructure](src/NoDaysOff.Infrastructure/)** - Data access layer with Entity Framework Core DbContext and configurations
-- **[NoDaysOff.Api](src/NoDaysOff.Api/)** - REST API layer with controllers, MediatR commands/queries, and DTOs
 - **[NoDaysOff.Shared](src/NoDaysOff.Shared/)** - Shared messaging infrastructure for microservices communication
+- **[NoDaysOff.Api](src/NoDaysOff.Api/)** - Legacy monolithic API (being migrated to microservices)
 
 ### Test Projects
 
@@ -53,7 +62,10 @@ The application implements 14 bounded contexts for comprehensive fitness managem
 
 ## Key Architectural Features
 
-- **Microservices-Ready** - Event-driven messaging infrastructure with MessagePack serialization
+- **Microservices Architecture** - 6 independent services with separate databases and independent deployment
+- **Event-Driven Communication** - MessagePack-based messaging with UDP (dev) and Redis Pub/Sub (production)
+- **Database Per Service** - Each microservice has its own isolated database for true independence
+- **Docker Support** - Docker Compose orchestration for running all services together
 - **Multi-tenancy Support** - Built-in tenant isolation for SaaS deployment
 - **Soft Delete** - All entities support soft deletion with IsDeleted flag
 - **Audit Tracking** - Automatic tracking of creation and modification timestamps with user attribution
@@ -70,17 +82,50 @@ The application implements 14 bounded contexts for comprehensive fitness managem
 - .NET 9.0 SDK
 - SQL Server (LocalDB, Express, or full version)
 - Visual Studio 2022 or VS Code
+- (Optional) Docker Desktop for containerized deployment
 
-### Running the Application
+### Running the Microservices
 
-1. Clone the repository
-2. Update the connection string in [src/NoDaysOff.Api/appsettings.Development.json](src/NoDaysOff.Api/appsettings.Development.json)
-3. Run database migrations (if configured)
-4. Start the API project:
-   ```bash
-   dotnet run --project src/NoDaysOff.Api
-   ```
-5. Navigate to `https://localhost:<port>/swagger` to explore the API
+#### Option 1: Docker Compose (Recommended)
+
+```bash
+# Build and start all services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop all services
+docker-compose down
+```
+
+Access services at:
+- Athletes: http://localhost:5100/swagger
+- Workouts: http://localhost:5101/swagger
+- Exercises: http://localhost:5102/swagger
+- Dashboards: http://localhost:5103/swagger
+- Media: http://localhost:5104/swagger
+- Communication: http://localhost:5105/swagger
+
+#### Option 2: Run Individual Services Locally
+
+```bash
+# Athletes Service
+dotnet run --project src/NoDaysOff.Services.Athletes
+
+# Workouts Service
+dotnet run --project src/NoDaysOff.Services.Workouts
+
+# And so on...
+```
+
+#### Option 3: Legacy Monolithic API
+
+```bash
+dotnet run --project src/NoDaysOff.Api
+```
+
+Navigate to `https://localhost:<port>/swagger` to explore the API
 
 ### Running Tests
 
@@ -92,8 +137,9 @@ dotnet test
 
 Comprehensive documentation is available in the [docs](docs/) directory:
 
-- **[system.md](docs/system.md)** - Technical specifications and coding standards
+- **[deployment.md](docs/deployment.md)** - Microservices deployment guide with Docker and local setup
 - **[microservices-architecture.md](docs/microservices-architecture.md)** - Microservices patterns and messaging infrastructure
+- **[system.md](docs/system.md)** - Technical specifications and coding standards
 - **[core-domain.md](docs/core-domain.md)** - DDD architecture and domain model
 - **[athlete-management.md](docs/athlete-management.md)** - Athlete features
 - **[exercise-management.md](docs/exercise-management.md)** - Exercise definitions
