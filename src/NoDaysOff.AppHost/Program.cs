@@ -1,68 +1,56 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Infrastructure Resources
-var redis = builder.AddRedis("redis")
-    .WithDataVolume("redis-data");
+// Use existing infrastructure from docker-compose
+var redis = builder.AddConnectionString("redis");
 
-var sqlServer = builder.AddSqlServer("sqlserver")
-    .WithImage("azure-sql-edge")
-    .WithImageTag("latest")
-    .WithDataVolume("sqlserver-data");
+// Connection string references for databases (using existing SQL Server on localhost:1433)
+var identityDb = builder.AddConnectionString("identitydb");
+var athletesDb = builder.AddConnectionString("athletesdb");
+var workoutsDb = builder.AddConnectionString("workoutsdb");
+var exercisesDb = builder.AddConnectionString("exercisesdb");
+var dashboardDb = builder.AddConnectionString("dashboarddb");
+var mediaDb = builder.AddConnectionString("mediadb");
+var communicationDb = builder.AddConnectionString("communicationdb");
 
-// Databases - one per service
-var identityDb = sqlServer.AddDatabase("identitydb", "NoDaysOff.Identity");
-var athletesDb = sqlServer.AddDatabase("athletesdb", "NoDaysOff.Athletes");
-var workoutsDb = sqlServer.AddDatabase("workoutsdb", "NoDaysOff.Workouts");
-var exercisesDb = sqlServer.AddDatabase("exercisesdb", "NoDaysOff.Exercises");
-var dashboardDb = sqlServer.AddDatabase("dashboarddb", "NoDaysOff.Dashboard");
-var mediaDb = sqlServer.AddDatabase("mediadb", "NoDaysOff.Media");
-var communicationDb = sqlServer.AddDatabase("communicationdb", "NoDaysOff.Communication");
-
-// Microservices
+// Microservices with fixed ports to match API Gateway configuration
 var identityService = builder.AddProject<Projects.Identity_Api>("identity-api")
+    .WithHttpEndpoint(port: 5000)
     .WithReference(identityDb)
-    .WithReference(redis)
-    .WaitFor(identityDb)
-    .WaitFor(redis);
+    .WithReference(redis);
 
 var athletesService = builder.AddProject<Projects.Athletes_Api>("athletes-api")
+    .WithHttpEndpoint(port: 5001)
     .WithReference(athletesDb)
-    .WithReference(redis)
-    .WaitFor(athletesDb)
-    .WaitFor(redis);
-
-var workoutsService = builder.AddProject<Projects.Workouts_Api>("workouts-api")
-    .WithReference(workoutsDb)
-    .WithReference(redis)
-    .WaitFor(workoutsDb)
-    .WaitFor(redis);
+    .WithReference(redis);
 
 var exercisesService = builder.AddProject<Projects.Exercises_Api>("exercises-api")
+    .WithHttpEndpoint(port: 5002)
     .WithReference(exercisesDb)
-    .WithReference(redis)
-    .WaitFor(exercisesDb)
-    .WaitFor(redis);
+    .WithReference(redis);
+
+var workoutsService = builder.AddProject<Projects.Workouts_Api>("workouts-api")
+    .WithHttpEndpoint(port: 5003)
+    .WithReference(workoutsDb)
+    .WithReference(redis);
 
 var dashboardService = builder.AddProject<Projects.Dashboard_Api>("dashboard-api")
+    .WithHttpEndpoint(port: 5004)
     .WithReference(dashboardDb)
-    .WithReference(redis)
-    .WaitFor(dashboardDb)
-    .WaitFor(redis);
+    .WithReference(redis);
 
 var mediaService = builder.AddProject<Projects.Media_Api>("media-api")
+    .WithHttpEndpoint(port: 5005)
     .WithReference(mediaDb)
-    .WithReference(redis)
-    .WaitFor(mediaDb)
-    .WaitFor(redis);
+    .WithReference(redis);
 
 var communicationService = builder.AddProject<Projects.Communication_Api>("communication-api")
+    .WithHttpEndpoint(port: 5006)
     .WithReference(communicationDb)
-    .WithReference(redis)
-    .WaitFor(communicationDb)
-    .WaitFor(redis);
+    .WithReference(redis);
 
-// API Gateway
+// API Gateway on port 5007
 var apiGateway = builder.AddProject<Projects.ApiGateway>("api-gateway")
+    .WithHttpEndpoint(port: 5007)
     .WithExternalHttpEndpoints()
     .WithReference(identityService)
     .WithReference(athletesService)
@@ -79,11 +67,11 @@ var apiGateway = builder.AddProject<Projects.ApiGateway>("api-gateway")
     .WaitFor(mediaService)
     .WaitFor(communicationService);
 
-// Frontend
+// Frontend on port 4200
 builder.AddNpmApp("frontend", "../Ui")
     .WithReference(apiGateway)
     .WaitFor(apiGateway)
-    .WithHttpEndpoint(env: "PORT")
+    .WithHttpEndpoint(port: 4200, env: "PORT")
     .WithExternalHttpEndpoints();
 
 builder.Build().Run();

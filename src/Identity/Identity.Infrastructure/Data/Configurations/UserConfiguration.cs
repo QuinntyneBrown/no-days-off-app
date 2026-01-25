@@ -38,7 +38,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasMaxLength(256);
 
         builder.HasMany(u => u.RefreshTokens)
-            .WithOne()
+            .WithOne(rt => rt.User)
             .HasForeignKey(rt => rt.UserId)
             .OnDelete(DeleteBehavior.Cascade);
 

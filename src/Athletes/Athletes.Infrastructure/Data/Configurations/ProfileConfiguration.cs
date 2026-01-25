@@ -35,6 +35,6 @@ public class ProfileConfiguration : IEntityTypeConfiguration<Profile>
 
         builder.HasQueryFilter(p => !p.IsDeleted);
 
-        builder.UseTphMappingStrategy();
+        builder.UseTptMappingStrategy();
     }
 }
