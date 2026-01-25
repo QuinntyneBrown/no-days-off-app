@@ -1,4 +1,4 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, tap, BehaviorSubject } from 'rxjs';
@@ -14,24 +14,30 @@ export interface RegisterRequest {
   password: string;
   firstName: string;
   lastName: string;
+  tenantId?: number;
+}
+
+export interface UserDto {
+  userId: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  tenantId?: number;
+  roles: string[];
 }
 
 export interface AuthResponse {
   accessToken: string;
   refreshToken: string;
-  userId: number;
-  email: string;
-  firstName: string;
-  lastName: string;
-  tenantId: number;
   expiresAt: string;
+  user: UserDto;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly baseUrl = `${environment.apiUrl}/api/auth`;
+  private readonly baseUrl = environment.apiUrl;
   private readonly TOKEN_KEY = 'access_token';
   private readonly REFRESH_TOKEN_KEY = 'refresh_token';
   private readonly USER_KEY = 'current_user';
@@ -45,20 +51,20 @@ export class AuthService {
   ) {}
 
   login(request: LoginRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.baseUrl}/login`, request).pipe(
+    return this.http.post<AuthResponse>(`${this.baseUrl}/auth/login`, request).pipe(
       tap(response => this.handleAuthResponse(response))
     );
   }
 
   register(request: RegisterRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.baseUrl}/register`, request).pipe(
+    return this.http.post<AuthResponse>(`${this.baseUrl}/auth/register`, request).pipe(
       tap(response => this.handleAuthResponse(response))
     );
   }
 
   refreshToken(): Observable<AuthResponse> {
     const refreshToken = this.getRefreshToken();
-    return this.http.post<AuthResponse>(`${this.baseUrl}/refresh`, { refreshToken }).pipe(
+    return this.http.post<AuthResponse>(`${this.baseUrl}/auth/refresh`, { refreshToken }).pipe(
       tap(response => this.handleAuthResponse(response))
     );
   }
@@ -79,7 +85,7 @@ export class AuthService {
     return localStorage.getItem(this.REFRESH_TOKEN_KEY);
   }
 
-  getCurrentUser(): AuthResponse | null {
+  getCurrentUser(): UserDto | null {
     const user = localStorage.getItem(this.USER_KEY);
     return user ? JSON.parse(user) : null;
   }
@@ -95,7 +101,7 @@ export class AuthService {
   private handleAuthResponse(response: AuthResponse): void {
     localStorage.setItem(this.TOKEN_KEY, response.accessToken);
     localStorage.setItem(this.REFRESH_TOKEN_KEY, response.refreshToken);
-    localStorage.setItem(this.USER_KEY, JSON.stringify(response));
+    localStorage.setItem(this.USER_KEY, JSON.stringify(response.user));
     this.isAuthenticatedSubject.next(true);
   }
 }

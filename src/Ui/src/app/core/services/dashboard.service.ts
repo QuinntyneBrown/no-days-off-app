@@ -39,8 +39,8 @@ export interface CreateWidgetRequest {
   providedIn: 'root'
 })
 export class DashboardService {
-  private readonly widgetsPath = '/api/widgets';
-  private readonly statsPath = '/api/stats';
+  private readonly widgetsPath = '/widgets';
+  private readonly statsPath = '/stats';
 
   constructor(private api: ApiService) {}
 

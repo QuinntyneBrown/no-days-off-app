@@ -40,8 +40,8 @@ export interface CreateBodyPartRequest {
   providedIn: 'root'
 })
 export class ExercisesService {
-  private readonly exercisesPath = '/api/exercises';
-  private readonly bodyPartsPath = '/api/bodyparts';
+  private readonly exercisesPath = '/exercises';
+  private readonly bodyPartsPath = '/bodyparts';
 
   constructor(private api: ApiService) {}
 

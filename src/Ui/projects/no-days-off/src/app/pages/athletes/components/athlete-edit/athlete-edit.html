@@ -8,13 +8,10 @@
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="athlete-edit__field">
-    <mat-label>Email</mat-label>
-    <input matInput type="email" formControlName="email" placeholder="Enter email">
-    @if (form.get('email')?.hasError('required') && form.get('email')?.touched) {
-      <mat-error>Email is required</mat-error>
-    }
-    @if (form.get('email')?.hasError('email')) {
-      <mat-error>Please enter a valid email</mat-error>
+    <mat-label>Username</mat-label>
+    <input matInput formControlName="username" placeholder="Enter username">
+    @if (form.get('username')?.hasError('required') && form.get('username')?.touched) {
+      <mat-error>Username is required</mat-error>
     }
   </mat-form-field>
 

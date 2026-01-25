@@ -34,7 +34,7 @@ export interface CreateNotificationRequest {
   providedIn: 'root'
 })
 export class NotificationsService {
-  private readonly path = '/api/notifications';
+  private readonly path = '/notifications';
   private hubConnection?: signalR.HubConnection;
   private notificationReceived = new Subject<{ title: string; message: string; type: number }>();
 

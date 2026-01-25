@@ -35,7 +35,7 @@ export class AthleteEdit implements OnInit {
     const athlete = this.athlete();
     this.form = this.fb.group({
       name: [athlete?.name ?? '', Validators.required],
-      email: [athlete?.email ?? '', [Validators.required, Validators.email]],
+      username: [athlete?.username ?? '', Validators.required],
       imageUrl: [athlete?.imageUrl ?? '']
     });
   }
@@ -43,12 +43,14 @@ export class AthleteEdit implements OnInit {
   onSubmit(): void {
     if (this.form.valid) {
       this.isLoading.set(true);
+      const existingAthlete = this.athlete();
       const athlete: Athlete = {
-        athleteId: this.athlete()?.athleteId ?? 0,
+        athleteId: existingAthlete?.athleteId ?? 0,
         name: this.form.value.name,
-        email: this.form.value.email,
+        username: this.form.value.username,
         imageUrl: this.form.value.imageUrl,
-        createdAt: this.athlete()?.createdAt ?? new Date()
+        createdOn: existingAthlete?.createdOn ?? new Date(),
+        createdBy: existingAthlete?.createdBy ?? 'system'
       };
       this.saved.emit(athlete);
       this.isLoading.set(false);

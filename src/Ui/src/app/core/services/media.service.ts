@@ -21,7 +21,7 @@ export interface MediaFile {
   providedIn: 'root'
 })
 export class MediaService {
-  private readonly path = '/api/media';
+  private readonly path = '/media';
 
   constructor(private api: ApiService) {}
 

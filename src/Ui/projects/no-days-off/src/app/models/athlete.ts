@@ -1,9 +1,13 @@
 export interface Athlete {
   athleteId: number;
   name: string;
-  email: string;
-  imageUrl: string;
-  createdAt: Date;
+  username: string;
+  imageUrl?: string;
+  currentWeight?: number;
+  lastWeighedOn?: Date;
+  tenantId?: number;
+  createdOn: Date;
+  createdBy: string;
 }
 
 export interface AthleteWeight {

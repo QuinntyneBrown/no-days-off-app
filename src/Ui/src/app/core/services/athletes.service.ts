@@ -4,35 +4,33 @@ import { ApiService } from './api.service';
 
 export interface Athlete {
   athleteId: number;
-  firstName: string;
-  lastName: string;
-  email?: string;
-  phone?: string;
-  dateOfBirth?: string;
-  tenantId: number;
+  name: string;
+  username: string;
+  imageUrl?: string;
+  currentWeight?: number;
+  lastWeighedOn?: string;
+  tenantId?: number;
+  createdOn: string;
+  createdBy: string;
 }
 
 export interface CreateAthleteRequest {
-  firstName: string;
-  lastName: string;
-  email?: string;
-  phone?: string;
-  dateOfBirth?: string;
+  name: string;
+  username: string;
+  tenantId?: number;
 }
 
 export interface UpdateAthleteRequest {
-  firstName: string;
-  lastName: string;
-  email?: string;
-  phone?: string;
-  dateOfBirth?: string;
+  athleteId: number;
+  name: string;
+  username: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class AthletesService {
-  private readonly path = '/api/athletes';
+  private readonly path = '/athletes';
 
   constructor(private api: ApiService) {}
 

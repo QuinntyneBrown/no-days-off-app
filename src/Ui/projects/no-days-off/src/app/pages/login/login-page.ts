@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -7,6 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { AuthService } from '../../../../../../src/app/core/services/auth.service';
 
 @Component({
   selector: 'ndo-login-page',
@@ -20,17 +22,24 @@ import { MatIconModule } from '@angular/material/icon';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss'
 })
 export class LoginPage {
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
+  private fb = inject(FormBuilder);
+
   loginForm: FormGroup;
   hidePassword = signal(true);
   isLoading = signal(false);
+  errorMessage = signal<string | null>(null);
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -44,11 +53,23 @@ export class LoginPage {
   onSubmit(): void {
     if (this.loginForm.valid) {
       this.isLoading.set(true);
-      // TODO: Implement actual authentication
-      setTimeout(() => {
-        this.isLoading.set(false);
-        this.router.navigate(['/dashboard']);
-      }, 1000);
+      this.errorMessage.set(null);
+
+      const { email, password } = this.loginForm.value;
+
+      this.authService.login({ email, password }).subscribe({
+        next: () => {
+          this.isLoading.set(false);
+          this.snackBar.open('Login successful!', 'Close', { duration: 3000 });
+          this.router.navigate(['/dashboard']);
+        },
+        error: (err) => {
+          this.isLoading.set(false);
+          const message = err.error?.message || 'Login failed. Please check your credentials.';
+          this.errorMessage.set(message);
+          this.snackBar.open(message, 'Close', { duration: 5000 });
+        }
+      });
     }
   }
 }
