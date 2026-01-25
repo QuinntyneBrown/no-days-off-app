@@ -22,10 +22,13 @@ public class BodyPartsController : ControllerBase
         _currentUser = currentUser;
     }
 
+    private int GetTenantId(int? requestTenantId) =>
+        requestTenantId ?? _currentUser.TenantId ?? throw new UnauthorizedAccessException("Tenant not specified");
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<BodyPartDto>>> GetAll([FromQuery] int? tenantId, CancellationToken ct)
     {
-        var result = await _mediator.Send(new GetBodyPartsQuery(tenantId ?? _currentUser.TenantId), ct);
+        var result = await _mediator.Send(new GetBodyPartsQuery(GetTenantId(tenantId)), ct);
         return Ok(result);
     }
 
@@ -34,8 +37,7 @@ public class BodyPartsController : ControllerBase
     {
         var command = new CreateBodyPartCommand(
             request.Name,
-            request.TenantId ?? _currentUser.TenantId,
-            request.Description);
+            GetTenantId(request.TenantId));
 
         var result = await _mediator.Send(command, ct);
         return CreatedAtAction(nameof(GetAll), result);

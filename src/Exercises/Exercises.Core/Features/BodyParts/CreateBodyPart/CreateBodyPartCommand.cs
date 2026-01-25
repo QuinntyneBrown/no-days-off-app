@@ -26,7 +26,7 @@ public class CreateBodyPartHandler : IRequestHandler<CreateBodyPartCommand, Body
             bodyPart.Id,
             bodyPart.Name,
             bodyPart.TenantId,
-            bodyPart.CreatedAt
+            bodyPart.CreatedOn
         );
     }
 }

@@ -24,13 +24,19 @@ public class NotificationsController : ControllerBase
         _currentUser = currentUser;
     }
 
+    private int GetTenantId() =>
+        _currentUser.TenantId ?? throw new UnauthorizedAccessException("Tenant not specified");
+
+    private int GetUserId() =>
+        _currentUser.UserId ?? throw new UnauthorizedAccessException("User not specified");
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<NotificationDto>>> GetAll(
         [FromQuery] bool unreadOnly = false,
         CancellationToken ct = default)
     {
         var result = await _mediator.Send(
-            new GetNotificationsQuery(_currentUser.TenantId, _currentUser.UserId, unreadOnly), ct);
+            new GetNotificationsQuery(GetTenantId(), GetUserId(), unreadOnly), ct);
         return Ok(result);
     }
 
@@ -41,8 +47,8 @@ public class NotificationsController : ControllerBase
             request.Title,
             request.Message,
             request.Type,
-            _currentUser.TenantId,
-            request.UserId ?? _currentUser.UserId,
+            GetTenantId(),
+            request.UserId ?? GetUserId(),
             request.ActionUrl,
             request.EntityType,
             request.EntityId);
@@ -54,14 +60,14 @@ public class NotificationsController : ControllerBase
     [HttpPost("{id}/read")]
     public async Task<ActionResult> MarkAsRead(int id, CancellationToken ct)
     {
-        await _mediator.Send(new MarkAsReadCommand(id, _currentUser.TenantId, _currentUser.UserId), ct);
+        await _mediator.Send(new MarkAsReadCommand(id, GetTenantId(), GetUserId()), ct);
         return NoContent();
     }
 
     [HttpPost("read-all")]
     public async Task<ActionResult<int>> MarkAllAsRead(CancellationToken ct)
     {
-        var count = await _mediator.Send(new MarkAllAsReadCommand(_currentUser.TenantId, _currentUser.UserId), ct);
+        var count = await _mediator.Send(new MarkAllAsReadCommand(GetTenantId(), GetUserId()), ct);
         return Ok(new { markedAsRead = count });
     }
 }

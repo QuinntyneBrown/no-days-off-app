@@ -35,7 +35,6 @@ public class CreateExerciseHandler : IRequestHandler<CreateExerciseCommand, Exer
         await _context.SaveChangesAsync(cancellationToken);
 
         await _messageBus.PublishAsync(
-            MessageTopics.Exercises.ExerciseCreated,
             new ExerciseCreatedMessage
             {
                 ExerciseId = exercise.Id,
@@ -43,6 +42,7 @@ public class CreateExerciseHandler : IRequestHandler<CreateExerciseCommand, Exer
                 BodyPartId = exercise.BodyPartId,
                 TenantId = exercise.TenantId
             },
+            MessageTopics.Exercises.ExerciseCreated,
             cancellationToken);
 
         return new ExerciseDto(
@@ -52,7 +52,7 @@ public class CreateExerciseHandler : IRequestHandler<CreateExerciseCommand, Exer
             null,
             null,
             exercise.TenantId,
-            exercise.CreatedAt
+            exercise.CreatedOn
         );
     }
 }

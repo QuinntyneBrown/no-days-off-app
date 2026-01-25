@@ -21,17 +21,23 @@ public class StatsController : ControllerBase
         _currentUser = currentUser;
     }
 
+    private int GetTenantId() =>
+        _currentUser.TenantId ?? throw new UnauthorizedAccessException("Tenant not specified");
+
+    private int GetUserId() =>
+        _currentUser.UserId ?? throw new UnauthorizedAccessException("User not specified");
+
     [HttpGet]
     public async Task<ActionResult<DashboardStatsDto>> Get(CancellationToken ct)
     {
         var result = await _mediator.Send(
-            new GetDashboardStatsQuery(_currentUser.TenantId, _currentUser.UserId), ct);
+            new GetDashboardStatsQuery(GetTenantId(), GetUserId()), ct);
 
         if (result == null)
             return Ok(new DashboardStatsDto
             {
-                TenantId = _currentUser.TenantId,
-                UserId = _currentUser.UserId,
+                TenantId = GetTenantId(),
+                UserId = GetUserId(),
                 LastUpdated = DateTime.UtcNow
             });
 

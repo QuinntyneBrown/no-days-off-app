@@ -33,13 +33,13 @@ public class DeleteExerciseHandler : IRequestHandler<DeleteExerciseCommand, bool
         await _context.SaveChangesAsync(cancellationToken);
 
         await _messageBus.PublishAsync(
-            MessageTopics.Exercises.ExerciseDeleted,
             new ExerciseDeletedMessage
             {
                 ExerciseId = exercise.Id,
                 TenantId = exercise.TenantId,
                 DeletedBy = request.DeletedBy
             },
+            MessageTopics.Exercises.ExerciseDeleted,
             cancellationToken);
 
         return true;

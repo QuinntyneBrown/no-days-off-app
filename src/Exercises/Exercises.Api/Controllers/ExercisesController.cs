@@ -25,6 +25,9 @@ public class ExercisesController : ControllerBase
         _currentUser = currentUser;
     }
 
+    private int GetTenantId(int? requestTenantId) =>
+        requestTenantId ?? _currentUser.TenantId ?? throw new UnauthorizedAccessException("Tenant not specified");
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ExerciseDto>>> GetAll(
         [FromQuery] int? tenantId,
@@ -32,7 +35,7 @@ public class ExercisesController : ControllerBase
         CancellationToken ct)
     {
         var result = await _mediator.Send(
-            new GetExercisesQuery(tenantId ?? _currentUser.TenantId, bodyPartId), ct);
+            new GetExercisesQuery(GetTenantId(tenantId), bodyPartId), ct);
         return Ok(result);
     }
 
@@ -40,7 +43,7 @@ public class ExercisesController : ControllerBase
     public async Task<ActionResult<ExerciseDto>> GetById(int id, [FromQuery] int? tenantId, CancellationToken ct)
     {
         var result = await _mediator.Send(
-            new GetExerciseByIdQuery(id, tenantId ?? _currentUser.TenantId), ct);
+            new GetExerciseByIdQuery(id, GetTenantId(tenantId)), ct);
         if (result == null)
             return NotFound();
         return Ok(result);
@@ -51,13 +54,8 @@ public class ExercisesController : ControllerBase
     {
         var command = new CreateExerciseCommand(
             request.Name,
-            request.TenantId ?? _currentUser.TenantId,
-            request.Type,
+            GetTenantId(request.TenantId),
             request.BodyPartId,
-            request.Description,
-            request.VideoUrl,
-            request.ImageUrl,
-            request.Instructions,
             _currentUser.Email ?? "system");
 
         var result = await _mediator.Send(command, ct);
@@ -70,13 +68,8 @@ public class ExercisesController : ControllerBase
         var command = new UpdateExerciseCommand(
             id,
             request.Name,
-            request.TenantId ?? _currentUser.TenantId,
-            request.Type,
-            request.BodyPartId,
-            request.Description,
-            request.VideoUrl,
-            request.ImageUrl,
-            request.Instructions);
+            GetTenantId(null),
+            request.BodyPartId);
 
         var result = await _mediator.Send(command, ct);
         return Ok(result);
@@ -85,7 +78,7 @@ public class ExercisesController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(int id, [FromQuery] int? tenantId, CancellationToken ct)
     {
-        await _mediator.Send(new DeleteExerciseCommand(id, tenantId ?? _currentUser.TenantId), ct);
+        await _mediator.Send(new DeleteExerciseCommand(id, GetTenantId(tenantId)), ct);
         return NoContent();
     }
 }

@@ -23,6 +23,9 @@ public class MediaController : ControllerBase
         _currentUser = currentUser;
     }
 
+    private int GetTenantId() =>
+        _currentUser.TenantId ?? throw new UnauthorizedAccessException("Tenant not specified");
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<MediaFileDto>>> GetAll(
         [FromQuery] int? entityId,
@@ -30,7 +33,7 @@ public class MediaController : ControllerBase
         CancellationToken ct)
     {
         var result = await _mediator.Send(
-            new GetMediaFilesQuery(_currentUser.TenantId, entityId, entityType), ct);
+            new GetMediaFilesQuery(GetTenantId(), entityId, entityType), ct);
         return Ok(result);
     }
 
@@ -47,7 +50,7 @@ public class MediaController : ControllerBase
             file.FileName,
             file.ContentType,
             file.Length,
-            _currentUser.TenantId,
+            GetTenantId(),
             _currentUser.Email ?? "system",
             entityId,
             entityType);
@@ -59,7 +62,7 @@ public class MediaController : ControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(int id, CancellationToken ct)
     {
-        await _mediator.Send(new DeleteMediaFileCommand(id, _currentUser.TenantId), ct);
+        await _mediator.Send(new DeleteMediaFileCommand(id, GetTenantId()), ct);
         return NoContent();
     }
 }

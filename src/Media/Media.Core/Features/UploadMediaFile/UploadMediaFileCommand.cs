@@ -57,8 +57,8 @@ public class UploadMediaFileHandler : IRequestHandler<UploadMediaFileCommand, Me
         await _context.SaveChangesAsync(cancellationToken);
 
         await _messageBus.PublishAsync(
-            MessageTopics.MediaUploaded,
             new MediaUploadedMessage(mediaFile.Id, mediaFile.FileName, mediaFile.TenantId),
+            MessageTopics.Media.MediaUploaded,
             cancellationToken);
 
         return new MediaFileDto

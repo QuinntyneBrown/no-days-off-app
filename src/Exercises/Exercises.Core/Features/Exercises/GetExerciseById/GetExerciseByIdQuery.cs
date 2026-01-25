@@ -31,7 +31,7 @@ public class GetExerciseByIdHandler : IRequestHandler<GetExerciseByIdQuery, Exer
             null, // DefaultSets
             null, // DefaultRepetitions
             exercise.TenantId,
-            exercise.CreatedAt
+            exercise.CreatedOn
         );
     }
 }

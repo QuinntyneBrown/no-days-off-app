@@ -41,8 +41,8 @@ public class DeleteMediaFileHandler : IRequestHandler<DeleteMediaFileCommand, bo
         await _context.SaveChangesAsync(cancellationToken);
 
         await _messageBus.PublishAsync(
-            MessageTopics.MediaDeleted,
             new MediaDeletedMessage(mediaFile.Id, mediaFile.TenantId),
+            MessageTopics.Media.MediaDeleted,
             cancellationToken);
 
         return true;

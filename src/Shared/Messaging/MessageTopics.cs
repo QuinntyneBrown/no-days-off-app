@@ -43,6 +43,8 @@ public static class MessageTopics
     {
         public const string AssetUploaded = "media.asset.uploaded";
         public const string VideoUploaded = "media.video.uploaded";
+        public const string MediaUploaded = "media.file.uploaded";
+        public const string MediaDeleted = "media.file.deleted";
     }
 
     public static class Communication

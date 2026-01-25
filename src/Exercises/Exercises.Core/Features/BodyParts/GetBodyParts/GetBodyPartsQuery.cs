@@ -23,7 +23,7 @@ public class GetBodyPartsHandler : IRequestHandler<GetBodyPartsQuery, IEnumerabl
                 b.Id,
                 b.Name,
                 b.TenantId,
-                b.CreatedAt
+                b.CreatedOn
             ))
             .ToListAsync(cancellationToken);
     }

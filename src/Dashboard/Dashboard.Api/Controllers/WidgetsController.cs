@@ -22,11 +22,17 @@ public class WidgetsController : ControllerBase
         _currentUser = currentUser;
     }
 
+    private int GetTenantId() =>
+        _currentUser.TenantId ?? throw new UnauthorizedAccessException("Tenant not specified");
+
+    private int GetUserId() =>
+        _currentUser.UserId ?? throw new UnauthorizedAccessException("User not specified");
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<WidgetDto>>> GetAll(CancellationToken ct)
     {
         var result = await _mediator.Send(
-            new GetWidgetsQuery(_currentUser.TenantId, _currentUser.UserId), ct);
+            new GetWidgetsQuery(GetTenantId(), GetUserId()), ct);
         return Ok(result);
     }
 
@@ -36,8 +42,8 @@ public class WidgetsController : ControllerBase
         var command = new CreateWidgetCommand(
             request.Name,
             request.Type,
-            _currentUser.TenantId,
-            _currentUser.UserId,
+            GetTenantId(),
+            GetUserId(),
             request.Position,
             request.Width,
             request.Height,

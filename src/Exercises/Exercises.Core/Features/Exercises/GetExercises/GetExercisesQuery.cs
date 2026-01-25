@@ -31,7 +31,7 @@ public class GetExercisesHandler : IRequestHandler<GetExercisesQuery, IEnumerabl
             null, // DefaultSets
             null, // DefaultRepetitions
             e.TenantId,
-            e.CreatedAt
+            e.CreatedOn
         )).ToListAsync(cancellationToken);
     }
 }

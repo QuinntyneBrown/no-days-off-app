@@ -16,13 +16,18 @@ public class WorkoutCreatedEventHandler : IMessageHandler<WorkoutCreatedMessage>
 
     public async Task HandleAsync(WorkoutCreatedMessage message, CancellationToken cancellationToken)
     {
+        if (message.TenantId == null)
+            return;
+
+        var tenantId = message.TenantId.Value;
+
         var stats = await _context.DashboardStats
-            .Where(s => s.TenantId == message.TenantId)
+            .Where(s => s.TenantId == tenantId)
             .FirstOrDefaultAsync(cancellationToken);
 
         if (stats == null)
         {
-            stats = new DashboardStats(message.TenantId, 0);
+            stats = new DashboardStats(tenantId, 0);
             _context.DashboardStats.Add(stats);
         }
 
