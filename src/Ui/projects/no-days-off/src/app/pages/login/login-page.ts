@@ -40,9 +40,10 @@ export class LoginPage {
   errorMessage = signal<string | null>(null);
 
   constructor() {
+    // Pre-populated for development
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      email: ['test@example.com', [Validators.required, Validators.email]],
+      password: ['Test12345', [Validators.required, Validators.minLength(6)]]
     });
   }
 
