@@ -1,0 +1,163 @@
+version: '3.8'
+
+services:
+  # Infrastructure
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Passw0rd
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    healthcheck:
+      test: /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -C -Q "SELECT 1" || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # API Gateway
+  api-gateway:
+    build:
+      context: ./src
+      dockerfile: ApiGateway/Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__redis=redis:6379
+      - ReverseProxy__Clusters__identity__Destinations__destination1__Address=http://identity-api:8080
+      - ReverseProxy__Clusters__athletes__Destinations__destination1__Address=http://athletes-api:8080
+      - ReverseProxy__Clusters__workouts__Destinations__destination1__Address=http://workouts-api:8080
+      - ReverseProxy__Clusters__exercises__Destinations__destination1__Address=http://exercises-api:8080
+      - ReverseProxy__Clusters__dashboard__Destinations__destination1__Address=http://dashboard-api:8080
+      - ReverseProxy__Clusters__media__Destinations__destination1__Address=http://media-api:8080
+      - ReverseProxy__Clusters__communication__Destinations__destination1__Address=http://communication-api:8080
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  # Identity Service
+  identity-api:
+    build:
+      context: ./src
+      dockerfile: Identity/Identity.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__identitydb=Server=sqlserver;Database=NoDaysOff.Identity;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True
+      - ConnectionStrings__redis=redis:6379
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Athletes Service
+  athletes-api:
+    build:
+      context: ./src
+      dockerfile: Athletes/Athletes.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__athletesdb=Server=sqlserver;Database=NoDaysOff.Athletes;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True
+      - ConnectionStrings__redis=redis:6379
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Workouts Service
+  workouts-api:
+    build:
+      context: ./src
+      dockerfile: Workouts/Workouts.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__workoutsdb=Server=sqlserver;Database=NoDaysOff.Workouts;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True
+      - ConnectionStrings__redis=redis:6379
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Exercises Service
+  exercises-api:
+    build:
+      context: ./src
+      dockerfile: Exercises/Exercises.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__exercisesdb=Server=sqlserver;Database=NoDaysOff.Exercises;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True
+      - ConnectionStrings__redis=redis:6379
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Dashboard Service
+  dashboard-api:
+    build:
+      context: ./src
+      dockerfile: Dashboard/Dashboard.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__dashboarddb=Server=sqlserver;Database=NoDaysOff.Dashboard;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True
+      - ConnectionStrings__redis=redis:6379
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Media Service
+  media-api:
+    build:
+      context: ./src
+      dockerfile: Media/Media.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__mediadb=Server=sqlserver;Database=NoDaysOff.Media;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True
+      - ConnectionStrings__redis=redis:6379
+    volumes:
+      - media-uploads:/app/uploads
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Communication Service
+  communication-api:
+    build:
+      context: ./src
+      dockerfile: Communication/Communication.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__communicationdb=Server=sqlserver;Database=NoDaysOff.Communication;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True
+      - ConnectionStrings__redis=redis:6379
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  sqlserver-data:
+  redis-data:
+  media-uploads:
