@@ -2,6 +2,7 @@ using Athletes.Core.Features.Athletes.CreateAthlete;
 using Athletes.Infrastructure;
 using Athletes.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using NoDaysOff.ServiceDefaults;
 using Shared.Authentication;
 using Shared.Infrastructure;
 

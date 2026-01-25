@@ -8,6 +8,7 @@ namespace Identity.Core.Aggregates.User;
 public class RefreshToken : Entity
 {
     public int UserId { get; private set; }
+    public User User { get; private set; } = null!;
     public string Token { get; private set; } = string.Empty;
     public DateTime ExpiresAt { get; private set; }
     public DateTime CreatedAt { get; private set; }

@@ -1,11 +1,11 @@
-using Athletes.Core.Aggregates.Profile;
+using ProfileBase = Athletes.Core.Aggregates.Profile.Profile;
 
 namespace Athletes.Core.Aggregates.Athlete;
 
 /// <summary>
 /// Aggregate root for athlete management, extending Profile with fitness tracking
 /// </summary>
-public sealed class Athlete : Profile
+public sealed class Athlete : ProfileBase
 {
     private readonly List<AthleteWeight> _weights = new();
     private readonly List<CompletedExercise> _completedExercises = new();

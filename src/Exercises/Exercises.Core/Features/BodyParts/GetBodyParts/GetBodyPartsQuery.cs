@@ -19,13 +19,12 @@ public class GetBodyPartsHandler : IRequestHandler<GetBodyPartsQuery, IEnumerabl
     {
         return await _context.BodyParts
             .Where(b => b.TenantId == request.TenantId)
-            .Select(b => new BodyPartDto
-            {
-                BodyPartId = b.Id,
-                Name = b.Name,
-                Description = b.Description,
-                TenantId = b.TenantId
-            })
+            .Select(b => new BodyPartDto(
+                b.Id,
+                b.Name,
+                b.TenantId,
+                b.CreatedAt
+            ))
             .ToListAsync(cancellationToken);
     }
 }

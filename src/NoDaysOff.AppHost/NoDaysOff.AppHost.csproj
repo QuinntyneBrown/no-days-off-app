@@ -1,16 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Aspire.AppHost.Sdk/9.0.0">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <IsAspireHost>true</IsAspireHost>
     <RootNamespace>NoDaysOff.AppHost</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting" Version="9.0.0" />
     <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
     <PackageReference Include="Aspire.Hosting.Redis" Version="9.0.0" />
     <PackageReference Include="Aspire.Hosting.SqlServer" Version="9.0.0" />

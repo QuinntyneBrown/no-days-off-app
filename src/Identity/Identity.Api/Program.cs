@@ -2,6 +2,7 @@ using Identity.Core.Features.Auth.Login;
 using Identity.Infrastructure;
 using Identity.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using NoDaysOff.ServiceDefaults;
 using Shared.Authentication;
 using Shared.Infrastructure;
 

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using NoDaysOff.ServiceDefaults;
 using Shared.Authentication;
 using Shared.Infrastructure;
 using Media.Core.Features.UploadMediaFile;

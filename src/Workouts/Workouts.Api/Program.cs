@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using NoDaysOff.ServiceDefaults;
 using Shared.Authentication;
 using Shared.Infrastructure;
 using Workouts.Core.Features.Workouts.CreateWorkout;

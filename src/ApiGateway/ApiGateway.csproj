@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <PackageReference Include="Aspire.StackExchange.Redis" Version="9.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.RateLimiting" Version="9.0.0" />
     <PackageReference Include="Yarp.ReverseProxy" Version="2.2.0" />
   </ItemGroup>
 

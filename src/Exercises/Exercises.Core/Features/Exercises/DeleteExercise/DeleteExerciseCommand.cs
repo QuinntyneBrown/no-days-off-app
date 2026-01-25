@@ -7,7 +7,7 @@ using Exercises.Core.Aggregates.Exercise;
 
 namespace Exercises.Core.Features.Exercises.DeleteExercise;
 
-public record DeleteExerciseCommand(int ExerciseId, int TenantId) : IRequest<bool>;
+public record DeleteExerciseCommand(int ExerciseId, int TenantId, string DeletedBy = "system") : IRequest<bool>;
 
 public class DeleteExerciseHandler : IRequestHandler<DeleteExerciseCommand, bool>
 {
@@ -33,8 +33,13 @@ public class DeleteExerciseHandler : IRequestHandler<DeleteExerciseCommand, bool
         await _context.SaveChangesAsync(cancellationToken);
 
         await _messageBus.PublishAsync(
-            MessageTopics.ExerciseDeleted,
-            new ExerciseDeletedMessage(exercise.Id, exercise.TenantId),
+            MessageTopics.Exercises.ExerciseDeleted,
+            new ExerciseDeletedMessage
+            {
+                ExerciseId = exercise.Id,
+                TenantId = exercise.TenantId,
+                DeletedBy = request.DeletedBy
+            },
             cancellationToken);
 
         return true;

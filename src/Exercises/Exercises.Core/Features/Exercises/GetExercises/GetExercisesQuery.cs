@@ -24,17 +24,14 @@ public class GetExercisesHandler : IRequestHandler<GetExercisesQuery, IEnumerabl
             query = query.Where(e => e.BodyPartId == request.BodyPartId);
         }
 
-        return await query.Select(e => new ExerciseDto
-        {
-            ExerciseId = e.Id,
-            Name = e.Name,
-            Description = e.Description,
-            TenantId = e.TenantId,
-            BodyPartId = e.BodyPartId,
-            VideoUrl = e.VideoUrl,
-            ImageUrl = e.ImageUrl,
-            Instructions = e.Instructions,
-            Type = (int)e.Type
-        }).ToListAsync(cancellationToken);
+        return await query.Select(e => new ExerciseDto(
+            e.Id,
+            e.Name,
+            e.BodyPartId,
+            null, // DefaultSets
+            null, // DefaultRepetitions
+            e.TenantId,
+            e.CreatedAt
+        )).ToListAsync(cancellationToken);
     }
 }

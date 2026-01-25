@@ -24,17 +24,14 @@ public class GetExerciseByIdHandler : IRequestHandler<GetExerciseByIdQuery, Exer
         if (exercise == null)
             return null;
 
-        return new ExerciseDto
-        {
-            ExerciseId = exercise.Id,
-            Name = exercise.Name,
-            Description = exercise.Description,
-            TenantId = exercise.TenantId,
-            BodyPartId = exercise.BodyPartId,
-            VideoUrl = exercise.VideoUrl,
-            ImageUrl = exercise.ImageUrl,
-            Instructions = exercise.Instructions,
-            Type = (int)exercise.Type
-        };
+        return new ExerciseDto(
+            exercise.Id,
+            exercise.Name,
+            exercise.BodyPartId,
+            null, // DefaultSets
+            null, // DefaultRepetitions
+            exercise.TenantId,
+            exercise.CreatedAt
+        );
     }
 }

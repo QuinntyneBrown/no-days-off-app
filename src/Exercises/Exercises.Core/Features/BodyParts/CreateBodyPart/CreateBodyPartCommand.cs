@@ -4,7 +4,7 @@ using Exercises.Core.Aggregates.BodyPart;
 
 namespace Exercises.Core.Features.BodyParts.CreateBodyPart;
 
-public record CreateBodyPartCommand(string Name, int TenantId, string? Description = null) : IRequest<BodyPartDto>;
+public record CreateBodyPartCommand(string Name, int TenantId) : IRequest<BodyPartDto>;
 
 public class CreateBodyPartHandler : IRequestHandler<CreateBodyPartCommand, BodyPartDto>
 {
@@ -17,17 +17,16 @@ public class CreateBodyPartHandler : IRequestHandler<CreateBodyPartCommand, Body
 
     public async Task<BodyPartDto> Handle(CreateBodyPartCommand request, CancellationToken cancellationToken)
     {
-        var bodyPart = new BodyPart(request.Name, request.TenantId, request.Description);
+        var bodyPart = new BodyPart(request.Name, request.TenantId);
 
         _context.BodyParts.Add(bodyPart);
         await _context.SaveChangesAsync(cancellationToken);
 
-        return new BodyPartDto
-        {
-            BodyPartId = bodyPart.Id,
-            Name = bodyPart.Name,
-            Description = bodyPart.Description,
-            TenantId = bodyPart.TenantId
-        };
+        return new BodyPartDto(
+            bodyPart.Id,
+            bodyPart.Name,
+            bodyPart.TenantId,
+            bodyPart.CreatedAt
+        );
     }
 }

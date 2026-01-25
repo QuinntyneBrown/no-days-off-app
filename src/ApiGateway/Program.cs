@@ -1,5 +1,6 @@
 using System.Threading.RateLimiting;
 using ApiGateway.Middleware;
+using NoDaysOff.ServiceDefaults;
 using Shared.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,8 +13,7 @@ builder.AddRedisClient("redis");
 
 // Add YARP reverse proxy
 builder.Services.AddReverseProxy()
-    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"))
-    .AddServiceDiscoveryDestinationResolver();
+    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 
 // Add JWT authentication for gateway-level validation
 builder.Services.AddJwtAuthenticationForGateway(builder.Configuration);
@@ -24,22 +24,28 @@ builder.Services.AddRateLimiter(options =>
 {
     options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
 
-    options.AddFixedWindowLimiter("fixed", config =>
-    {
-        config.PermitLimit = 100;
-        config.Window = TimeSpan.FromMinutes(1);
-        config.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
-        config.QueueLimit = 10;
-    });
+    options.AddPolicy("fixed", context =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: context.Connection.RemoteIpAddress?.ToString() ?? "anonymous",
+            factory: _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 100,
+                Window = TimeSpan.FromMinutes(1),
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = 10
+            }));
 
-    options.AddSlidingWindowLimiter("sliding", config =>
-    {
-        config.PermitLimit = 100;
-        config.Window = TimeSpan.FromMinutes(1);
-        config.SegmentsPerWindow = 4;
-        config.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
-        config.QueueLimit = 10;
-    });
+    options.AddPolicy("sliding", context =>
+        RateLimitPartition.GetSlidingWindowLimiter(
+            partitionKey: context.Connection.RemoteIpAddress?.ToString() ?? "anonymous",
+            factory: _ => new SlidingWindowRateLimiterOptions
+            {
+                PermitLimit = 100,
+                Window = TimeSpan.FromMinutes(1),
+                SegmentsPerWindow = 4,
+                QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+                QueueLimit = 10
+            }));
 });
 
 // Add CORS
