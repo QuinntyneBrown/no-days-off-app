@@ -1,25 +1,25 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36804.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoDaysOff.Core", "src\NoDaysOff.Core\NoDaysOff.Core.csproj", "{BE2EF875-9C69-4E9D-B3EF-29B3E7667F62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "src\Core\Core.csproj", "{BE2EF875-9C69-4E9D-B3EF-29B3E7667F62}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0AB3BF05-4346-4AA6-1389-037BE0695223}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoDaysOff.Core.Tests", "tests\NoDaysOff.Core.Tests\NoDaysOff.Core.Tests.csproj", "{F4270124-B249-4C77-A6E3-789D822B6C55}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Tests", "tests\Core.Tests\Core.Tests.csproj", "{F4270124-B249-4C77-A6E3-789D822B6C55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoDaysOff.Infrastructure", "src\NoDaysOff.Infrastructure\NoDaysOff.Infrastructure.csproj", "{A1B2C3D4-5678-9ABC-DEF0-123456789001}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{A1B2C3D4-5678-9ABC-DEF0-123456789001}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoDaysOff.Api", "src\NoDaysOff.Api\NoDaysOff.Api.csproj", "{A1B2C3D4-5678-9ABC-DEF0-123456789002}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "src\Api\Api.csproj", "{A1B2C3D4-5678-9ABC-DEF0-123456789002}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoDaysOff.Api.Tests", "tests\NoDaysOff.Api.Tests\NoDaysOff.Api.Tests.csproj", "{A1B2C3D4-5678-9ABC-DEF0-123456789003}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Tests", "tests\Api.Tests\Api.Tests.csproj", "{A1B2C3D4-5678-9ABC-DEF0-123456789003}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoDaysOff.Infrastructure.Tests", "tests\NoDaysOff.Infrastructure.Tests\NoDaysOff.Infrastructure.Tests.csproj", "{A1B2C3D4-5678-9ABC-DEF0-123456789004}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Tests", "tests\Infrastructure.Tests\Infrastructure.Tests.csproj", "{A1B2C3D4-5678-9ABC-DEF0-123456789004}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoDaysOff.Shared", "src\NoDaysOff.Shared\NoDaysOff.Shared.csproj", "{514AF70D-50CC-48C0-876E-D81DA85A896B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "src\Shared\Shared.csproj", "{514AF70D-50CC-48C0-876E-D81DA85A896B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
