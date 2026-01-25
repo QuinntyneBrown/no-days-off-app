@@ -5,6 +5,8 @@ var redis = builder.AddRedis("redis")
     .WithDataVolume("redis-data");
 
 var sqlServer = builder.AddSqlServer("sqlserver")
+    .WithImage("azure-sql-edge")
+    .WithImageTag("latest")
     .WithDataVolume("sqlserver-data");
 
 // Databases - one per service
@@ -60,7 +62,7 @@ var communicationService = builder.AddProject<Projects.Communication_Api>("commu
     .WaitFor(redis);
 
 // API Gateway
-builder.AddProject<Projects.ApiGateway>("api-gateway")
+var apiGateway = builder.AddProject<Projects.ApiGateway>("api-gateway")
     .WithExternalHttpEndpoints()
     .WithReference(identityService)
     .WithReference(athletesService)
@@ -76,5 +78,12 @@ builder.AddProject<Projects.ApiGateway>("api-gateway")
     .WaitFor(dashboardService)
     .WaitFor(mediaService)
     .WaitFor(communicationService);
+
+// Frontend
+builder.AddNpmApp("frontend", "../Ui")
+    .WithReference(apiGateway)
+    .WaitFor(apiGateway)
+    .WithHttpEndpoint(env: "PORT")
+    .WithExternalHttpEndpoints();
 
 builder.Build().Run();
