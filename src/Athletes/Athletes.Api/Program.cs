@@ -1,9 +1,11 @@
+using System.Text.Json;
 using Athletes.Core.Features.Athletes.CreateAthlete;
 using Athletes.Infrastructure;
 using Athletes.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using NoDaysOff.ServiceDefaults;
 using Shared.Authentication;
+using Shared.Domain.Exceptions;
 using Shared.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,6 +43,46 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
+
+// Exception handling middleware
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next(context);
+    }
+    catch (UnauthorizedException ex)
+    {
+        context.Response.StatusCode = 401;
+        context.Response.ContentType = "application/json";
+        await context.Response.WriteAsync(JsonSerializer.Serialize(new { message = ex.Message }));
+    }
+    catch (NotFoundException ex)
+    {
+        context.Response.StatusCode = 404;
+        context.Response.ContentType = "application/json";
+        await context.Response.WriteAsync(JsonSerializer.Serialize(new { message = ex.Message }));
+    }
+    catch (ConflictException ex)
+    {
+        context.Response.StatusCode = 409;
+        context.Response.ContentType = "application/json";
+        await context.Response.WriteAsync(JsonSerializer.Serialize(new { message = ex.Message }));
+    }
+    catch (ValidationException ex)
+    {
+        context.Response.StatusCode = 400;
+        context.Response.ContentType = "application/json";
+        await context.Response.WriteAsync(JsonSerializer.Serialize(new { message = ex.Message, errors = ex.Errors }));
+    }
+    catch (Exception ex)
+    {
+        context.Response.StatusCode = 500;
+        context.Response.ContentType = "application/json";
+        var errorResponse = new { message = ex.Message, stackTrace = app.Environment.IsDevelopment() ? ex.StackTrace : null };
+        await context.Response.WriteAsync(JsonSerializer.Serialize(errorResponse));
+    }
+});
 
 // Configure pipeline
 if (app.Environment.IsDevelopment())
