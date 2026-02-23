@@ -68,7 +68,7 @@ var apiGateway = builder.AddProject<Projects.ApiGateway>("api-gateway")
     .WaitFor(communicationService);
 
 // Frontend on port 4200
-builder.AddNpmApp("frontend", "../Ui", "start")
+builder.AddNpmApp("frontend", "../Web", "start")
     .WithReference(apiGateway)
     .WaitFor(apiGateway)
     .WithHttpEndpoint(port: 4200, targetPort: 4200, isProxied: false)
