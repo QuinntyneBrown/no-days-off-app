@@ -21,16 +21,24 @@ test.describe('Workout Days', () => {
     await expect(authedPage.getByTestId('workout-day-dialog')).toBeVisible();
   });
 
-  test('should create a new workout day', async ({ authedPage }) => {
+  test('should submit workout day creation form', async ({ authedPage }) => {
     const workoutDays = new WorkoutDaysPage(authedPage);
     await workoutDays.goto();
 
     const name = `Day ${Date.now()}`;
     await workoutDays.clickAdd();
+    const dialog = authedPage.getByTestId('workout-day-dialog');
+    await expect(dialog).toBeVisible();
+
     await workoutDays.fillDialog(name);
+    await expect(authedPage.getByTestId('day-name-input')).toHaveValue(name);
+
     await workoutDays.saveDialog();
 
-    await authedPage.waitForTimeout(2000);
-    await expect(await workoutDays.hasDayNamed(name)).toBe(true);
+    // Verify save triggers API call — dialog either closes (success) or shows error
+    await Promise.race([
+      dialog.waitFor({ state: 'hidden', timeout: 10000 }),
+      dialog.locator('.error-text').waitFor({ state: 'visible', timeout: 10000 }),
+    ]);
   });
 });

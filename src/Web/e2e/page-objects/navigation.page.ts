@@ -14,7 +14,13 @@ export class NavigationPage {
   }
 
   async navigateTo(route: string) {
-    await this.page.getByTestId(`nav-${route}`).click();
+    await this.page.goto(route);
+    await this.page.waitForLoadState('domcontentloaded');
+  }
+
+  async clickSidebarLink(route: string) {
+    const link = this.sidebar.locator(`a[href="${route}"]`);
+    await link.click();
   }
 
   async logout() {

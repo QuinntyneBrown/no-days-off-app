@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import { Component, Injectable, Input, Output, EventEmitter, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -80,6 +80,7 @@ export class NdoSnackbarComponent {
  * Service to show snackbar notifications using Angular Material's MatSnackBar.
  * Usage: inject(NdoSnackbarService).show('Message', 'success');
  */
+@Injectable({ providedIn: 'root' })
 export class NdoSnackbarService {
   private snackBar = inject(MatSnackBar);
 

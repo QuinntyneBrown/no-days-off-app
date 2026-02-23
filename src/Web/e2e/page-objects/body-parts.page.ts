@@ -15,6 +15,8 @@ export class BodyPartsPage {
 
   async goto() {
     await this.page.goto('/body-parts');
+    await this.page.waitForLoadState('domcontentloaded');
+    await this.container.waitFor({ state: 'visible', timeout: 15000 });
   }
 
   async clickAdd() {

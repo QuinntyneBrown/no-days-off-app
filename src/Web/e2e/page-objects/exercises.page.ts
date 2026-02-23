@@ -17,6 +17,8 @@ export class ExercisesPage {
 
   async goto() {
     await this.page.goto('/exercises');
+    await this.page.waitForLoadState('domcontentloaded');
+    await this.container.waitFor({ state: 'visible', timeout: 15000 });
   }
 
   async clickAdd() {

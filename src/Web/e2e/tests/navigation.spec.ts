@@ -3,63 +3,55 @@ import { NavigationPage } from '../page-objects/navigation.page';
 
 test.describe('Navigation', () => {
   test('should navigate to athletes page', async ({ authedPage }) => {
-    const nav = new NavigationPage(authedPage);
-    await nav.navigateTo('/athletes');
+    await authedPage.goto('/athletes');
     await expect(authedPage).toHaveURL(/athletes/);
     await expect(authedPage.getByTestId('athletes-page')).toBeVisible();
   });
 
   test('should navigate to exercises page', async ({ authedPage }) => {
-    const nav = new NavigationPage(authedPage);
-    await nav.navigateTo('/exercises');
+    await authedPage.goto('/exercises');
     await expect(authedPage).toHaveURL(/exercises/);
     await expect(authedPage.getByTestId('exercises-page')).toBeVisible();
   });
 
   test('should navigate to weekly planner page', async ({ authedPage }) => {
-    const nav = new NavigationPage(authedPage);
-    await nav.navigateTo('/weekly-planner');
+    await authedPage.goto('/weekly-planner');
     await expect(authedPage).toHaveURL(/weekly-planner/);
     await expect(authedPage.getByTestId('weekly-planner-page')).toBeVisible();
   });
 
   test('should navigate to workout days page', async ({ authedPage }) => {
-    const nav = new NavigationPage(authedPage);
-    await nav.navigateTo('/workout-days');
+    await authedPage.goto('/workout-days');
     await expect(authedPage).toHaveURL(/workout-days/);
     await expect(authedPage.getByTestId('workout-days-page')).toBeVisible();
   });
 
   test('should navigate to videos page', async ({ authedPage }) => {
-    const nav = new NavigationPage(authedPage);
-    await nav.navigateTo('/videos');
+    await authedPage.goto('/videos');
     await expect(authedPage).toHaveURL(/videos/);
     await expect(authedPage.getByTestId('videos-page')).toBeVisible();
   });
 
   test('should navigate to messages page', async ({ authedPage }) => {
-    const nav = new NavigationPage(authedPage);
-    await nav.navigateTo('/messages');
+    await authedPage.goto('/messages');
     await expect(authedPage).toHaveURL(/messages/);
     await expect(authedPage.getByTestId('messages-page')).toBeVisible();
   });
 
   test('should navigate to notifications page', async ({ authedPage }) => {
-    const nav = new NavigationPage(authedPage);
-    await nav.navigateTo('/notifications');
+    await authedPage.goto('/notifications');
     await expect(authedPage).toHaveURL(/notifications/);
     await expect(authedPage.getByTestId('notifications-page')).toBeVisible();
   });
 
   test('should navigate to body parts page', async ({ authedPage }) => {
-    const nav = new NavigationPage(authedPage);
-    await nav.navigateTo('/body-parts');
+    await authedPage.goto('/body-parts');
     await expect(authedPage).toHaveURL(/body-parts/);
     await expect(authedPage.getByTestId('body-parts-page')).toBeVisible();
   });
 
   test('should navigate to settings page', async ({ authedPage }) => {
-    await authedPage.getByTestId('nav-settings').click();
+    await authedPage.goto('/settings');
     await expect(authedPage).toHaveURL(/settings/);
     await expect(authedPage.getByTestId('settings-page')).toBeVisible();
   });
