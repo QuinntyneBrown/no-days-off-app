@@ -12,45 +12,45 @@ var dashboardDb = builder.AddConnectionString("dashboarddb");
 var mediaDb = builder.AddConnectionString("mediadb");
 var communicationDb = builder.AddConnectionString("communicationdb");
 
-// Microservices with fixed ports to match API Gateway configuration
+// Microservices with fixed ports (isProxied: false so they bind directly)
 var identityService = builder.AddProject<Projects.Identity_Api>("identity-api")
-    .WithHttpEndpoint(port: 5000)
+    .WithHttpEndpoint(port: 5010, isProxied: false)
     .WithReference(identityDb)
     .WithReference(redis);
 
 var athletesService = builder.AddProject<Projects.Athletes_Api>("athletes-api")
-    .WithHttpEndpoint(port: 5001)
+    .WithHttpEndpoint(port: 5001, isProxied: false)
     .WithReference(athletesDb)
     .WithReference(redis);
 
 var exercisesService = builder.AddProject<Projects.Exercises_Api>("exercises-api")
-    .WithHttpEndpoint(port: 5002)
+    .WithHttpEndpoint(port: 5002, isProxied: false)
     .WithReference(exercisesDb)
     .WithReference(redis);
 
 var workoutsService = builder.AddProject<Projects.Workouts_Api>("workouts-api")
-    .WithHttpEndpoint(port: 5003)
+    .WithHttpEndpoint(port: 5003, isProxied: false)
     .WithReference(workoutsDb)
     .WithReference(redis);
 
 var dashboardService = builder.AddProject<Projects.Dashboard_Api>("dashboard-api")
-    .WithHttpEndpoint(port: 5004)
+    .WithHttpEndpoint(port: 5004, isProxied: false)
     .WithReference(dashboardDb)
     .WithReference(redis);
 
 var mediaService = builder.AddProject<Projects.Media_Api>("media-api")
-    .WithHttpEndpoint(port: 5005)
+    .WithHttpEndpoint(port: 5005, isProxied: false)
     .WithReference(mediaDb)
     .WithReference(redis);
 
 var communicationService = builder.AddProject<Projects.Communication_Api>("communication-api")
-    .WithHttpEndpoint(port: 5006)
+    .WithHttpEndpoint(port: 5006, isProxied: false)
     .WithReference(communicationDb)
     .WithReference(redis);
 
-// API Gateway on port 5007
+// API Gateway on port 5000 (matches Angular API_BASE_URL, non-proxied for YARP compatibility)
 var apiGateway = builder.AddProject<Projects.ApiGateway>("api-gateway")
-    .WithHttpEndpoint(port: 5007)
+    .WithHttpEndpoint(port: 5000, isProxied: false)
     .WithExternalHttpEndpoints()
     .WithReference(identityService)
     .WithReference(athletesService)
