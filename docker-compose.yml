@@ -12,10 +12,11 @@ services:
     volumes:
       - sqlserver-data:/var/opt/mssql
     healthcheck:
-      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "YourStrong@Passw0rd" -Q "SELECT 1" || exit 1
+      test: ["CMD-SHELL", "python3 -c \"import socket; s=socket.socket(); s.connect(('localhost',1433)); s.close()\" || exit 1"]
       interval: 10s
       timeout: 5s
-      retries: 10
+      retries: 15
+      start_period: 30s
 
   redis:
     image: redis:7-alpine
@@ -39,13 +40,13 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__redis=redis:6379
-      - ReverseProxy__Clusters__identity__Destinations__destination1__Address=http://identity-api:8080
-      - ReverseProxy__Clusters__athletes__Destinations__destination1__Address=http://athletes-api:8080
-      - ReverseProxy__Clusters__workouts__Destinations__destination1__Address=http://workouts-api:8080
-      - ReverseProxy__Clusters__exercises__Destinations__destination1__Address=http://exercises-api:8080
-      - ReverseProxy__Clusters__dashboard__Destinations__destination1__Address=http://dashboard-api:8080
-      - ReverseProxy__Clusters__media__Destinations__destination1__Address=http://media-api:8080
-      - ReverseProxy__Clusters__communication__Destinations__destination1__Address=http://communication-api:8080
+      - ReverseProxy__Clusters__identity-cluster__Destinations__destination1__Address=http://identity-api:8080
+      - ReverseProxy__Clusters__athletes-cluster__Destinations__destination1__Address=http://athletes-api:8080
+      - ReverseProxy__Clusters__workouts-cluster__Destinations__destination1__Address=http://workouts-api:8080
+      - ReverseProxy__Clusters__exercises-cluster__Destinations__destination1__Address=http://exercises-api:8080
+      - ReverseProxy__Clusters__dashboard-cluster__Destinations__destination1__Address=http://dashboard-api:8080
+      - ReverseProxy__Clusters__media-cluster__Destinations__destination1__Address=http://media-api:8080
+      - ReverseProxy__Clusters__communication-cluster__Destinations__destination1__Address=http://communication-api:8080
     depends_on:
       redis:
         condition: service_healthy

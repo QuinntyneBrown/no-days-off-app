@@ -1,1 +1,60 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+:root {
+  --ndo-primary: #00E5FF;
+  --ndo-primary-dim: #00E5FF18;
+  --ndo-primary-muted: #00E5FF40;
+  --ndo-accent: #FF6B35;
+  --ndo-accent-dim: #FF6B3518;
+  --ndo-bg-page: #0A0A0A;
+  --ndo-bg-surface: #141414;
+  --ndo-bg-card: #1A1A1A;
+  --ndo-bg-elevated: #222222;
+  --ndo-border: #2A2A2A;
+  --ndo-border-light: #333333;
+  --ndo-text-primary: #FFFFFF;
+  --ndo-text-secondary: #9E9E9E;
+  --ndo-text-tertiary: #616161;
+  --ndo-text-on-primary: #0A0A0A;
+  --ndo-success: #4ADE80;
+  --ndo-success-dim: #4ADE8020;
+  --ndo-error: #F87171;
+  --ndo-error-dim: #F8717120;
+  --ndo-warning: #FBBF24;
+  --ndo-warning-dim: #FBBF2420;
+  --ndo-info: #60A5FA;
+  --ndo-info-dim: #60A5FA20;
+}
+
+$ndo-dark-theme: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: mat.$cyan-palette,
+  ),
+  typography: (
+    plain-family: 'DM Sans',
+    brand-family: 'Plus Jakarta Sans',
+  ),
+));
+
+html {
+  @include mat.all-component-themes($ndo-dark-theme);
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background-color: var(--ndo-bg-page);
+  color: var(--ndo-text-primary);
+  font-family: 'DM Sans', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+.mat-mdc-dialog-container {
+  --mdc-dialog-container-color: var(--ndo-bg-card);
+}
+
+.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: var(--ndo-bg-card);
+}
