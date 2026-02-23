@@ -43,3 +43,15 @@ export interface UpdateProfileRequest {
   username: string;
   imageUrl?: string;
 }
+
+export interface AthleteWeight {
+  id: number;
+  weightInKgs: number;
+  weighedOn: string;
+  recordedBy: string;
+}
+
+export interface RecordWeightRequest {
+  weightInKgs: number;
+  weighedOn: string;
+}

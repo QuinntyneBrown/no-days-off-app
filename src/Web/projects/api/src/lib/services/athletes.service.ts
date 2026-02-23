@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { API_BASE_URL } from './api-config';
 import type {
   Athlete,
+  AthleteWeight,
   CreateAthleteRequest,
+  RecordWeightRequest,
   UpdateAthleteRequest,
 } from '../models/athlete.models';
 
@@ -44,6 +46,21 @@ export class AthletesService {
   deleteAthlete(athleteId: number): Observable<void> {
     return this.http.delete<void>(
       `${this.baseUrl}/athletes/${athleteId}`
+    );
+  }
+
+  recordWeight(athleteId: number, request: RecordWeightRequest): Observable<Athlete> {
+    return this.http.post<Athlete>(
+      `${this.baseUrl}/athletes/${athleteId}/weights`,
+      request
+    );
+  }
+
+  getWeightHistory(athleteId: number, count = 10): Observable<AthleteWeight[]> {
+    const params = new HttpParams().set('count', count);
+    return this.http.get<AthleteWeight[]>(
+      `${this.baseUrl}/athletes/${athleteId}/weights`,
+      { params }
     );
   }
 }

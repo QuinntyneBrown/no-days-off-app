@@ -20,6 +20,15 @@ public static class AthleteExtensions
             athlete.CreatedBy);
     }
 
+    public static AthleteWeightDto ToDto(this AthleteWeight weight)
+    {
+        return new AthleteWeightDto(
+            weight.Id,
+            weight.WeightInKgs,
+            weight.WeighedOn,
+            weight.RecordedBy);
+    }
+
     public static ProfileDto ToDto(this Profile profile)
     {
         return new ProfileDto(

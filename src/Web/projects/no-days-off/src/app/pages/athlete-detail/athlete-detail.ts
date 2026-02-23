@@ -3,14 +3,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { NdoAvatarComponent } from 'components';
 import { AthletesService } from 'api';
-import type { Athlete } from 'api';
+import type { Athlete, AthleteWeight } from 'api';
 import { DatePipe } from '@angular/common';
+import { LogWeightDialog } from '../../dialogs/log-weight-dialog';
 
 @Component({
   selector: 'app-athlete-detail',
-  imports: [MatButtonModule, MatIconModule, MatCardModule, NdoAvatarComponent, DatePipe],
+  imports: [MatButtonModule, MatIconModule, MatCardModule, MatDialogModule, MatSnackBarModule, NdoAvatarComponent, DatePipe],
   template: `
     <div class="detail" data-testid="athlete-detail-page">
       @if (athlete(); as a) {
@@ -40,14 +43,33 @@ import { DatePipe } from '@angular/common';
           <div class="detail-panel">
             <mat-card class="detail-card">
               <mat-card-content>
-                <h3>Weight Tracking</h3>
-                <p class="card-sub">Last 6 months</p>
+                <div class="card-header-row">
+                  <div>
+                    <h3>Weight Tracking</h3>
+                    <p class="card-sub">Last 6 months</p>
+                  </div>
+                  <button mat-flat-button class="log-weight-btn" (click)="openLogWeight()" data-testid="log-weight-btn">
+                    <mat-icon fontSet="material-symbols-rounded">add</mat-icon>
+                    Log Weight
+                  </button>
+                </div>
                 <div class="weight-display" data-testid="weight-tracking">
                   <p class="current-weight">{{ a.currentWeight ? a.currentWeight + ' kg' : 'No data' }}</p>
                   @if (a.lastWeighedOn) {
                     <p class="last-weighed">Last weighed: {{ a.lastWeighedOn | date:'mediumDate' }}</p>
                   }
                 </div>
+                @if (weightHistory().length > 0) {
+                  <div class="weight-history" data-testid="weight-history">
+                    <h4>History</h4>
+                    @for (w of weightHistory(); track w.id) {
+                      <div class="weight-history-row" data-testid="weight-history-row">
+                        <span class="weight-value">{{ w.weightInKgs }} kg</span>
+                        <span class="weight-date">{{ w.weighedOn | date:'mediumDate' }}</span>
+                      </div>
+                    }
+                  </div>
+                }
               </mat-card-content>
             </mat-card>
             <mat-card class="detail-card">
@@ -87,8 +109,15 @@ import { DatePipe } from '@angular/common';
     .detail-panel { display: flex; flex-direction: column; gap: 16px; }
     h3 { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0 0 4px; }
     .card-sub { color: var(--ndo-text-secondary); font-size: 13px; margin: 0 0 16px; }
+    .card-header-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+    .log-weight-btn { --mdc-filled-button-container-color: var(--ndo-primary); --mdc-filled-button-label-text-color: var(--ndo-text-on-primary); }
     .current-weight { font-size: 28px; font-weight: 700; margin: 0; }
     .last-weighed { color: var(--ndo-text-secondary); font-size: 13px; }
+    .weight-history { margin-top: 16px; border-top: 1px solid var(--ndo-border); padding-top: 12px; }
+    .weight-history h4 { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0 0 8px; font-size: 14px; }
+    .weight-history-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid var(--ndo-border); font-size: 14px; }
+    .weight-value { font-weight: 600; }
+    .weight-date { color: var(--ndo-text-secondary); }
     .info-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--ndo-border); }
     .label { color: var(--ndo-text-secondary); }
   `,
@@ -97,16 +126,49 @@ export class AthleteDetailPage implements OnInit {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly athletesService = inject(AthletesService);
+  private readonly dialog = inject(MatDialog);
+  private readonly snackBar = inject(MatSnackBar);
+
   athlete = signal<Athlete | null>(null);
+  weightHistory = signal<AthleteWeight[]>([]);
+
+  private athleteId = 0;
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    if (id) {
-      this.athletesService.getAthlete(id).subscribe({
-        next: (a) => this.athlete.set(a),
-        error: () => this.router.navigate(['/athletes']),
-      });
+    this.athleteId = Number(this.route.snapshot.paramMap.get('id'));
+    if (this.athleteId) {
+      this.loadAthlete();
+      this.loadWeightHistory();
     }
+  }
+
+  loadAthlete() {
+    this.athletesService.getAthlete(this.athleteId).subscribe({
+      next: (a) => this.athlete.set(a),
+      error: () => this.router.navigate(['/athletes']),
+    });
+  }
+
+  loadWeightHistory() {
+    this.athletesService.getWeightHistory(this.athleteId).subscribe({
+      next: (history) => this.weightHistory.set(history),
+    });
+  }
+
+  openLogWeight() {
+    const a = this.athlete();
+    if (!a) return;
+    const ref = this.dialog.open(LogWeightDialog, {
+      width: '400px',
+      data: { athleteId: a.athleteId, athleteName: a.name },
+    });
+    ref.afterClosed().subscribe((saved) => {
+      if (saved) {
+        this.loadAthlete();
+        this.loadWeightHistory();
+        this.snackBar.open('Weight logged successfully', 'Close', { duration: 3000 });
+      }
+    });
   }
 
   getInitials(name: string) {

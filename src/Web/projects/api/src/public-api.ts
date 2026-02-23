@@ -17,6 +17,8 @@ export type {
   Athlete,
   CreateAthleteRequest,
   UpdateAthleteRequest,
+  AthleteWeight,
+  RecordWeightRequest,
   Profile,
   CreateProfileRequest,
   UpdateProfileRequest,

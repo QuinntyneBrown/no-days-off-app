@@ -2,6 +2,8 @@ using Athletes.Core.Features.Athletes.CreateAthlete;
 using Athletes.Core.Features.Athletes.DeleteAthlete;
 using Athletes.Core.Features.Athletes.GetAthleteById;
 using Athletes.Core.Features.Athletes.GetAthletes;
+using Athletes.Core.Features.Athletes.GetWeightHistory;
+using Athletes.Core.Features.Athletes.RecordWeight;
 using Athletes.Core.Features.Athletes.UpdateAthlete;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -100,5 +102,36 @@ public class AthletesController : ControllerBase
         var command = new DeleteAthleteCommand(athleteId, _currentUser.Email ?? "system");
         await _mediator.Send(command, cancellationToken);
         return NoContent();
+    }
+
+    [HttpPost("{athleteId:int}/weights")]
+    [ProducesResponseType(typeof(AthleteDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<AthleteDto>> RecordWeight(
+        int athleteId,
+        [FromBody] RecordWeightDto request,
+        CancellationToken cancellationToken)
+    {
+        var command = new RecordWeightCommand(
+            athleteId,
+            request.WeightInKgs,
+            request.WeighedOn,
+            _currentUser.Email ?? "system");
+
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
+    }
+
+    [HttpGet("{athleteId:int}/weights")]
+    [ProducesResponseType(typeof(IEnumerable<AthleteWeightDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<IEnumerable<AthleteWeightDto>>> GetWeightHistory(
+        int athleteId,
+        [FromQuery] int count = 10,
+        CancellationToken cancellationToken = default)
+    {
+        var query = new GetWeightHistoryQuery(athleteId, count);
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
     }
 }
